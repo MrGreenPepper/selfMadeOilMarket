@@ -58,7 +58,7 @@ con_consumer_low(consumer)..                quantities_d(consumer) =g= 0;
 con_consumer_up(consumer)..                 maxConsumption(consumer) - quantities_d(consumer) =g= 0;
 
 *supplier
-maxSupplier(supplier)..                     0 =e= costs(supplier) - price -Mu_su_low(supplier) + Mu_su_up(supplier);
+maxSupplier(supplier)..                     costs(supplier) - price -Mu_su_low(supplier) + Mu_su_up(supplier) =e= 0;
 con_supplier_low(supplier)..                quantities_s(supplier) =g= 0;
 con_supplier_up(supplier)..                 maxProduction(supplier) - quantities_s(supplier) =g= 0;
 

@@ -1,0 +1,291 @@
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  Sets
+   2   
+   3  consumer                /d1*d2/
+   4  supplier                /s1*s2/
+   5  ;
+   6   
+   7   
+   8  Parameter
+   9   
+  10  costs(supplier)                     /s1 10, s2 20/
+  11  baseUtility(consumer)               /d1 10, d2 20/
+  12  maxConsumption                      /d1 100, d2 200/
+  13  maxProduction                       /s1 100, s2 200/
+  14  ;
+  15   
+  16   
+  17  Variables
+  18   
+  19  quantities_d(consumer)
+  20  consumerSurplus(consumer)
+  21  Mu_de_low(consumer)
+  22  Mu_de_up(consumer)
+  23   
+  24  quantities_s(supplier)
+  25  supplierSurplus(supplier)
+  26  Mu_su_low(supplier)
+  27  Mu_su_up(supplier)
+  28   
+  29  price
+  30  ;
+  31   
+  32  Mu_de_low.lo(consumer)  = 0;
+  33  Mu_de_up.lo(consumer)  = 0;
+  34  Mu_su_low.lo(supplier)  = 0;
+  35  Mu_su_up.lo(supplier)  = 0;
+  36   
+  37   
+  38  Equations
+  39   
+  40  *demand
+  41  maxConsumer(consumer)
+  42  con_consumer_low
+  43  con_consumer_up
+  44   
+  45  *supplier
+  46  maxSupplier
+  47  con_supplier_low
+  48  con_supplier_up
+  49   
+  50  *overall
+  51  balanceEqu
+  52  ;
+  53   
+  54   
+  55  *demand
+  56  maxConsumer(consumer)..                     price - consumerSurplus(consumer) - Mu_de_low(consumer) + Mu_de_up(consumer) =e= 0;
+  57  con_consumer_low(consumer)..                quantities_d(consumer) =g= 0;
+  58  con_consumer_up(consumer)..                 maxConsumption(consumer) - quantities_d(consumer) =g= 0;
+  59   
+  60  *supplier
+  61  maxSupplier(supplier)..                     costs(supplier) - price -Mu_su_low(supplier) + Mu_su_up(supplier) =e= 0;
+  62  con_supplier_low(supplier)..                quantities_s(supplier) =g= 0;
+  63  con_supplier_up(supplier)..                 maxProduction(supplier) - quantities_s(supplier) =g= 0;
+  64   
+  65  *overall
+  66  balanceEqu..                                sum((consumer), quantities_d(consumer)) - sum((supplier), quantities_s(supplier)) =e= 0;
+  67   
+  68  model cournot /
+  69  balanceEqu.price,
+  70   
+  71  maxConsumer.quantities_d,
+  72  con_consumer_low.Mu_de_low,
+  73  con_consumer_up.Mu_de_up,
+  74   
+  75  maxSupplier.quantities_s,
+  76  con_supplier_low.Mu_su_low,
+  77  con_supplier_up.Mu_su_up
+  78  /;
+  79   
+  80  Solve cournot using mcp;
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  46.2.0 ac4adda6 WEX-WEI
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE cournot Using MCP From line 80
+
+
+---- balanceEqu  =E=  
+
+balanceEqu..  quantities_d(d1) + quantities_d(d2) - quantities_s(s1) - quantities_s(s2) =E= 0 ; (LHS = 0)
+     
+
+---- maxConsumer  =E=  
+
+maxConsumer(d1)..  - consumerSurplus(d1) - Mu_de_low(d1) + Mu_de_up(d1) + price =E= 0 ; (LHS = 0)
+     
+maxConsumer(d2)..  - consumerSurplus(d2) - Mu_de_low(d2) + Mu_de_up(d2) + price =E= 0 ; (LHS = 0)
+     
+
+---- con_consumer_low  =G=  
+
+con_consumer_low(d1)..  quantities_d(d1) =G= 0 ; (LHS = 0)
+     
+con_consumer_low(d2)..  quantities_d(d2) =G= 0 ; (LHS = 0)
+     
+
+---- con_consumer_up  =G=  
+
+con_consumer_up(d1)..  - quantities_d(d1) =G= -100 ; (LHS = 0)
+     
+con_consumer_up(d2)..  - quantities_d(d2) =G= -200 ; (LHS = 0)
+     
+
+---- maxSupplier  =E=  
+
+maxSupplier(s1)..  - Mu_su_low(s1) + Mu_su_up(s1) - price =E= -10 ; (LHS = 0, INFES = 10 ****)
+     
+maxSupplier(s2)..  - Mu_su_low(s2) + Mu_su_up(s2) - price =E= -20 ; (LHS = 0, INFES = 20 ****)
+     
+
+---- con_supplier_low  =G=  
+
+con_supplier_low(s1)..  quantities_s(s1) =G= 0 ; (LHS = 0)
+     
+con_supplier_low(s2)..  quantities_s(s2) =G= 0 ; (LHS = 0)
+     
+
+---- con_supplier_up  =G=  
+
+con_supplier_up(s1)..  - quantities_s(s1) =G= -100 ; (LHS = 0)
+     
+con_supplier_up(s2)..  - quantities_s(s2) =G= -200 ; (LHS = 0)
+     
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE cournot Using MCP From line 80
+
+
+---- quantities_d  
+
+quantities_d(d1)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       balanceEqu
+        1       con_consumer_low(d1)
+       -1       con_consumer_up(d1)
+
+quantities_d(d2)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       balanceEqu
+        1       con_consumer_low(d2)
+       -1       con_consumer_up(d2)
+
+
+---- consumerSurplus  
+
+consumerSurplus(d1)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+       -1       maxConsumer(d1)
+
+consumerSurplus(d2)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+       -1       maxConsumer(d2)
+
+
+---- Mu_de_low  
+
+Mu_de_low(d1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxConsumer(d1)
+
+Mu_de_low(d2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxConsumer(d2)
+
+
+---- Mu_de_up  
+
+Mu_de_up(d1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxConsumer(d1)
+
+Mu_de_up(d2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxConsumer(d2)
+
+
+---- quantities_s  
+
+quantities_s(s1)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+       -1       balanceEqu
+        1       con_supplier_low(s1)
+       -1       con_supplier_up(s1)
+
+quantities_s(s2)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+       -1       balanceEqu
+        1       con_supplier_low(s2)
+       -1       con_supplier_up(s2)
+
+
+---- Mu_su_low  
+
+Mu_su_low(s1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxSupplier(s1)
+
+Mu_su_low(s2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxSupplier(s2)
+
+
+---- Mu_su_up  
+
+Mu_su_up(s1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxSupplier(s1)
+
+Mu_su_up(s2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxSupplier(s2)
+
+
+---- price  
+
+price
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       maxConsumer(d1)
+        1       maxConsumer(d2)
+       -1       maxSupplier(s1)
+       -1       maxSupplier(s2)
+
+
+**** Counts do not match
+     Single equations in unmatched =E= blocks        0
+     Unmatched single free variables                 2
+
+**** Unmatched free variables = 2
+     consumerSurplus(d1)
+     consumerSurplus(d2)
+
+**** Number of unmatched =E= rows : 0
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Range Statistics    SOLVE cournot Using MCP From line 80
+
+
+RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
+
+RHS       [min, max] : [ 1.000E+01, 2.000E+02] - Zero values observed as well
+Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
+
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE cournot Using MCP From line 80
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           7     SINGLE EQUATIONS           13
+BLOCKS OF VARIABLES           8     SINGLE VARIABLES           15
+NON ZERO ELEMENTS            26     NON LINEAR N-Z              0
+CODE LENGTH                   0     CONSTANT POOL              16
+
+
+GENERATION TIME      =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
+
+**** SOLVE from line 80 ABORTED, EXECERROR = 1
+
+
+EXECUTION TIME       =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
+
+
+USER: Course License                                 S240430|0002AO-GEN
+      TU Dresden, Business Management and Economics             DCE3456
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+Output     C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.lst
+
+**** USER ERROR(S) ENCOUNTERED
