@@ -1,0 +1,38 @@
+--- Job selfMadeOilMarket.gms Start 06/12/24 16:20:33 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\46\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    PageSize 0
+    ScrDir C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\225a\
+    SysDir C:\GAMS\46\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Course License                                 S240430|0002AO-GEN
+          TU Dresden, Business Management and Economics             DCE3456
+          C:\Users\sebas\Documents\GAMS\gamslice.txt
+          License Admin: Hannes Hobbie, hannes.hobbie@tu-dresden.de        
+          Course license for use within the course and related course work
+          The evaluation period of the license will expire on Oct 27, 2024
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
+--- Starting compilation
+--- selfMadeOilMarket.gms(80) 3 Mb
+--- Starting execution: elapsed 0:00:00.007
+--- selfMadeOilMarket.gms(35) 4 Mb
+--- Generating MCP model cournot
+--- selfMadeOilMarket.gms(80) 6 Mb 1 Error
+---   13 rows  15 columns  26 non-zeroes
+---   0 nl-code  0 nl-non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+01, 2.000E+02] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
+--- selfMadeOilMarket.gms(80) 4 Mb
+*** SOLVE aborted
+--- selfMadeOilMarket.gms(80) 4 Mb 1 Error
+*** Status: Execution error(s)
+--- Job selfMadeOilMarket.gms Stop 06/12/24 16:20:33 elapsed 0:00:00.014

@@ -9,12 +9,26 @@ D 127 con_supplier_low
 D 134 con_supplier_up
 B 142 Column Listing      SOLVE cournot Using MCP From line 80
 E 145 quantities_d
-E 160 consumerSurplus
-E 171 Mu_de_low
-E 182 Mu_de_up
-E 193 quantities_s
-E 208 Mu_su_low
-E 219 Mu_su_up
-E 230 price
-B 251 Range Statistics    SOLVE cournot Using MCP From line 80
-B 262 Model Statistics    SOLVE cournot Using MCP From line 80
+E 160 Mu_de_low
+E 171 Mu_de_up
+E 182 quantities_s
+E 197 Mu_su_low
+E 208 Mu_su_up
+E 219 price
+B 230 Range Statistics    SOLVE cournot Using MCP From line 80
+B 241 Model Statistics    SOLVE cournot Using MCP From line 80
+B 255 Solution Report     SOLVE cournot Using MCP From line 80
+F 304 balanceEqu
+F 306 maxConsumer
+F 313 con_consumer_low
+F 320 con_consumer_up
+F 327 maxSupplier
+F 334 con_supplier_low
+F 341 con_supplier_up
+G 348 quantities_d
+G 355 Mu_de_low
+G 362 Mu_de_up
+G 369 quantities_s
+G 376 Mu_su_low
+G 383 Mu_su_up
+G 392 price

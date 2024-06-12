@@ -7,7 +7,7 @@ supplier                /s1*s2/
 
 Parameter
                            
-costs(supplier)                     /s1 10, s2 20/
+costs(supplier)                     /s1 10, s2 10/
 baseUtility(consumer)               /d1 10, d2 20/
 maxConsumption                      /d1 100, d2 200/
 maxProduction                       /s1 100, s2 200/
@@ -53,12 +53,12 @@ balanceEqu
 
 
 *demand
-maxConsumer(consumer)..                     price - consumerSurplus(consumer) - Mu_de_low(consumer) + Mu_de_up(consumer) =e= 0;
+maxConsumer(consumer)..                     price - baseUtility(consumer) - Mu_de_low(consumer) + Mu_de_up(consumer) =e= 0;
 con_consumer_low(consumer)..                quantities_d(consumer) =g= 0;
 con_consumer_up(consumer)..                 maxConsumption(consumer) - quantities_d(consumer) =g= 0;
 
 *supplier
-maxSupplier(supplier)..                     costs(supplier) - price -Mu_su_low(supplier) + Mu_su_up(supplier) =e= 0;
+maxSupplier(supplier)..                     costs(supplier) - price - Mu_su_low(supplier) + Mu_su_up(supplier) =e= 0;
 con_supplier_low(supplier)..                quantities_s(supplier) =g= 0;
 con_supplier_up(supplier)..                 maxProduction(supplier) - quantities_s(supplier) =g= 0;
 

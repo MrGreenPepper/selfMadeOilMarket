@@ -1,4 +1,4 @@
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 1
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:24:24 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -12,7 +12,7 @@ C o m p i l a t i o n
    7   
    8  Parameter
    9   
-  10  costs(supplier)                     /s1 10, s2 20/
+  10  costs(supplier)                     /s1 10, s2 10/
   11  baseUtility(consumer)               /d1 10, d2 20/
   12  maxConsumption                      /d1 100, d2 200/
   13  maxProduction                       /s1 100, s2 200/
@@ -58,12 +58,12 @@ C o m p i l a t i o n
   53   
   54   
   55  *demand
-  56  maxConsumer(consumer)..                     price - consumerSurplus(consumer) - Mu_de_low(consumer) + Mu_de_up(consumer) =e= 0;
+  56  maxConsumer(consumer)..                     price - baseUtility(consumer) - Mu_de_low(consumer) + Mu_de_up(consumer) =e= 0;
   57  con_consumer_low(consumer)..                quantities_d(consumer) =g= 0;
   58  con_consumer_up(consumer)..                 maxConsumption(consumer) - quantities_d(consumer) =g= 0;
   59   
   60  *supplier
-  61  maxSupplier(supplier)..                     costs(supplier) - price -Mu_su_low(supplier) + Mu_su_up(supplier) =e= 0;
+  61  maxSupplier(supplier)..                     costs(supplier) - price - Mu_su_low(supplier) + Mu_su_up(supplier) =e= 0;
   62  con_supplier_low(supplier)..                quantities_s(supplier) =g= 0;
   63  con_supplier_up(supplier)..                 maxProduction(supplier) - quantities_s(supplier) =g= 0;
   64   
@@ -86,7 +86,7 @@ C o m p i l a t i o n
 
 
 COMPILATION TIME     =        0.000 SECONDS      3 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 2
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:24:24 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE cournot Using MCP From line 80
 
@@ -98,9 +98,9 @@ balanceEqu..  quantities_d(d1) + quantities_d(d2) - quantities_s(s1) - quantitie
 
 ---- maxConsumer  =E=  
 
-maxConsumer(d1)..  - consumerSurplus(d1) - Mu_de_low(d1) + Mu_de_up(d1) + price =E= 0 ; (LHS = 0)
+maxConsumer(d1)..  - Mu_de_low(d1) + Mu_de_up(d1) + price =E= 10 ; (LHS = 0, INFES = 10 ****)
      
-maxConsumer(d2)..  - consumerSurplus(d2) - Mu_de_low(d2) + Mu_de_up(d2) + price =E= 0 ; (LHS = 0)
+maxConsumer(d2)..  - Mu_de_low(d2) + Mu_de_up(d2) + price =E= 20 ; (LHS = 0, INFES = 20 ****)
      
 
 ---- con_consumer_low  =G=  
@@ -121,7 +121,7 @@ con_consumer_up(d2)..  - quantities_d(d2) =G= -200 ; (LHS = 0)
 
 maxSupplier(s1)..  - Mu_su_low(s1) + Mu_su_up(s1) - price =E= -10 ; (LHS = 0, INFES = 10 ****)
      
-maxSupplier(s2)..  - Mu_su_low(s2) + Mu_su_up(s2) - price =E= -20 ; (LHS = 0, INFES = 20 ****)
+maxSupplier(s2)..  - Mu_su_low(s2) + Mu_su_up(s2) - price =E= -10 ; (LHS = 0, INFES = 10 ****)
      
 
 ---- con_supplier_low  =G=  
@@ -137,7 +137,7 @@ con_supplier_up(s1)..  - quantities_s(s1) =G= -100 ; (LHS = 0)
      
 con_supplier_up(s2)..  - quantities_s(s2) =G= -200 ; (LHS = 0)
      
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 3
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:24:24 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE cournot Using MCP From line 80
 
@@ -155,17 +155,6 @@ quantities_d(d2)
         1       balanceEqu
         1       con_consumer_low(d2)
        -1       con_consumer_up(d2)
-
-
----- consumerSurplus  
-
-consumerSurplus(d1)
-                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
-       -1       maxConsumer(d1)
-
-consumerSurplus(d2)
-                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
-       -1       maxConsumer(d2)
 
 
 ---- Mu_de_low  
@@ -236,17 +225,7 @@ price
        -1       maxSupplier(s1)
        -1       maxSupplier(s2)
 
-
-**** Counts do not match
-     Single equations in unmatched =E= blocks        0
-     Unmatched single free variables                 2
-
-**** Unmatched free variables = 2
-     consumerSurplus(d1)
-     consumerSurplus(d2)
-
-**** Number of unmatched =E= rows : 0
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 4
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:24:24 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Range Statistics    SOLVE cournot Using MCP From line 80
 
@@ -257,7 +236,7 @@ RHS       [min, max] : [ 1.000E+01, 2.000E+02] - Zero values observed as well
 Bound     [min, max] : [        NA,        NA] - Zero values observed as well
 Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:20:33 Page 5
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:24:24 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE cournot Using MCP From line 80
 
@@ -265,17 +244,162 @@ Model Statistics    SOLVE cournot Using MCP From line 80
 MODEL STATISTICS
 
 BLOCKS OF EQUATIONS           7     SINGLE EQUATIONS           13
-BLOCKS OF VARIABLES           8     SINGLE VARIABLES           15
-NON ZERO ELEMENTS            26     NON LINEAR N-Z              0
+BLOCKS OF VARIABLES           7     SINGLE VARIABLES           13
+NON ZERO ELEMENTS            24     NON LINEAR N-Z              0
 CODE LENGTH                   0     CONSTANT POOL              16
 
 
 GENERATION TIME      =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/12/24 16:24:24 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE cournot Using MCP From line 80
 
-**** SOLVE from line 80 ABORTED, EXECERROR = 1
+
+               S O L V E      S U M M A R Y
+
+     MODEL   cournot             
+     TYPE    MCP                 
+     SOLVER  PATH                FROM LINE  80
+
+**** SOLVER STATUS     1 Normal Completion
+**** MODEL STATUS      1 Optimal
+
+ RESOURCE USAGE, LIMIT          0.000 10000000000.000
+ ITERATION COUNT, LIMIT         5    2147483647
+ EVALUATION ERRORS              0             0
+13 row/cols, 24 non-zeros, 14.20% dense.
+
+Path 5.0.07 (Tue Mar  5 04:38:27 2024)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  0.0000e+00 var: (price)
+Maximum of F. . . . . . . . . .  2.0000e+01 eqn: (maxConsumer(d2))
+Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (maxConsumer(d1))
+                                            var: (price)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.0000e+00 eqn: (balanceEqu)
+Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (maxConsumer(d1))
+Maximum Column Norm . . . . . .  2.0000e+00 var: (price)
+Minimum Column Norm . . . . . .  1.0000e+00 var: (quantities_d(d1))
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.2547e-09 eqn: (balanceEqu)
+Inf-Norm of Normal Map. . . . .  4.2547e-09 eqn: (balanceEqu)
+Inf-Norm of Minimum Map . . . .  4.2547e-09 eqn: (balanceEqu)
+Inf-Norm of Fischer Function. .  4.2547e-09 eqn: (balanceEqu)
+Inf-Norm of Grad Fischer Fcn. .  4.2547e-09 eqn: (maxConsumer(d1))
+Two-Norm of Grad Fischer Fcn. .  6.0172e-09
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  2.0000e+02 var: (quantities_d(d2))
+Maximum of F. . . . . . . . . .  1.0000e+01 eqn: (maxConsumer(d2))
+Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (maxConsumer(d1))
+                                            var: (price)
 
 
-EXECUTION TIME       =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU balanceEqu          .       4.2547015E-9          .            10.0000      
+
+---- EQU maxConsumer  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+d1        10.0000        10.0000        10.0000          .          
+d2        20.0000        20.0000        20.0000       200.0000      
+
+---- EQU con_consumer_low  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+d1          .              .            +INF             .          
+d2          .           200.0000        +INF             .          
+
+---- EQU con_consumer_up  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+d1      -100.0000          .            +INF             .          
+d2      -200.0000      -200.0000        +INF           10.0000      
+
+---- EQU maxSupplier  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+s1       -10.0000       -10.0000       -10.0000       100.0000      
+s2       -10.0000       -10.0000       -10.0000       100.0000      
+
+---- EQU con_supplier_low  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+s1          .           100.0000        +INF             .          
+s2          .           100.0000        +INF             .          
+
+---- EQU con_supplier_up  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+s1      -100.0000      -100.0000        +INF             .          
+s2      -200.0000      -100.0000        +INF             .          
+
+---- VAR quantities_d  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+d1        -INF             .            +INF      -4.59206E-11      
+d2        -INF          200.0000        +INF             .          
+
+---- VAR Mu_de_low  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+d1          .              .            +INF             .          
+d2          .              .            +INF          200.0000      
+
+---- VAR Mu_de_up  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+d1          .              .            +INF          100.0000      
+d2          .            10.0000        +INF             .          
+
+---- VAR quantities_s  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+s1        -INF          100.0000        +INF      4.592060E-11      
+s2        -INF          100.0000        +INF      4.592060E-11      
+
+---- VAR Mu_su_low  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+s1          .              .            +INF          100.0000      
+s2          .              .            +INF          100.0000      
+
+---- VAR Mu_su_up  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+s1          .              .            +INF             .          
+s2          .              .            +INF          100.0000      
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR price             -INF           10.0000        +INF      4.2547015E-9      
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0  REDEFINED
+                             0     ERRORS
+
+
+EXECUTION TIME       =        0.031 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
 
 
 USER: Course License                                 S240430|0002AO-GEN
@@ -287,5 +411,3 @@ USER: Course License                                 S240430|0002AO-GEN
 
 Input      C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
 Output     C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.lst
-
-**** USER ERROR(S) ENCOUNTERED
