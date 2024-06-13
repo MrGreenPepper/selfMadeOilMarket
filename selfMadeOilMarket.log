@@ -1,5 +1,5 @@
 
---- Job selfMadeOilMarket.gms Start 06/12/24 16:24:24 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+--- Job selfMadeOilMarket.gms Start 06/13/24 18:57:02 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\46\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -21,89 +21,90 @@ Licensee: Course License                                 S240430|0002AO-GEN
 Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
 GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
 --- Starting compilation
---- selfMadeOilMarket.gms(80) 3 Mb
---- Starting execution: elapsed 0:00:00.006
---- selfMadeOilMarket.gms(35) 4 Mb
+--- selfMadeOilMarket.gms(111) 3 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- selfMadeOilMarket.gms(66) 4 Mb
 --- Generating MCP model cournot
---- selfMadeOilMarket.gms(80) 6 Mb
----   13 rows  13 columns  24 non-zeroes
+--- selfMadeOilMarket.gms(111) 6 Mb
+---   26 rows  26 columns  48 non-zeroes
 ---   0 nl-code  0 nl-non-zeroes
 --- Range statistics (absolute non-zero finite values)
 --- RHS       [min, max] : [ 1.000E+01, 2.000E+02] - Zero values observed as well
 --- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
 --- Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
---- selfMadeOilMarket.gms(80) 4 Mb
---- Executing PATH (Solvelink=2): elapsed 0:00:00.012
+--- selfMadeOilMarket.gms(111) 4 Mb
+--- Executing PATH (Solvelink=2): elapsed 0:00:00.019
 Reading dictionary...
 Reading row data...
 Evaluating functions...
 Checking model...
 Calculating Jacobian...
 
-13 row/cols, 24 non-zeros, 14.20% dense.
+26 row/cols, 48 non-zeros, 7.10% dense.
 
 Path 5.0.07 (Tue Mar  5 04:38:27 2024)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
-Zero:     0 Single:     8 Double:     0
-MCPR: Imp:    0 IBd:    0 Dup:    2 DBd:    2
-Preprocessed size   : 3
+Zero:     0 Single:    16 Double:     0
+Preprocessed size   : 6
 
 INITIAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  0.0000e+00 var: (price)
-Maximum of F. . . . . . . . . .  2.0000e+01 eqn: (maxConsumer(d2))
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (maxConsumer(d1))
-                                            var: (price)
+Maximum of X. . . . . . . . . .  0.0000e+00 var: (price(r1))
+Maximum of F. . . . . . . . . .  3.0000e+01 eqn: (maxConsumer(r2,d2))
+Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (maxConsumer(r1,d1))
+                                            var: (price(r1))
 
 INITIAL JACOBIAN NORM STATISTICS
-Maximum Row Norm. . . . . . . .  2.0000e+00 eqn: (balanceEqu)
-Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (maxConsumer(d1))
-Maximum Column Norm . . . . . .  2.0000e+00 var: (price)
-Minimum Column Norm . . . . . .  1.0000e+00 var: (quantities_d(d1))
+Maximum Row Norm. . . . . . . .  2.0000e+00 eqn: (balanceEqu(r1))
+Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (maxConsumer(r1,d1))
+Maximum Column Norm . . . . . .  2.0000e+00 var: (price(r1))
+Minimum Column Norm . . . . . .  1.0000e+00 var: (quantities_d(r1,d1))
 
 Crash Log
 major  func  diff  size  residual    step       prox   (label)
-    0     0             3.9211e+01             0.0e+00 (maxConsumer(d2))
-    1     1     1     3 1.0015e+01  1.0e+00    3.9e-01 (balanceEqu)
-    2     2     0     3 7.1867e+00  1.0e+00    1.0e-01 (maxConsumer(d2))
+    0     0             6.6196e+01             0.0e+00 (maxConsumer(r2,d2))
+    1     1     4     4 2.7228e+01  1.0e+00    0.0e+00 (maxSupplier(r2,s2))
+    2     3     2     4 2.2657e+01  8.0e-01    0.0e+00 (maxConsumer(r2,d2))
+    3     4     4     6 1.0884e+01  1.0e+00    2.3e-01 (maxSupplier(r2,s2))
+    4     5     0     6 9.8552e+00  1.0e+00    1.1e-01 (maxConsumer(r2,d2))
 pn_search terminated: no basis change.
 
 Major Iteration Log
 major minor  func  grad  residual    step  type prox    inorm  (label)
-    0     0     3     3 7.1867e+00           I 7.2e-02 5.4e+00 (maxConsumer(d2))
-    1     2     4     4 3.8964e+00  1.0e+00 SO 2.9e-02 3.9e+00 (maxConsumer(d1))
-    2     1     5     5 4.5416e-02  1.0e+00 SO 1.1e-02 4.5e-02 (balanceEqu)
-    3     1     6     6 2.0628e-04  1.0e+00 SO 4.5e-03 2.1e-04 (maxConsumer(d1))
-    4     1     7     7 4.2549e-09  1.0e+00 SO 2.1e-05 4.3e-09 (balanceEqu)
+    0     0     6     5 9.8552e+00           I 9.8e-02 5.1e+00 (maxConsumer(r2,)
+    1     2     7     6 3.9028e+00  1.0e+00 SO 3.9e-02 2.8e+00 (maxConsumer(r2,)
+    2     2     8     7 9.0245e-02  1.0e+00 SO 1.6e-02 7.7e-02 (balanceEqu(r2))
+    3     1     9     8 4.9670e-04  1.0e+00 SO 6.3e-03 4.2e-04 (balanceEqu(r2))
+    4     1    10     9 2.7948e-08  1.0e+00 SO 5.0e-05 2.4e-08 (balanceEqu(r2))
 
 FINAL STATISTICS
-Inf-Norm of Complementarity . .  4.2547e-09 eqn: (balanceEqu)
-Inf-Norm of Normal Map. . . . .  4.2547e-09 eqn: (balanceEqu)
-Inf-Norm of Minimum Map . . . .  4.2547e-09 eqn: (balanceEqu)
-Inf-Norm of Fischer Function. .  4.2547e-09 eqn: (balanceEqu)
-Inf-Norm of Grad Fischer Fcn. .  4.2547e-09 eqn: (maxConsumer(d1))
-Two-Norm of Grad Fischer Fcn. .  6.0172e-09
+Inf-Norm of Complementarity . .  2.3940e-08 eqn: (balanceEqu(r2))
+Inf-Norm of Normal Map. . . . .  2.3940e-08 eqn: (balanceEqu(r2))
+Inf-Norm of Minimum Map . . . .  2.3940e-08 eqn: (balanceEqu(r2))
+Inf-Norm of Fischer Function. .  2.3940e-08 eqn: (balanceEqu(r2))
+Inf-Norm of Grad Fischer Fcn. .  2.7165e-08 eqn: (maxConsumer(r2,d2))
+Two-Norm of Grad Fischer Fcn. .  3.7487e-08
 
 FINAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  2.0000e+02 var: (quantities_d(d2))
-Maximum of F. . . . . . . . . .  1.0000e+01 eqn: (maxConsumer(d2))
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (maxConsumer(d1))
-                                            var: (price)
+Maximum of X. . . . . . . . . .  2.0000e+02 var: (quantities_s(r2,s2))
+Maximum of F. . . . . . . . . .  1.0000e+01 eqn: (maxConsumer(r1,d1))
+Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (maxConsumer(r1,d1))
+                                            var: (price(r1))
 
  ** EXIT - solution found.
 
 Major Iterations. . . . 4
-Minor Iterations. . . . 5
+Minor Iterations. . . . 6
 Restarts. . . . . . . . 0
-Crash Iterations. . . . 2
+Crash Iterations. . . . 4
 Gradient Steps. . . . . 0
-Function Evaluations. . 7
-Gradient Evaluations. . 7
+Function Evaluations. . 10
+Gradient Evaluations. . 9
 Basis Time. . . . . . . 0.000000
 Total Time. . . . . . . 0.000000
-Residual. . . . . . . . 4.254949e-09
-Postsolved residual: 4.2554e-09
+Residual. . . . . . . . 2.794774e-08
+Postsolved residual: 3.2368e-08
 
 --- Reading solution for model cournot
 *** Status: Normal completion
---- Job selfMadeOilMarket.gms Stop 06/12/24 16:24:24 elapsed 0:00:00.039
+--- Job selfMadeOilMarket.gms Stop 06/13/24 18:57:02 elapsed 0:00:00.046

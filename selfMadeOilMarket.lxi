@@ -1,34 +1,34 @@
 B 3 C o m p i l a t i o n
-B 91 Equation Listing    SOLVE cournot Using MCP From line 80
-D 94 balanceEqu
-D 99 maxConsumer
-D 106 con_consumer_low
-D 113 con_consumer_up
-D 120 maxSupplier
-D 127 con_supplier_low
-D 134 con_supplier_up
-B 142 Column Listing      SOLVE cournot Using MCP From line 80
-E 145 quantities_d
-E 160 Mu_de_low
-E 171 Mu_de_up
-E 182 quantities_s
-E 197 Mu_su_low
-E 208 Mu_su_up
-E 219 price
-B 230 Range Statistics    SOLVE cournot Using MCP From line 80
-B 241 Model Statistics    SOLVE cournot Using MCP From line 80
-B 255 Solution Report     SOLVE cournot Using MCP From line 80
-F 304 balanceEqu
-F 306 maxConsumer
-F 313 con_consumer_low
-F 320 con_consumer_up
-F 327 maxSupplier
-F 334 con_supplier_low
-F 341 con_supplier_up
-G 348 quantities_d
-G 355 Mu_de_low
-G 362 Mu_de_up
-G 369 quantities_s
-G 376 Mu_su_low
-G 383 Mu_su_up
-G 392 price
+B 122 Equation Listing    SOLVE cournot Using MCP From line 111
+D 125 balanceEqu
+D 132 maxConsumer
+D 143 con_consumer_low
+D 154 con_consumer_up
+D 165 maxSupplier
+D 176 con_supplier_low
+D 187 con_supplier_up
+B 199 Column Listing      SOLVE cournot Using MCP From line 111
+E 202 quantities_d
+E 224 Mu_de_low
+E 240 Mu_de_up
+E 256 quantities_s
+E 278 Mu_su_low
+E 294 Mu_su_up
+E 310 price
+B 328 Range Statistics    SOLVE cournot Using MCP From line 111
+B 339 Model Statistics    SOLVE cournot Using MCP From line 111
+B 353 Solution Report     SOLVE cournot Using MCP From line 111
+F 400 balanceEqu
+F 407 maxConsumer
+F 416 con_consumer_low
+F 425 con_consumer_up
+F 434 maxSupplier
+F 443 con_supplier_low
+F 452 con_supplier_up
+G 461 quantities_d
+G 470 Mu_de_low
+G 479 Mu_de_up
+G 488 quantities_s
+G 497 Mu_su_low
+G 506 Mu_su_up
+G 515 price
