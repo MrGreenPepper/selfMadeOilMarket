@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{setspace}
+\usepackage{tabto}
+\setstretch{2}
+\title{ResEco - formulas}
+\author{Mr Green Pepper}
+\date{June 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{base formulas}
+\textbf{supplier max}
+%base formula
+\(\sum_{region} Q_{sell}(supplier, region) *\Big(price(region) - C_{trans}(supplier,region)\Big) \)\\
+\tab\tab\(- Q_{prod}(supplier)*C_{prod}(region)\) $$\forall supplier$$
+
+%constraints
+s.t.:
+\begin{center}
+\(\sum_{region} Q_{sell}(supplier, region) \leq\ Q_{prod}(supplier) \)
+\(Q_{prod}(supplier) \leq ProdCap(supplier)\)
+\(Q_{sell}(supplier, region) \leq transCap(supplier, region)\)
+\end{center}
+
+\textbf{lower bounds:}
+
+\begin{center}
+\(0 \leq\ \sum_{region} Q_{sell}(supplier, region) \leq\ Q_{prod}(supplier) \)
+\(0 \leq\ Q_{prod}(supplier) \leq ProdCap(supplier)\)
+\(0 \leq\ Q_{sell}(supplier, region) \leq transCap(supplier, region)\)
+\end{center}
+
+\textbf{for gams:}\\
+$1. split$\\
+$2. \leq 0 \: \& \: define \:\mu$'s
+\begin{center}
+
+$1.$\\
+	\(0 \leq\ \sum_{region} Q_{sell}(supplier, region) \)\\
+	\(\sum_{region} Q_{sell}(supplier, region) \leq Q_{prod}(supplier)\)\\
+2.\\
+	\( - \sum_{region} Q_{sell}(supplier, region)  \leq 0  \perp\: \mu_{sellCapLow}\)\\
+	\(\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier)\leq 0 \perp\: \mu_{sellCapUp} \)\\
+
+
+1.\\
+	\(0 \leq\ Q_{prod}(supplier) \)\\  
+	\(Q_{prod}(supplier) \leq ProdCap(supplier)\)\\
+2.\\
+	\( - Q_{prod}(supplier) \leq 0 \perp\: \mu_{prodCapLow}\)\\
+	\(Q_{prod}(supplier) \leq ProdCap(supplier)\perp\: \mu_{prodCapUp}\)\\
+
+1.\\
+ 	\(0 \leq Q_{sell}(supplier, region)\)\\
+	\(Q_{sell}(supplier, region) \leq transCap(supplier, region)\)\\
+2.\\
+	\(- Q_{sell}(supplier, region) \leq 0  \perp\: \mu_{transCapLow}\)\\
+	\(Q_{sell}(supplier, region) - transCap(supplier, region) \leq 0  \perp\: \mu_{transCapUp}\)\\
+\end{center}
+
+\newpage
+\textbf{lagrange for gams:}\\
+%pure gams code
+\( max\:\sum_{region} Q_{sell}(supplier, region) *\Big(price(region) - C_{trans}(supplier,region)\Big) \)\\
+\tab\tab\(- Q_{prod}(supplier)*C_{prod}(region)\:\forall\: supplier\) \\
+
+\textbf{$\rightarrow$ chang max to min:}\\
+
+\( min\:\sum_{region} Q_{sell}(supplier, region) *\Big(C_{trans}(supplier,region) - price(region)\Big) \)\\
+\tab\tab\(+ Q_{prod}(supplier)*C_{prod}(region)\:\forall\: supplier\) \\
+
+\textbf{$\rightarrow$ add constraints:}\\
+
+	\( - \sum_{region} Q_{sell}(supplier, region)  \leq 0  \perp\: \mu_{sellCapLow}\)\\
+	$\rightarrow -\mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
+	\(\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier)\leq 0  \perp\: \mu_{sellCapUp}\)\\
+	$\rightarrow	 \mu_{sellCapUp}*\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier) $\\
+
+	\( - Q_{prod}(supplier) \leq 0 \perp\: \mu_{prodCapLow}\)\\
+	$\rightarrow	- \mu_{prodCapLow} * Q_{prod}(supplier)$\\
+	\(Q_{prod}(supplier) - ProdCap(supplier) \leq 0 \perp\: \mu_{prodCapUp}\)\\
+	$\rightarrow \mu_{prodCapUp}*(Q_{prod}(supplier) - ProdCap(supplier))	$\\
+	
+	\(- Q_{sell}(supplier, region) \leq 0  \perp\: \mu_{transCapLow}\)\\
+	$\rightarrow	- \mu_{transCapLow} * Q_{sell}(supplier, region)$\\
+	\(Q_{sell}(supplier, region) - transCap(supplier, region) \leq 0  \perp\: \mu_{transCapUp}\)\\
+	$\rightarrow	\mu_{transCapUp} * Q_{sell}(supplier, region) - transCap(supplier, region)$\\
+
+
+\textbf{gams obj for supplier:}\\
+$ min\:\sum_{region} Q_{sell}(supplier, region) *\Big(C_{trans}(supplier,region) - price(region)\Big) \)$\\
+$\(+ Q_{prod}(supplier)*C_{prod}(region)$\\
+%add constraints
+$-\mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
+$\mu_{sellCapUp}*\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier) $\\
+$-\mu_{prodCapLow} * Q_{prod}(supplier)$\\
+$\mu_{prodCapUp}*(Q_{prod}(supplier) - ProdCap(supplier))	$\\
+$-\mu_{transCapLow} * Q_{sell}(supplier, region)$\\
+$\mu_{transCapUp} * Q_{sell}(supplier, region) - transCap(supplier, region)$\\
+$\:\forall\: supplier$\\
+
+\end{document}

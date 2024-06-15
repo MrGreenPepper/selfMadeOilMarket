@@ -1,5 +1,5 @@
 
---- Job selfMadeOilMarket.gms Start 06/13/24 18:53:47 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+--- Job selfMadeOilMarket.gms Start 06/14/24 17:19:25 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\46\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -21,89 +21,35 @@ Licensee: Course License                                 S240430|0002AO-GEN
 Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
 GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
 --- Starting compilation
---- selfMadeOilMarket.gms(110) 3 Mb
---- Starting execution: elapsed 0:00:00.005
---- selfMadeOilMarket.gms(65) 4 Mb
---- Generating MCP model cournot
---- selfMadeOilMarket.gms(110) 6 Mb
----   26 rows  26 columns  48 non-zeroes
----   0 nl-code  0 nl-non-zeroes
---- Range statistics (absolute non-zero finite values)
---- RHS       [min, max] : [ 1.000E+01, 2.000E+02] - Zero values observed as well
---- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
---- Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
---- selfMadeOilMarket.gms(110) 4 Mb
---- Executing PATH (Solvelink=2): elapsed 0:00:00.011
-Reading dictionary...
-Reading row data...
-Evaluating functions...
-Checking model...
-Calculating Jacobian...
-
-26 row/cols, 48 non-zeros, 7.10% dense.
-
-Path 5.0.07 (Tue Mar  5 04:38:27 2024)
-Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
-
-Zero:     0 Single:    16 Double:     0
-MCPR: Imp:    0 IBd:    0 Dup:    2 DBd:    2
-MCPR: One:    0 Two:    2 Thr:    0 Qua:    0 WBd:    0 Fix:    0 IFx:    0
-Preprocessed size   : 3
-
-INITIAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  0.0000e+00 var: (price(r1))
-Maximum of F. . . . . . . . . .  2.0000e+01 eqn: (maxConsumer(r1,d1))
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (maxConsumer(r1,d1))
-                                            var: (price(r1))
-
-INITIAL JACOBIAN NORM STATISTICS
-Maximum Row Norm. . . . . . . .  2.0000e+00 eqn: (balanceEqu(r1))
-Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (maxConsumer(r1,d1))
-Maximum Column Norm . . . . . .  2.0000e+00 var: (price(r1))
-Minimum Column Norm . . . . . .  1.0000e+00 var: (quantities_d(r1,d1))
-
-Crash Log
-major  func  diff  size  residual    step       prox   (label)
-    0     0             3.6039e+01             0.0e+00 (maxConsumer(r1,d1))
-    1     1     1     3 1.5102e+01  1.0e+00    3.6e-01 (maxConsumer(r1,d2))
-    2     2     0     3 6.2652e+00  1.0e+00    1.5e-01 (maxConsumer(r1,d1))
-pn_search terminated: no basis change.
-
-Major Iteration Log
-major minor  func  grad  residual    step  type prox    inorm  (label)
-    0     0     3     3 6.2652e+00           I 6.3e-02 4.5e+00 (maxConsumer(r1,)
-    1     2     4     4 2.6159e-01  1.0e+00 SO 2.5e-02 2.4e-01 (balanceEqu(r1))
-    2     1     5     5 1.7881e-03  1.0e+00 SO 1.0e-02 1.5e-03 (balanceEqu(r1))
-    3     1     6     6 4.6545e-07  1.0e+00 SO 1.8e-04 4.3e-07 (balanceEqu(r1))
-
-FINAL STATISTICS
-Inf-Norm of Complementarity . .  4.2636e-07 eqn: (balanceEqu(r1))
-Inf-Norm of Normal Map. . . . .  4.2636e-07 eqn: (balanceEqu(r1))
-Inf-Norm of Minimum Map . . . .  4.2636e-07 eqn: (balanceEqu(r1))
-Inf-Norm of Fischer Function. .  4.2636e-07 eqn: (balanceEqu(r1))
-Inf-Norm of Grad Fischer Fcn. .  4.5357e-07 eqn: (maxConsumer(r1,d2))
-Two-Norm of Grad Fischer Fcn. .  6.2892e-07
-
-FINAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  1.0000e+02 var: (quantities_d(r1,d1))
-Maximum of F. . . . . . . . . .  2.0000e+01 eqn: (maxConsumer(r1,d1))
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (maxConsumer(r1,d1))
-                                            var: (price(r1))
-
- ** EXIT - solution found.
-
-Major Iterations. . . . 3
-Minor Iterations. . . . 4
-Restarts. . . . . . . . 0
-Crash Iterations. . . . 2
-Gradient Steps. . . . . 0
-Function Evaluations. . 6
-Gradient Evaluations. . 6
-Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.000000
-Residual. . . . . . . . 4.654469e-07
-Postsolved residual: 5.6250e-07
-
---- Reading solution for model cournot
-*** Status: Normal completion
---- Job selfMadeOilMarket.gms Stop 06/13/24 18:53:47 elapsed 0:00:00.038
+--- selfMadeOilMarket.gms(72) 3 Mb 1 Error
+*** Error 195 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Symbol redefined with a different type
+--- selfMadeOilMarket.gms(94) 3 Mb 6 Errors
+*** Error 148 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Dimension different - The symbol is referenced with more/less
+       indices as declared
+*** Error  81 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    A '=' expected for assignment statements. Alternative
+       assignment operators are '$=' and ':='.
+*** Error 143 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    A suffix is missing
+*** Error 143 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    A suffix is missing
+*** Error 409 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Unrecognizable item - skip to find a new statement
+      looking for a ';' or a key word to get started again
+--- selfMadeOilMarket.gms(111) 3 Mb 7 Errors
+*** Error 140 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Unknown symbol
+--- selfMadeOilMarket.gms(112) 3 Mb 8 Errors
+*** Error 140 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Unknown symbol
+--- selfMadeOilMarket.gms(113) 3 Mb 9 Errors
+*** Error 140 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Unknown symbol
+--- selfMadeOilMarket.gms(116) 3 Mb 10 Errors
+*** Error 257 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Solve statement not checked because of previous errors
+--- selfMadeOilMarket.gms(116) 3 Mb 10 Errors
+*** Status: Compilation error(s)
+--- Job selfMadeOilMarket.gms Stop 06/14/24 17:19:25 elapsed 0:00:00.008
