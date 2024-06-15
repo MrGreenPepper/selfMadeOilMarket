@@ -1,1 +1,29 @@
 B 3 C o m p i l a t i o n
+B 148 Equation Listing    SOLVE cournot Using MCP From line 137
+D 151 balanceEqu
+D 160 maxConsumer
+D 169 con_consumer_low
+D 178 con_consumer_up
+D 187 maxSupplier_q_sell
+D 198 maxSupplier_q_prod
+D 205 con_supplier_trans_low
+D 216 con_supplier_trans_up
+D 227 con_supplier_sell_low
+D 234 con_supplier_sell_up
+D 241 con_supplier_prod_low
+D 248 con_supplier_prod_up
+B 256 Column Listing      SOLVE cournot Using MCP From line 137
+E 259 quantities_demand
+E 280 Mu_de_low
+E 295 Mu_de_up
+E 310 quantities_sold
+E 338 quantities_prod
+E 353 mu_trans_low
+E 369 mu_trans_up
+E 385 mu_sellCap_low
+E 400 mu_sellCap_up
+E 417 mu_prodCap_low
+E 428 mu_prodCap_up
+E 439 price
+B 521 Range Statistics    SOLVE cournot Using MCP From line 137
+B 532 Model Statistics    SOLVE cournot Using MCP From line 137

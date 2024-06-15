@@ -19,12 +19,15 @@
 
 %constraints
 \textbf{s.t. general constraint logic:}\\
+"\\
 $\sum_{region} Q_{sell}(supplier, region) \leq transCap(supplier, region) \leq Q_{prod}(supplier) \leq productionCap$ \\
 $\forall \: supplier,regions$\\
+"\\
+$\rightarrow$
 \begin{center}
-\(\sum_{region} Q_{sell}(supplier, region) \leq\ Q_{prod}(supplier) \)
-\(Q_{prod}(supplier) \leq ProdCap(supplier)\)
-\(Q_{sell}(supplier, region) \leq transCap(supplier, region)\)
+	\(Q_{sell}(supplier, region) \leq transCap(supplier, region)\)
+	\(\sum_{region} Q_{sell}(supplier, region) \leq\ Q_{prod}(supplier) \)
+	\(Q_{prod}(supplier) \leq ProdCap(supplier)\)
 \end{center}
 
 \textbf{split into constraints:}\\
@@ -119,12 +122,12 @@ $+\mu_{prodCapUp}*\Big(Q_{prod}(supplier) - ProdCap(supplier)\Big)$\\
 
 $=$
 
-$C_{trans}(supplier,region) - price(region)$\\
+$\sum_{region} C_{trans}(supplier,region) - price(region)$\\
 %add constraints
 $-\mu_{transCapLow}$\\
 $+\mu_{transCapUp} $\\
-$-\mu_{sellCapLow} $\\
-$+\mu_{sellCapUp} $\\
+$-\sum_{region}\mu_{sellCapLow} $\\
+$+\sum_{region}\mu_{sellCapUp} $\\
 
 
 \textbf{gams obj for supplier ($Q_{prod}$):}\\
