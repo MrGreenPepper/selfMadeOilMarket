@@ -1,25 +1,25 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2024.6.15)  15 JUN 2024 16:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.6.16)  16 JUN 2024 15:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme.tex
 (c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme.tex
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
 (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count185
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@subparagraph=\count190
-\c@figure=\count191
-\c@table=\count192
+\c@part=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\c@figure=\count193
+\c@table=\count194
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
@@ -47,151 +47,140 @@ Package: setspace 2022/12/04 v6.7b set line spacing
 Package: tabto 2018/12/28  v 1.4  Another tabbing mechanism
 \CurrentLineWidth=\dimen143
 \TabPrevPos=\dimen144
+) (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/ragged2e\ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+ (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/footmisc\footmisc.sty
+Package: footmisc 2023/07/05 v6.0f a miscellany of footnote facilities
+\FN@temptoken=\toks18
+\footnotemargin=\dimen145
+\@outputbox@depth=\dimen146
+Package footmisc Info: Declaring symbol style bringhurst on input line 696.
+Package footmisc Info: Declaring symbol style chicago on input line 704.
+Package footmisc Info: Declaring symbol style wiley on input line 713.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 724.
+Package footmisc Info: Declaring symbol style lamport* on input line 744.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 765.
+)
+\CenteringLeftskip=\skip50
+\RaggedLeftLeftskip=\skip51
+\RaggedRightLeftskip=\skip52
+\CenteringRightskip=\skip53
+\RaggedLeftRightskip=\skip54
+\RaggedRightRightskip=\skip55
+\CenteringParfillskip=\skip56
+\RaggedLeftParfillskip=\skip57
+\RaggedRightParfillskip=\skip58
+\JustifyingParfillskip=\skip59
+\CenteringParindent=\skip60
+\RaggedLeftParindent=\skip61
+\RaggedRightParindent=\skip62
+\JustifyingParindent=\skip63
 ) (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count193
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count195
 \l__pdf_internal_box=\box51
 ) (readme.aux)
 \openout1 = `readme.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
  (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count194
-\scratchdimen=\dimen145
+\scratchcounter=\count196
+\scratchdimen=\dimen147
 \scratchbox=\box52
-\nofMPsegments=\count195
-\nofMParguments=\count196
-\everyMPshowfont=\toks18
-\MPscratchCnt=\count197
-\MPscratchDim=\dimen146
-\MPnumerator=\count198
-\makeMPintoPDFobject=\count199
-\everyMPtoPDFconversion=\toks19
+\nofMPsegments=\count197
+\nofMParguments=\count198
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count199
+\MPscratchDim=\dimen148
+\MPnumerator=\count266
+\makeMPintoPDFobject=\count267
+\everyMPtoPDFconversion=\toks20
 ) (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
+Package ragged2e Info: ABD: executing \RaggedRight on input line 11.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 12.
+(Font)              <12> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 12.
+(Font)              <8> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 12.
+(Font)              <6> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 17.
+(Font)              <7> on input line 19.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 17.
+(Font)              <5> on input line 19.
 
-Overfull \hbox (43.98166pt too wide) in paragraph at lines 15--18
-\OT1/cmr/bx/n/10 supplier max $[][] \OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 )[]$ 
+Overfull \hbox (41.57857pt too wide) in paragraph at lines 22--22
+$\OML/cmm/m/it/10 ^^Y\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 )[]$  
  []
 
 
-Overfull \hbox (15.26027pt too wide) in paragraph at lines 21--27
-[][] \OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 transCap\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^T
+Overfull \hbox (60.19672pt too wide) in paragraph at lines 29--29
+\OT1/cmr/m/n/10 "$\OML/cmm/m/it/10 Q[] \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 transCap\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 Q[] \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 productionCap\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 supplier; regions$\OT1/cmr/m/n/10 "  
  []
 
 [1
 
-{C:/Users/sebas/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 83--84
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 85--86
-
- []
-
-
-Overfull \hbox (12.75682pt too wide) in paragraph at lines 87--88
-[]$\OML/cmm/m/it/10 min  [][] Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 )[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 92--96
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 97--101
-
+{C:/Users/sebas/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
+Overfull \hbox (53.35881pt too wide) in paragraph at lines 64--64
+ $\OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 transCap\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^T \OT1/cmr/m/n/10 0 \OMS/cmsy/m/n/10 ?  \OML/cmm/m/it/10 ^^V[] \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 supplier; regions$  
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 102--106
-
+Overfull \hbox (9.31052pt too wide) in paragraph at lines 105--105
+ $\OML/cmm/m/it/10 max  [][] Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 )[]$  
  []
 
 
-Overfull \hbox (4.9671pt too wide) in paragraph at lines 112--122
-[]  [][] \OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 )[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 112--122
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 125--131
-
+Overfull \hbox (7.75684pt too wide) in paragraph at lines 110--110
+ $\OML/cmm/m/it/10 min  [][] Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 )[]$  
  []
 
 [4]
-Overfull \hbox (7.86913pt too wide) in paragraph at lines 133--149
-[]  [][] \OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 )[]$ 
+Overfull \hbox (4.9671pt too wide) in paragraph at lines 136--136
+$[]  [][] \OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 )[]$  
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 133--149
-
+[5]
+Overfull \hbox (7.86913pt too wide) in paragraph at lines 157--157
+$[]  [][] \OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 )[]$  
  []
 
-[5] (readme.aux)
+[6] (readme.aux)
  ***********
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1378 strings out of 475247
- 23662 string characters out of 5757792
- 1925785 words of memory out of 5000000
- 22930 multiletter control sequences out of 15000+600000
+ 1603 strings out of 474486
+ 28139 string characters out of 5743755
+ 1933542 words of memory out of 5000000
+ 23908 multiletter control sequences out of 15000+600000
  562017 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,275b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on readme.pdf (5 pages, 123318 bytes).
+Output written on readme.pdf (6 pages, 129732 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
+ 71 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
