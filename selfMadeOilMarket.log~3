@@ -1,5 +1,5 @@
 
---- Job selfMadeOilMarket.gms Start 06/15/24 16:53:11 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+--- Job selfMadeOilMarket.gms Start 06/16/24 16:03:08 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\46\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -21,17 +21,14 @@ Licensee: Course License                                 S240430|0002AO-GEN
 Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
 GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
 --- Starting compilation
---- selfMadeOilMarket.gms(102) 3 Mb 1 Error
-*** Error 148 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
-    Dimension different - The symbol is referenced with more/less
-       indices as declared
---- selfMadeOilMarket.gms(103) 3 Mb 2 Errors
-*** Error 148 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
-    Dimension different - The symbol is referenced with more/less
-       indices as declared
---- selfMadeOilMarket.gms(137) 3 Mb 3 Errors
-*** Error 257 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
-    Solve statement not checked because of previous errors
---- selfMadeOilMarket.gms(137) 3 Mb 3 Errors
+--- selfMadeOilMarket.gms(139) 3 Mb 2 Errors
+*** Error  70 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    The dimensions of the equ.var pair do not conform
+*** Error 256 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Error(s) in analyzing solve statement.
+*** The following MCP errors were detected in model cournot:
+     70 mu_transCap_low dimensions are different
+     70 mu_transCap_up dimensions are different
+--- selfMadeOilMarket.gms(139) 3 Mb 2 Errors
 *** Status: Compilation error(s)
---- Job selfMadeOilMarket.gms Stop 06/15/24 16:53:11 elapsed 0:00:00.008
+--- Job selfMadeOilMarket.gms Stop 06/16/24 16:03:08 elapsed 0:00:00.006

@@ -1,4 +1,4 @@
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/15/24 16:55:39 Page 1
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/16/24 16:08:31 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -52,8 +52,8 @@ C o m p i l a t i o n
   47  quantities_sold(supplier, region)
   48  quantities_prod(supplier)
   49  supplierSurplus(supplier)
-  50  mu_trans_low
-  51  mu_trans_up
+  50  mu_transCap_low
+  51  mu_transCap_up
   52  mu_sellCap_low
   53  mu_sellCap_up
   54  mu_prodCap_low
@@ -65,8 +65,8 @@ C o m p i l a t i o n
   60  Mu_de_low.lo(region)  = 0;
   61  Mu_de_up.lo(region)  = 0;
   62   
-  63  mu_trans_low.lo(supplier, region)  = 0;
-  64  mu_trans_up.lo(supplier, region)  = 0;
+  63  mu_transCap_low.lo(supplier, region)  = 0;
+  64  mu_transCap_up.lo(supplier, region)  = 0;
   65  mu_sellCap_low.lo(supplier)  = 0;
   66  mu_sellCap_up.lo(supplier)  = 0;
   67  mu_prodCap_low.lo(supplier)  = 0;
@@ -85,12 +85,12 @@ C o m p i l a t i o n
   80  *supplier
   81  maxSupplier_q_sell
   82  maxSupplier_q_prod
-  83  con_supplier_trans_low
-  84  con_supplier_trans_up
-  85  con_supplier_sell_low
-  86  con_supplier_sell_up
-  87  con_supplier_prod_low
-  88  con_supplier_prod_up
+  83  con_supplier_transCap_low(supplier, region)
+  84  con_supplier_transCap_up(supplier, region)
+  85  con_supplier_sellCap_low(supplier)
+  86  con_supplier_sellCap_up(supplier)
+  87  con_supplier_prodCap_low(supplier)
+  88  con_supplier_prodCap_up(supplier)
   89   
   90  *overall
   91  balanceEqu
@@ -102,50 +102,52 @@ C o m p i l a t i o n
   97  con_consumer_up(region)..                       maxConsumption(region) - quantities_demand(region) =g= 0;
   98   
   99  *supplier
- 100  *sums are questionable here, especially with the mu_trans_low/up
- 101  maxSupplier_q_sell(supplier, region)..                  TransportationCosts(supplier, region)-price(region)
- 102                                                  - mu_trans_low(supplier, region)
- 103                                                  + mu_trans_up(supplier, region)
+ 100  *sums are questionable here, especially with the mu_transCap_low/up
+ 101  maxSupplier_q_sell(supplier)..                  sum((region),TransportationCosts(supplier, region)-price(region)
+ 102                                                  - mu_transCap_low(supplier, region)
+ 103                                                  + mu_transCap_up(supplier, region)
  104                                                  - mu_sellCap_low(supplier)
- 105                                                  + mu_sellCap_up(supplier) =e= 0;
- 106  maxSupplier_q_prod(supplier)..                            ProductionCosts(supplier)
- 107                                                  -mu_sellCap_up(supplier)
- 108                                                  -mu_prodCap_low(supplier)
- 109                                                  +mu_prodCap_up(supplier) =e= 0;
- 110   
- 111  con_supplier_trans_low(supplier, region)..      -quantities_sold(supplier,region) =l= 0;
- 112  con_supplier_trans_up(supplier, region)..       quantities_sold(supplier,region) - TransportationCap(supplier, region) =l= 0;
- 113  con_supplier_sell_low(supplier)..               - sum((region), quantities_sold(supplier, region)) =l= 0;
- 114  con_supplier_sell_up(supplier)..                sum((region), quantities_sold(supplier, region)) - quantities_prod(supplier) =l= 0;
- 115  con_supplier_prod_low(supplier)..               - quantities_prod(supplier) =l= 0;
- 116  con_supplier_prod_up(supplier)..                (quantities_prod(supplier) - ProductionCap(supplier)) =l= 0;
- 117  *overall
- 118  balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
- 119   
- 120  model cournot /
- 121  balanceEqu.price,
- 122   
- 123  maxConsumer.quantities_demand,
- 124  con_consumer_low.Mu_de_low,
- 125  con_consumer_up.Mu_de_up,
- 126   
- 127  maxSupplier_q_sell.quantities_sold,
- 128  maxSupplier_q_prod.quantities_prod,
- 129  con_supplier_trans_low.mu_trans_low,
- 130  con_supplier_trans_up.mu_trans_up,
- 131  con_supplier_sell_low.mu_sellCap_low,
- 132  con_supplier_sell_up.mu_sellCap_up,
- 133  con_supplier_prod_low.mu_prodCap_low,
- 134  con_supplier_prod_up.mu_prodCap_up
- 135  /;
- 136   
- 137  Solve cournot using mcp;
+ 105                                                  + mu_sellCap_up(supplier))
+ 106                                                  =e= 0;
+ 107  maxSupplier_q_prod(supplier)..                  ProductionCosts(supplier)
+ 108                                                  -mu_sellCap_up(supplier)
+ 109                                                  -mu_prodCap_low(supplier)
+ 110                                                  +mu_prodCap_up(supplier)
+ 111                                                  =e= 0;
+ 112   
+ 113  con_supplier_transCap_low(supplier, region)..      -quantities_sold(supplier,region) =g= 0;
+ 114  con_supplier_transCap_up(supplier, region)..       quantities_sold(supplier,region) - TransportationCap(supplier, region) =g= 0;
+ 115  con_supplier_sellCap_low(supplier)..               - sum((region), quantities_sold(supplier, region)) =g= 0;
+ 116  con_supplier_sellCap_up(supplier)..                sum((region), quantities_sold(supplier, region)) - quantities_prod(supplier) =g= 0;
+ 117  con_supplier_prodCap_low(supplier)..               - quantities_prod(supplier) =g= 0;
+ 118  con_supplier_prodCap_up(supplier)..                (quantities_prod(supplier) - ProductionCap(supplier)) =g= 0;
+ 119  *overall
+ 120  balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
+ 121   
+ 122  model cournot /
+ 123  balanceEqu.price,
+ 124   
+ 125  maxConsumer.quantities_demand,
+ 126  con_consumer_low.Mu_de_low,
+ 127  con_consumer_up.Mu_de_up,
+ 128   
+ 129  maxSupplier_q_sell.price,
+ 130  maxSupplier_q_prod.quantities_prod,
+ 131  con_supplier_transCap_low.mu_transCap_low,
+ 132  con_supplier_transCap_up.mu_transCap_up,
+ 133  con_supplier_sellCap_low.mu_sellCap_low,
+ 134  con_supplier_sellCap_up.mu_sellCap_up,
+ 135  con_supplier_prodCap_low.mu_prodCap_low,
+ 136  con_supplier_prodCap_up.mu_prodCap_up
+ 137  /;
+ 138   
+ 139  Solve cournot using mcp;
 
 
 COMPILATION TIME     =        0.000 SECONDS      3 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/15/24 16:55:39 Page 2
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/16/24 16:08:31 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE cournot Using MCP From line 137
+Equation Listing    SOLVE cournot Using MCP From line 139
 
 
 ---- balanceEqu  =E=  
@@ -186,14 +188,10 @@ con_consumer_up(r3)..  - quantities_demand(r3) =G= 0 ; (LHS = 0)
 
 ---- maxSupplier_q_sell  =E=  
 
-maxSupplier_q_sell(r2,r1)..  - mu_trans_low(r2,r1) + mu_trans_up(r2,r1) - mu_sellCap_low(r2) + mu_sellCap_up(r2) - price(r1) =E= -1 ; (LHS = 0, INFES = 1 ****)
+maxSupplier_q_sell(r2)..  - mu_transCap_low(r2,r1) - mu_transCap_low(r2,r2) - mu_transCap_low(r2,r3) + mu_transCap_up(r2,r1) + mu_transCap_up(r2,r2) + mu_transCap_up(r2,r3) - 3*mu_sellCap_low(r2) + 3*mu_sellCap_up(r2) - price(r1) - price(r2) - price(r3) =E= -2 ; (LHS = 0, INFES = 2 ****)
      
-maxSupplier_q_sell(r2,r2)..  - mu_trans_low(r2,r2) + mu_trans_up(r2,r2) - mu_sellCap_low(r2) + mu_sellCap_up(r2) - price(r2) =E= 0 ; (LHS = 0)
+maxSupplier_q_sell(r3)..  - mu_transCap_low(r3,r1) - mu_transCap_low(r3,r2) - mu_transCap_low(r3,r3) + mu_transCap_up(r3,r1) + mu_transCap_up(r3,r2) + mu_transCap_up(r3,r3) - 3*mu_sellCap_low(r3) + 3*mu_sellCap_up(r3) - price(r1) - price(r2) - price(r3) =E= -3 ; (LHS = 0, INFES = 3 ****)
      
-maxSupplier_q_sell(r2,r3)..  - mu_trans_low(r2,r3) + mu_trans_up(r2,r3) - mu_sellCap_low(r2) + mu_sellCap_up(r2) - price(r3) =E= -1 ; (LHS = 0, INFES = 1 ****)
-     
-REMAINING 3 ENTRIES SKIPPED
-
 
 ---- maxSupplier_q_prod  =E=  
 
@@ -202,58 +200,58 @@ maxSupplier_q_prod(r2)..  - mu_sellCap_up(r2) - mu_prodCap_low(r2) + mu_prodCap_
 maxSupplier_q_prod(r3)..  - mu_sellCap_up(r3) - mu_prodCap_low(r3) + mu_prodCap_up(r3) =E= -20 ; (LHS = 0, INFES = 20 ****)
      
 
----- con_supplier_trans_low  =L=  
+---- con_supplier_transCap_low  =G=  
 
-con_supplier_trans_low(r2,r1)..  - quantities_sold(r2,r1) =L= 0 ; (LHS = 0)
+con_supplier_transCap_low(r2,r1)..  - quantities_sold(r2,r1) =G= 0 ; (LHS = 0)
      
-con_supplier_trans_low(r2,r2)..  - quantities_sold(r2,r2) =L= 0 ; (LHS = 0)
+con_supplier_transCap_low(r2,r2)..  - quantities_sold(r2,r2) =G= 0 ; (LHS = 0)
      
-con_supplier_trans_low(r2,r3)..  - quantities_sold(r2,r3) =L= 0 ; (LHS = 0)
+con_supplier_transCap_low(r2,r3)..  - quantities_sold(r2,r3) =G= 0 ; (LHS = 0)
      
 REMAINING 3 ENTRIES SKIPPED
 
 
----- con_supplier_trans_up  =L=  
+---- con_supplier_transCap_up  =G=  
 
-con_supplier_trans_up(r2,r1)..  quantities_sold(r2,r1) =L= 1 ; (LHS = 0)
+con_supplier_transCap_up(r2,r1)..  quantities_sold(r2,r1) =G= 1 ; (LHS = 0, INFES = 1 ****)
      
-con_supplier_trans_up(r2,r2)..  quantities_sold(r2,r2) =L= 0 ; (LHS = 0)
+con_supplier_transCap_up(r2,r2)..  quantities_sold(r2,r2) =G= 0 ; (LHS = 0)
      
-con_supplier_trans_up(r2,r3)..  quantities_sold(r2,r3) =L= 100 ; (LHS = 0)
+con_supplier_transCap_up(r2,r3)..  quantities_sold(r2,r3) =G= 100 ; (LHS = 0, INFES = 100 ****)
      
 REMAINING 3 ENTRIES SKIPPED
 
 
----- con_supplier_sell_low  =L=  
+---- con_supplier_sellCap_low  =G=  
 
-con_supplier_sell_low(r2)..  - quantities_sold(r2,r1) - quantities_sold(r2,r2) - quantities_sold(r2,r3) =L= 0 ; (LHS = 0)
+con_supplier_sellCap_low(r2)..  - quantities_sold(r2,r1) - quantities_sold(r2,r2) - quantities_sold(r2,r3) =G= 0 ; (LHS = 0)
      
-con_supplier_sell_low(r3)..  - quantities_sold(r3,r1) - quantities_sold(r3,r2) - quantities_sold(r3,r3) =L= 0 ; (LHS = 0)
-     
-
----- con_supplier_sell_up  =L=  
-
-con_supplier_sell_up(r2)..  quantities_sold(r2,r1) + quantities_sold(r2,r2) + quantities_sold(r2,r3) - quantities_prod(r2) =L= 0 ; (LHS = 0)
-     
-con_supplier_sell_up(r3)..  quantities_sold(r3,r1) + quantities_sold(r3,r2) + quantities_sold(r3,r3) - quantities_prod(r3) =L= 0 ; (LHS = 0)
+con_supplier_sellCap_low(r3)..  - quantities_sold(r3,r1) - quantities_sold(r3,r2) - quantities_sold(r3,r3) =G= 0 ; (LHS = 0)
      
 
----- con_supplier_prod_low  =L=  
+---- con_supplier_sellCap_up  =G=  
 
-con_supplier_prod_low(r2)..  - quantities_prod(r2) =L= 0 ; (LHS = 0)
+con_supplier_sellCap_up(r2)..  quantities_sold(r2,r1) + quantities_sold(r2,r2) + quantities_sold(r2,r3) - quantities_prod(r2) =G= 0 ; (LHS = 0)
      
-con_supplier_prod_low(r3)..  - quantities_prod(r3) =L= 0 ; (LHS = 0)
+con_supplier_sellCap_up(r3)..  quantities_sold(r3,r1) + quantities_sold(r3,r2) + quantities_sold(r3,r3) - quantities_prod(r3) =G= 0 ; (LHS = 0)
      
 
----- con_supplier_prod_up  =L=  
+---- con_supplier_prodCap_low  =G=  
 
-con_supplier_prod_up(r2)..  quantities_prod(r2) =L= 1000 ; (LHS = 0)
+con_supplier_prodCap_low(r2)..  - quantities_prod(r2) =G= 0 ; (LHS = 0)
      
-con_supplier_prod_up(r3)..  quantities_prod(r3) =L= 200 ; (LHS = 0)
+con_supplier_prodCap_low(r3)..  - quantities_prod(r3) =G= 0 ; (LHS = 0)
      
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/15/24 16:55:39 Page 3
+
+---- con_supplier_prodCap_up  =G=  
+
+con_supplier_prodCap_up(r2)..  quantities_prod(r2) =G= 1000 ; (LHS = 0, INFES = 1000 ****)
+     
+con_supplier_prodCap_up(r3)..  quantities_prod(r3) =G= 200 ; (LHS = 0, INFES = 200 ****)
+     
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/16/24 16:08:31 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE cournot Using MCP From line 137
+Column Listing      SOLVE cournot Using MCP From line 139
 
 
 ---- quantities_demand  
@@ -312,26 +310,26 @@ Mu_de_up(r3)
 quantities_sold(r2,r1)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       balanceEqu(r1)
-       -1       con_supplier_trans_low(r2,r1)
-        1       con_supplier_trans_up(r2,r1)
-       -1       con_supplier_sell_low(r2)
-        1       con_supplier_sell_up(r2)
+       -1       con_supplier_transCap_low(r2,r1)
+        1       con_supplier_transCap_up(r2,r1)
+       -1       con_supplier_sellCap_low(r2)
+        1       con_supplier_sellCap_up(r2)
 
 quantities_sold(r2,r2)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       balanceEqu(r2)
-       -1       con_supplier_trans_low(r2,r2)
-        1       con_supplier_trans_up(r2,r2)
-       -1       con_supplier_sell_low(r2)
-        1       con_supplier_sell_up(r2)
+       -1       con_supplier_transCap_low(r2,r2)
+        1       con_supplier_transCap_up(r2,r2)
+       -1       con_supplier_sellCap_low(r2)
+        1       con_supplier_sellCap_up(r2)
 
 quantities_sold(r2,r3)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       balanceEqu(r3)
-       -1       con_supplier_trans_low(r2,r3)
-        1       con_supplier_trans_up(r2,r3)
-       -1       con_supplier_sell_low(r2)
-        1       con_supplier_sell_up(r2)
+       -1       con_supplier_transCap_low(r2,r3)
+        1       con_supplier_transCap_up(r2,r3)
+       -1       con_supplier_sellCap_low(r2)
+        1       con_supplier_sellCap_up(r2)
 
 REMAINING 3 ENTRIES SKIPPED
 
@@ -339,46 +337,46 @@ REMAINING 3 ENTRIES SKIPPED
 
 quantities_prod(r2)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
-       -1       con_supplier_sell_up(r2)
-       -1       con_supplier_prod_low(r2)
-        1       con_supplier_prod_up(r2)
+       -1       con_supplier_sellCap_up(r2)
+       -1       con_supplier_prodCap_low(r2)
+        1       con_supplier_prodCap_up(r2)
 
 quantities_prod(r3)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
-       -1       con_supplier_sell_up(r3)
-       -1       con_supplier_prod_low(r3)
-        1       con_supplier_prod_up(r3)
+       -1       con_supplier_sellCap_up(r3)
+       -1       con_supplier_prodCap_low(r3)
+        1       con_supplier_prodCap_up(r3)
 
 
----- mu_trans_low  
+---- mu_transCap_low  
 
-mu_trans_low(r2,r1)
+mu_transCap_low(r2,r1)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-       -1       maxSupplier_q_sell(r2,r1)
+       -1       maxSupplier_q_sell(r2)
 
-mu_trans_low(r2,r2)
+mu_transCap_low(r2,r2)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-       -1       maxSupplier_q_sell(r2,r2)
+       -1       maxSupplier_q_sell(r2)
 
-mu_trans_low(r2,r3)
+mu_transCap_low(r2,r3)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-       -1       maxSupplier_q_sell(r2,r3)
+       -1       maxSupplier_q_sell(r2)
 
 REMAINING 3 ENTRIES SKIPPED
 
----- mu_trans_up  
+---- mu_transCap_up  
 
-mu_trans_up(r2,r1)
+mu_transCap_up(r2,r1)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-        1       maxSupplier_q_sell(r2,r1)
+        1       maxSupplier_q_sell(r2)
 
-mu_trans_up(r2,r2)
+mu_transCap_up(r2,r2)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-        1       maxSupplier_q_sell(r2,r2)
+        1       maxSupplier_q_sell(r2)
 
-mu_trans_up(r2,r3)
+mu_transCap_up(r2,r3)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-        1       maxSupplier_q_sell(r2,r3)
+        1       maxSupplier_q_sell(r2)
 
 REMAINING 3 ENTRIES SKIPPED
 
@@ -386,31 +384,23 @@ REMAINING 3 ENTRIES SKIPPED
 
 mu_sellCap_low(r2)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-       -1       maxSupplier_q_sell(r2,r1)
-       -1       maxSupplier_q_sell(r2,r2)
-       -1       maxSupplier_q_sell(r2,r3)
+       -3       maxSupplier_q_sell(r2)
 
 mu_sellCap_low(r3)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-       -1       maxSupplier_q_sell(r3,r1)
-       -1       maxSupplier_q_sell(r3,r2)
-       -1       maxSupplier_q_sell(r3,r3)
+       -3       maxSupplier_q_sell(r3)
 
 
 ---- mu_sellCap_up  
 
 mu_sellCap_up(r2)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-        1       maxSupplier_q_sell(r2,r1)
-        1       maxSupplier_q_sell(r2,r2)
-        1       maxSupplier_q_sell(r2,r3)
+        3       maxSupplier_q_sell(r2)
        -1       maxSupplier_q_prod(r2)
 
 mu_sellCap_up(r3)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
-        1       maxSupplier_q_sell(r3,r1)
-        1       maxSupplier_q_sell(r3,r2)
-        1       maxSupplier_q_sell(r3,r3)
+        3       maxSupplier_q_sell(r3)
        -1       maxSupplier_q_prod(r3)
 
 
@@ -441,108 +431,70 @@ mu_prodCap_up(r3)
 price(r1)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       maxConsumer(r1)
-       -1       maxSupplier_q_sell(r2,r1)
-       -1       maxSupplier_q_sell(r3,r1)
+       -1       maxSupplier_q_sell(r2)
+       -1       maxSupplier_q_sell(r3)
 
 price(r2)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       maxConsumer(r2)
-       -1       maxSupplier_q_sell(r2,r2)
-       -1       maxSupplier_q_sell(r3,r2)
+       -1       maxSupplier_q_sell(r2)
+       -1       maxSupplier_q_sell(r3)
 
 price(r3)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       maxConsumer(r3)
-       -1       maxSupplier_q_sell(r2,r3)
-       -1       maxSupplier_q_sell(r3,r3)
+       -1       maxSupplier_q_sell(r2)
+       -1       maxSupplier_q_sell(r3)
 
 
-**** Lower Bound and =L= illegal
-     mu_trans_low(r2,r1)
+**** Multiple Matchings of equ.var pair
+     price(r2)
 
-**** Lower Bound and =L= illegal
-     mu_trans_low(r2,r2)
+**** Multiple Matchings of equ.var pair
+     price(r3)
 
-**** Lower Bound and =L= illegal
-     mu_trans_low(r2,r3)
+**** Counts do not match
+     Single equations in unmatched =E= blocks        2
+     Unmatched single free variables                 6
 
-**** Lower Bound and =L= illegal
-     mu_trans_low(r3,r1)
+**** Unmatched free variables = 6
+     quantities_sold(r2,r1)
+     quantities_sold(r2,r2)
+     quantities_sold(r2,r3)
+     quantities_sold(r3,r1)
+     quantities_sold(r3,r2)
+     quantities_sold(r3,r3)
 
-**** Lower Bound and =L= illegal
-     mu_trans_low(r3,r2)
-
-**** Lower Bound and =L= illegal
-     mu_trans_low(r3,r3)
-
-**** Lower Bound and =L= illegal
-     mu_trans_up(r2,r1)
-
-**** Lower Bound and =L= illegal
-     mu_trans_up(r2,r2)
-
-**** Lower Bound and =L= illegal
-     mu_trans_up(r2,r3)
-
-**** Lower Bound and =L= illegal
-     mu_trans_up(r3,r1)
-
-**** Lower Bound and =L= illegal
-     mu_trans_up(r3,r2)
-
-**** Lower Bound and =L= illegal
-     mu_trans_up(r3,r3)
-
-**** Lower Bound and =L= illegal
-     mu_sellCap_low(r2)
-
-**** Lower Bound and =L= illegal
-     mu_sellCap_low(r3)
-
-**** Lower Bound and =L= illegal
-     mu_sellCap_up(r2)
-
-**** Lower Bound and =L= illegal
-     mu_sellCap_up(r3)
-
-**** Lower Bound and =L= illegal
-     mu_prodCap_low(r2)
-
-**** Lower Bound and =L= illegal
-     mu_prodCap_low(r3)
-
-**** Lower Bound and =L= illegal
-     mu_prodCap_up(r2)
-
-**** Lower Bound and =L= illegal
-     mu_prodCap_up(r3)
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/15/24 16:55:39 Page 4
+**** Number of unmatched =E= rows : 2
+     maxSupplier_q_sell(r2)
+     maxSupplier_q_sell(r3)
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/16/24 16:08:31 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Range Statistics    SOLVE cournot Using MCP From line 137
+Range Statistics    SOLVE cournot Using MCP From line 139
 
 
 RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
 
 RHS       [min, max] : [ 1.000E+00, 1.000E+03] - Zero values observed as well
 Bound     [min, max] : [        NA,        NA] - Zero values observed as well
-Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
+Matrix    [min, max] : [ 1.000E+00, 3.000E+00]
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/15/24 16:55:39 Page 5
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/16/24 16:08:31 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE cournot Using MCP From line 137
+Model Statistics    SOLVE cournot Using MCP From line 139
 
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS          12     SINGLE EQUATIONS           40
+BLOCKS OF EQUATIONS          12     SINGLE EQUATIONS           36
 BLOCKS OF VARIABLES          12     SINGLE VARIABLES           40
-NON ZERO ELEMENTS            90     NON LINEAR N-Z              0
+NON ZERO ELEMENTS            82     NON LINEAR N-Z              0
 CODE LENGTH                   0     CONSTANT POOL              16
 
 
 GENERATION TIME      =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
 
-**** SOLVE from line 137 ABORTED, EXECERROR = 20
+**** SOLVE from line 139 ABORTED, EXECERROR = 3
 
 
 EXECUTION TIME       =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI

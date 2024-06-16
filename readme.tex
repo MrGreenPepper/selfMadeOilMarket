@@ -112,20 +112,12 @@ We need to apply the following steps for usability in gams:\\
 
 \textbf{$\rightarrow$ add constraints:}
 
-	$- Q_{sell}(supplier, region) \leq 0  \perp\: \mu_{transCapLow}$\\
-	$\rightarrow	- \mu_{transCapLow} * Q_{sell}(supplier, region)$\\
-	$Q_{sell}(supplier, region) - transCap(supplier, region) \leq 0  \perp\: \mu_{transCapUp}$\\
-	$\rightarrow\mu_{transCapUp} *\Big( Q_{sell}(supplier, region) - transCap(supplier, region)\Big)$\\
-
-	$ - \sum_{region} Q_{sell}(supplier, region)  \leq 0  \perp\: \mu_{sellCapLow}$\\
-	$\rightarrow -\mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
-	$\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier)\leq 0  \perp\: \mu_{sellCapUp}$\\
-	$\rightarrow	 \mu_{sellCapUp}*\Big(\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier) \Big)$\\
-
-	$ - Q_{prod}(supplier) \leq 0 \perp\: \mu_{prodCapLow}$\\
-	$\rightarrow	- \mu_{prodCapLow} * Q_{prod}(supplier)$\\
-	$Q_{prod}(supplier) - ProdCap(supplier) \leq 0 \perp\: \mu_{prodCapUp}$\\
-	$\rightarrow \mu_{prodCapUp}*\Big((Q_{prod}(supplier) - ProdCap(supplier))\Big)	$\\
+\quad$	- \mu_{transCapLow} * Q_{sell}(supplier, region)$\\
+\quad$\mu_{transCapUp} *\Big( Q_{sell}(supplier, region) - transCap(supplier, region)\Big)$\\
+\quad$ -\mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
+\quad$	 \mu_{sellCapUp}*\Big(\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier) \Big)$\\
+\quad$	- \mu_{prodCapLow} * Q_{prod}(supplier)$\\
+\quad$ \mu_{prodCapUp}*\Big(Q_{prod}(supplier) - ProdCap(supplier)\Big)	$\\
 
 
 	
@@ -133,40 +125,42 @@ We need to apply the following steps for usability in gams:\\
 
 
 \textbf{gams obj for supplier ($Q_{sell}$)}\\
-$\frac{\partial f}{\partial Q_{sell}} \:\sum_{region} Q_{sell}(supplier, region) *\Big(C_{trans}(supplier,region) - price(region)\Big)$\\
-$+ Q_{prod}(supplier)*C_{prod}(supplier)$\\
+\quad$\frac{\partial f}{\partial Q_{sell}} \:\sum_{region} Q_{sell}(supplier, region) *\Big(C_{trans}(supplier,region) - price(region)\Big)$\\
+\quad$+Q_{prod}(supplier)*C_{prod}(supplier)\: \forall \:supplier,region$\\
 %add constraints
-$-\mu_{transCapLow} * Q_{sell}(supplier, region)$\\
-$+\mu_{transCapUp} *\Big( Q_{sell}(supplier, region) - transCap(supplier, region)\Big)$\\
-$-\mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
-$+\mu_{sellCapUp}*\Big(\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier) \Big) $\\
-$-\mu_{prodCapLow} * Q_{prod}(supplier)$\\
-$+\mu_{prodCapUp}*\Big(Q_{prod}(supplier) - ProdCap(supplier)\Big)$\\
+\quad$-\mu_{transCapLow} * Q_{sell}(supplier, region)$\\
+\quad$+\mu_{transCapUp} *\Big( Q_{sell}(supplier, region) - transCap(supplier, region)\Big)$\\
+\quad$-\mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
+\quad$+\mu_{sellCapUp}*\Big(\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier) \Big) $\\
+\quad$-\mu_{prodCapLow} * Q_{prod}(supplier)$\\
+\quad$+\mu_{prodCapUp}*\Big(Q_{prod}(supplier) - ProdCap(supplier)\Big)$\\
+\quad$\forall \:supplier,region$\\
+\quad$=$
 
-$=$
-
-$\sum_{region} C_{trans}(supplier,region) - price(region)$\\
+\quad$\sum_{region} C_{trans}(supplier,region) - price(region)$\\
 %add constraints
-$-\mu_{transCapLow}$\\
-$+\mu_{transCapUp} $\\
-$-\sum_{region}\mu_{sellCapLow} $\\
-$+\sum_{region}\mu_{sellCapUp} $\\
-
+\quad$-\mu_{transCapLow}$\\
+\quad$+\mu_{transCapUp} $\\
+\quad$-\sum_{region}\mu_{sellCapLow} $\\
+\quad$+\sum_{region}\mu_{sellCapUp}$\\
+\quad$\forall \:supplier,region$\\
 
 \textbf{gams obj for supplier ($Q_{prod}$):}\\
-$\frac{\partial f}{\partial Q_{prod}} \:\sum_{region} Q_{sell}(supplier, region) *\Big(C_{trans}(supplier,region) - price(region)\Big)$\\
-$+ Q_{prod}(supplier)*C_{prod}(supplier)$\\
+\quad$\frac{\partial f}{\partial Q_{prod}} \:\sum_{region} Q_{sell}(supplier, region) *\Big(C_{trans}(supplier,region) - price(region)\Big)$\\
+\quad$+ Q_{prod}(supplier)*C_{prod}(supplier)$\\
 %add constraints
-$-\mu_{transCapLow} * Q_{sell}(supplier, region)$\\
-$+\mu_{transCapUp} *\Big( Q_{sell}(supplier, region) - transCap(supplier, region)\Big)$\\
-$-\mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
-$+\mu_{sellCapUp}*\Big(\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier) \Big) $\\
-$-\mu_{prodCapLow} * Q_{prod}(supplier)$\\
-$+\mu_{prodCapUp}*\Big(Q_{prod}(supplier) - ProdCap(supplier)\Big)$\\
-$=$\\
-$+C_{prod}(region)$\\
+\quad$-\mu_{transCapLow} * Q_{sell}(supplier, region)$\\
+\quad$+\mu_{transCapUp} *\Big( Q_{sell}(supplier, region) - transCap(supplier, region)\Big)$\\
+\quad$-\mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
+\quad$+\mu_{sellCapUp}*\Big(\sum_{region} Q_{sell}(supplier, region) -  Q_{prod}(supplier) \Big) $\\
+\quad$-\mu_{prodCapLow} * Q_{prod}(supplier)$\\
+\quad$+\mu_{prodCapUp}*\Big(Q_{prod}(supplier) - ProdCap(supplier)\Big)$\\
+\quad$\forall \:supplier,region$\\
+\quad$=$\\
+\quad$+C_{prod}(supplier)$\\
 %add constraints
-$-\mu_{sellCapUp}$\\
-$-\mu_{prodCapLow}$\\
-$+\mu_{prodCapUp}$\\
+\quad$-\mu_{sellCapUp}$\\
+\quad$-\mu_{prodCapLow}$\\
+\quad$+\mu_{prodCapUp}$\\
+\quad$\forall \:supplier,region$\\
 \end{document}
