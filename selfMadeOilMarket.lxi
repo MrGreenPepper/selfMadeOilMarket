@@ -1,29 +1,54 @@
 B 3 C o m p i l a t i o n
-B 150 Equation Listing    SOLVE cournot Using MCP From line 139
-D 153 balanceEqu
-D 162 maxConsumer
-D 171 con_consumer_low
-D 180 con_consumer_up
-D 189 maxSupplier_q_sell
-D 196 maxSupplier_q_prod
-D 203 con_supplier_transCap_low
-D 214 con_supplier_transCap_up
-D 225 con_supplier_sellCap_low
-D 232 con_supplier_sellCap_up
-D 239 con_supplier_prodCap_low
-D 246 con_supplier_prodCap_up
-B 254 Column Listing      SOLVE cournot Using MCP From line 139
-E 257 quantities_demand
-E 278 Mu_de_low
-E 293 Mu_de_up
-E 308 quantities_sold
-E 336 quantities_prod
-E 351 mu_transCap_low
-E 367 mu_transCap_up
-E 383 mu_sellCap_low
-E 394 mu_sellCap_up
-E 407 mu_prodCap_low
-E 418 mu_prodCap_up
-E 429 price
-B 473 Range Statistics    SOLVE cournot Using MCP From line 139
-B 484 Model Statistics    SOLVE cournot Using MCP From line 139
+B 158 Equation Listing    SOLVE cournot Using MCP From line 147
+D 161 balanceEqu
+D 170 maxConsumer
+D 179 con_consumer_low
+D 188 con_consumer_up
+D 197 maxSupplier_q_sell
+D 208 maxSupplier_q_prod
+D 215 con_supplier_transCap_low
+D 226 con_supplier_transCap_up
+D 237 con_supplier_sellCap_low
+D 244 con_supplier_sellCap_up
+D 251 con_supplier_prodCap_low
+D 258 con_supplier_prodCap_up
+B 266 Column Listing      SOLVE cournot Using MCP From line 147
+E 269 quantities_demand
+E 290 Mu_de_low
+E 305 Mu_de_up
+E 320 quantities_sold
+E 348 quantities_prod
+E 363 mu_transCap_low
+E 379 mu_transCap_up
+E 395 mu_sellCap_low
+E 410 mu_sellCap_up
+E 427 mu_prodCap_low
+E 438 mu_prodCap_up
+E 449 price
+B 483 Range Statistics    SOLVE cournot Using MCP From line 147
+B 494 Model Statistics    SOLVE cournot Using MCP From line 147
+B 508 Solution Report     SOLVE cournot Using MCP From line 147
+F 555 balanceEqu
+F 563 maxConsumer
+F 571 con_consumer_low
+F 579 con_consumer_up
+F 587 maxSupplier_q_sell
+F 598 maxSupplier_q_prod
+F 605 con_supplier_transCap_low
+F 616 con_supplier_transCap_up
+F 627 con_supplier_sellCap_low
+F 634 con_supplier_sellCap_up
+F 641 con_supplier_prodCap_low
+F 648 con_supplier_prodCap_up
+G 655 quantities_demand
+G 663 Mu_de_low
+G 671 Mu_de_up
+G 679 quantities_sold
+G 690 quantities_prod
+G 697 mu_transCap_low
+G 708 mu_transCap_up
+G 719 mu_sellCap_low
+G 726 mu_sellCap_up
+G 733 mu_prodCap_low
+G 740 mu_prodCap_up
+G 747 price
