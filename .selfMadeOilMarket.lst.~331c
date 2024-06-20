@@ -1,4 +1,4 @@
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 16:04:10 Page 1
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 12:34:42 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -109,52 +109,53 @@ C o m p i l a t i o n
  104                                                  + sum((regionB), mu_sellCap_low(supplier))
  105                                                  - sum((regionB),mu_sellCap_up(supplier))
  106                                                  =e= 0;
- 109  maxSupplier_q_prod(supplier)..                  ProductionCosts(supplier)
- 110                                                  +mu_sellCap_up(supplier)
- 111                                                  +mu_prodCap_low(supplier)
- 112                                                  -mu_prodCap_up(supplier)
- 113                                                  =e= 0;
- 114   
- 115  *transCap
- 116  con_supplier_transCap_low(supplier, region)..     quantities_sold(supplier,region) =g= 0;
- 117  con_supplier_transCap_up(supplier, region)..      TransportationCap(supplier, region) - quantities_sold(supplier,region) =g= 0;
- 118  *sellCap
- 119  con_supplier_sellCap_low(supplier)..              sum((region), quantities_sold(supplier, region)) =g= 0;
- 120  con_supplier_sellCap_up(supplier)..               quantities_prod(supplier) - sum((region), quantities_sold(supplier, region)) =g= 0;
- 121  *prodCap
- 122  con_supplier_prodCap_low(supplier)..              quantities_prod(supplier) =g= 0;
- 123  con_supplier_prodCap_up(supplier)..               ProductionCap(supplier) - quantities_prod(supplier)=g= 0;
- 124   
- 125  *overall
- 126  balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
- 127   
- 128  model cournot /
- 129  balanceEqu.price,
- 130  *demand
- 131  maxConsumer.quantities_demand,
- 132  con_consumer_low.Mu_de_low,
- 133  con_consumer_up.Mu_de_up,
- 134  *supplier
- 135  maxSupplier_q_sell.quantities_sold,
- 136  maxSupplier_q_prod.quantities_prod,
- 137  *transCap
- 138  con_supplier_transCap_low.mu_transCap_low,
- 139  con_supplier_transCap_up.mu_transCap_up,
- 140  *sellCap
- 141  con_supplier_sellCap_low.mu_sellCap_low,
- 142  con_supplier_sellCap_up.mu_sellCap_up,
- 143  *prodCap
- 144  con_supplier_prodCap_low.mu_prodCap_low,
- 145  con_supplier_prodCap_up.mu_prodCap_up
- 146  /;
- 147   
- 148  Solve cournot using mcp;
+ 107   
+ 108  maxSupplier_q_prod(supplier)..                  ProductionCosts(supplier)
+ 109                                                  +mu_sellCap_up(supplier)
+ 110                                                  +mu_prodCap_low(supplier)
+ 111                                                  -mu_prodCap_up(supplier)
+ 112                                                  =e= 0;
+ 113   
+ 114  *transCap
+ 115  con_supplier_transCap_low(supplier, region)..     quantities_sold(supplier,region) =g= 0;
+ 116  con_supplier_transCap_up(supplier, region)..      TransportationCap(supplier, region) - quantities_sold(supplier,region) =g= 0;
+ 117  *sellCap
+ 118  con_supplier_sellCap_low(supplier)..              sum((region), quantities_sold(supplier, region)) =g= 0;
+ 119  con_supplier_sellCap_up(supplier)..               quantities_prod(supplier) - sum((region), quantities_sold(supplier, region)) =g= 0;
+ 120  *prodCap
+ 121  con_supplier_prodCap_low(supplier)..              quantities_prod(supplier) =g= 0;
+ 122  con_supplier_prodCap_up(supplier)..               ProductionCap(supplier) - quantities_prod(supplier)=g= 0;
+ 123   
+ 124  *overall
+ 125  balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
+ 126   
+ 127  model cournot /
+ 128  balanceEqu.price,
+ 129  *demand
+ 130  maxConsumer.quantities_demand,
+ 131  con_consumer_low.Mu_de_low,
+ 132  con_consumer_up.Mu_de_up,
+ 133  *supplier
+ 134  maxSupplier_q_sell.quantities_sold,
+ 135  maxSupplier_q_prod.quantities_prod,
+ 136  *transCap
+ 137  con_supplier_transCap_low.mu_transCap_low,
+ 138  con_supplier_transCap_up.mu_transCap_up,
+ 139  *sellCap
+ 140  con_supplier_sellCap_low.mu_sellCap_low,
+ 141  con_supplier_sellCap_up.mu_sellCap_up,
+ 142  *prodCap
+ 143  con_supplier_prodCap_low.mu_prodCap_low,
+ 144  con_supplier_prodCap_up.mu_prodCap_up
+ 145  /;
+ 146   
+ 147  Solve cournot using mcp;
 
 
 COMPILATION TIME     =        0.000 SECONDS      3 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 16:04:10 Page 2
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 12:34:42 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE cournot Using MCP From line 148
+Equation Listing    SOLVE cournot Using MCP From line 147
 
 
 ---- balanceEqu  =E=  
@@ -260,9 +261,9 @@ con_supplier_prodCap_up(r2)..  - quantities_prod(r2) =G= -1000 ; (LHS = 0)
      
 con_supplier_prodCap_up(r3)..  - quantities_prod(r3) =G= -200 ; (LHS = 0)
      
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 16:04:10 Page 3
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 12:34:42 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE cournot Using MCP From line 148
+Column Listing      SOLVE cournot Using MCP From line 147
 
 
 ---- quantities_demand  
@@ -477,9 +478,9 @@ price(r3)
        -1       maxSupplier_q_sell(r3,r2)
        -1       maxSupplier_q_sell(r3,r3)
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 16:04:10 Page 4
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 12:34:42 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Range Statistics    SOLVE cournot Using MCP From line 148
+Range Statistics    SOLVE cournot Using MCP From line 147
 
 
 RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
@@ -488,9 +489,9 @@ RHS       [min, max] : [ 2.000E+00, 1.000E+03] - Zero values observed as well
 Bound     [min, max] : [        NA,        NA] - Zero values observed as well
 Matrix    [min, max] : [ 1.000E+00, 3.000E+00]
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 16:04:10 Page 5
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 12:34:42 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE cournot Using MCP From line 148
+Model Statistics    SOLVE cournot Using MCP From line 147
 
 
 MODEL STATISTICS
@@ -502,16 +503,16 @@ CODE LENGTH                   0     CONSTANT POOL              16
 
 
 GENERATION TIME      =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 16:04:10 Page 6
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/19/24 12:34:42 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE cournot Using MCP From line 148
+Solution Report     SOLVE cournot Using MCP From line 147
 
 
                S O L V E      S U M M A R Y
 
      MODEL   cournot             
      TYPE    MCP                 
-     SOLVER  PATH                FROM LINE  148
+     SOLVER  PATH                FROM LINE  147
 
 **** SOLVER STATUS     1 Normal Completion
 **** MODEL STATUS      1 Optimal
