@@ -1,17 +1,17 @@
 {
-    "file": "test.gms",
-    "name": "test",
+    "file": "selfMadeOilMarket.gms",
+    "name": "selfMadeOilMarket",
     "nodes": [
         {
             "codecMib": 106,
-            "file": "test.gms",
-            "name": "test.gms",
+            "file": "selfMadeOilMarket.gms",
+            "name": "selfMadeOilMarket.gms",
             "type": "gms"
         },
         {
             "codecMib": 106,
-            "file": "test.lst",
-            "name": "test.lst",
+            "file": "selfMadeOilMarket.lst",
+            "name": "selfMadeOilMarket.lst",
             "type": "lst"
         }
     ],

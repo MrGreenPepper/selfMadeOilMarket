@@ -105,10 +105,10 @@ maxSupplier_q_sell(supplier, region)..          sum((regionB),TransportationCost
                                                 - sum((regionB),mu_sellCap_up(supplier))
                                                 =e= 0;
                                                 
-maxSupplier_q_prod(supplier)..                  ProductionCosts(supplier)
-                                                +mu_sellCap_up(supplier)
-                                                +mu_prodCap_low(supplier)
-                                                -mu_prodCap_up(supplier)
+maxSupplier_q_prod(supplier)..                  - ProductionCosts(supplier)
+                                                - mu_sellCap_up(supplier)
+                                                - mu_prodCap_low(supplier)
+                                                + mu_prodCap_up(supplier)
                                                 =e= 0;
 
 *transCap                                      

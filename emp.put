@@ -1,0 +1,3 @@
+randvar d discrete 0.7 45 0.2 40 0.1 50
+stage 2 i l s d
+stage 2 Row1 Row2

@@ -1,0 +1,87 @@
+
+--- Job test.gms Start 06/22/24 15:10:29 44.4.0 06604687 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\44\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\test.gms
+    PageSize 0
+    ScrDir C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\225a\
+    SysDir C:\GAMS\44\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Course License                                 S240430|0002AO-GEN
+          TU Dresden, Business Management and Economics             DCE3456
+          C:\Users\sebas\Documents\GAMS\gamslice.txt
+          License Admin: Hannes Hobbie, hannes.hobbie@tu-dresden.de        
+          Course license for use within the course and related course work
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 44.4.0   Copyright (C) 1987-2023 GAMS Development. All rights reserved
+--- Starting compilation
+--- test.gms(66) 3 Mb
+--- Starting execution: elapsed 0:00:00.018
+--- test.gms(65) 4 Mb
+---
+--- collecting and writing gdx file 
+---
+--- Generating EMP model nv
+--- test.gms(65) 6 Mb
+--- JAMS cannot solve SP models. Resetting EMP solver to DE
+---   3 rows  6 columns  11 non-zeroes
+---   0 nl-code  0 nl-non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [        NA,        NA] - Zero values observed as well
+--- Bound     [min, max] : [ 4.500E+01, 4.500E+01] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 6.000E+01]
+--- test.gms(65) 4 Mb
+--- Executing DE (Solvelink=2): elapsed 0:00:00.034
+DE               44.4.0 06604687 Sep 19, 2023          WEI x86 64bit/MS Window
+--- Input model type identified and solved as LP
+--- DE has 10 rows 17 columns 37 non-zeroes
+
+IBM ILOG CPLEX   44.4.0 06604687 Sep 19, 2023          WEI x86 64bit/MS Window
+
+--- GAMS/CPLEX licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- GMO memory 0.62 Mb (peak 0.63 Mb)
+--- Cplex 22.1.1.0 link memory 0.00 Mb (peak 0.00 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Advance                                 0
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 4 rows and 10 columns.
+Aggregator did 4 substitutions.
+Reduced LP has 1 rows, 3 columns, and 3 nonzeros.
+Presolve time = 0.02 sec. (0.01 ticks)
+
+Iteration      Dual Objective            In Variable           Out Variable
+     1            1277.500000                     x3               c1 artif
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.02sec (det. 0.01 ticks)
+
+
+Optimal solution found
+Objective:         1277.500000
+
+--- Reading solution for model nv
+--- Executing after solve: elapsed 0:00:00.117
+---
+--- scattering and reading gdx file
+---
+--- randvar  Id = d maps to s_d
+--- level    Id = s maps to s_s
+--- level    Id = x maps to s_x
+--- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\225a\scenrep.dat
+--- Scatter finished in 0 ms
+--- test.gms(66) 4 Mb
+*** Status: Normal completion
+--- Job test.gms Stop 06/22/24 15:10:30 elapsed 0:00:00.119

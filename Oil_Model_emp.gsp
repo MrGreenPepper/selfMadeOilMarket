@@ -1,17 +1,17 @@
 {
-    "file": "test.gms",
-    "name": "test",
+    "file": "oil_emp.gms",
+    "name": "Oil_Model_emp",
     "nodes": [
         {
             "codecMib": 106,
-            "file": "test.gms",
-            "name": "test.gms",
+            "file": "oil_emp.gms",
+            "name": "oil_emp.gms",
             "type": "gms"
         },
         {
             "codecMib": 106,
-            "file": "test.lst",
-            "name": "test.lst",
+            "file": "oil_emp.lst",
+            "name": "oil_emp.lst",
             "type": "lst"
         }
     ],
