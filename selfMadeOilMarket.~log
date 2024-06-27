@@ -1,0 +1,45 @@
+
+Debug-Server started. Listening at port 3563
+Debug-Server: Socket connected to GAMS
+--- Job selfMadeOilMarket.gms Start 06/27/24 17:52:20 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\46\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    PageSize 0
+    ScrDir C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\225c\
+    SysDir C:\GAMS\46\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Course License                                 S240430|0002AO-GEN
+          TU Dresden, Business Management and Economics             DCE3456
+          C:\Users\sebas\Documents\GAMS\gamslice.txt
+          License Admin: Hannes Hobbie, hannes.hobbie@tu-dresden.de        
+          Course license for use within the course and related course work
+          The evaluation period of the license will expire on Oct 27, 2024
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
+--- Starting compilation
+--- selfMadeOilMarket.gms(2) 2 Mb
+--- . realData.gms(21) 3 Mb
+--- call gdxxrw.exe ModelInputData.xlsx par=SlopeDemand rng=Tabelle1!A2:C7 dim=1 cdim=0 rdim=1 log=SlopeDemand.txt
+--- . realData.gms(23) 3 Mb
+--- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
+--- GDX File ($gdxIn) C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
+--- . realData.gms(28) 3 Mb
+--- call gdxxrw.exe ModelInputData.xlsx par=MaxConsumption rng=Tabelle1!A28:B32 dim=1 cdim=0 rdim=1 log=MaxConsumption.txt
+--- . realData.gms(30) 3 Mb
+--- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
+--- GDX File ($gdxIn) C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
+--- . realData.gms(36) 3 Mb
+--- call gdxxrw.exe ModelInputData.xlsx par=ProductionCosts rng=Tabelle1!A19:B23 dim=1 cdim=0 rdim=1 log=ProductionCosts.txt
+--- . realData.gms(38) 3 Mb
+--- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
+--- GDX File ($gdxIn) C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
+--- . realData.gms(43) 3 Mb
+--- call gdxxrw.exe ModelInputData.xlsx par=ProductionCap rng=Tabelle1!A38:B42 dim=1 cdim=0 rdim=1 log=ProductionCap.txt
+--- . realData.gms(45) 3 Mb
+--- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
