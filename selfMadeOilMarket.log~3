@@ -1,5 +1,5 @@
 
---- Job selfMadeOilMarket.gms Start 06/19/24 12:28:08 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+--- Job selfMadeOilMarket.gms Start 06/27/24 16:39:14 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\46\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -21,90 +21,12 @@ Licensee: Course License                                 S240430|0002AO-GEN
 Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
 GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
 --- Starting compilation
---- selfMadeOilMarket.gms(147) 3 Mb
---- Starting execution: elapsed 0:00:00.006
---- selfMadeOilMarket.gms(68) 4 Mb
---- Generating MCP model cournot
---- selfMadeOilMarket.gms(147) 6 Mb
----   40 rows  40 columns  102 non-zeroes
----   0 nl-code  0 nl-non-zeroes
---- Range statistics (absolute non-zero finite values)
---- RHS       [min, max] : [ 2.000E+00, 1.000E+03] - Zero values observed as well
---- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
---- Matrix    [min, max] : [ 1.000E+00, 3.000E+00]
---- selfMadeOilMarket.gms(147) 4 Mb
---- Executing PATH (Solvelink=2): elapsed 0:00:00.012
-Reading dictionary...
-Reading row data...
-Evaluating functions...
-Checking model...
-Calculating Jacobian...
-
-40 row/cols, 102 non-zeros, 6.38% dense.
-
-Path 5.0.07 (Tue Mar  5 04:38:27 2024)
-Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
-
-
-INITIAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  0.0000e+00 var: (price(r1))
-Maximum of F. . . . . . . . . .  1.0000e+03 eqn: (con_supplier_prodCap_up(r2))
-Maximum of Grad F . . . . . . .  3.0000e+00 eqn: (maxSupplier_q_sell(r2,r1))
-                                            var: (mu_sellCap_low(r2))
-
-INITIAL JACOBIAN NORM STATISTICS
-Maximum Row Norm. . . . . . . .  1.1000e+01 eqn: (maxSupplier_q_sell(r2,r1))
-Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (con_consumer_low(r1))
-Maximum Column Norm . . . . . .  1.0000e+01 var: (mu_sellCap_up(r2))
-Minimum Column Norm . . . . . .  1.0000e+00 var: (Mu_de_low(r1))
-
-Crash Log
-major  func  diff  size  residual    step       prox   (label)
-    0     0             8.6250e+01             0.0e+00 (maxConsumer(r1))
-    1     7     4    14 8.5392e+01  6.9e-02    8.6e-01 (maxConsumer(r1))
-pn_search terminated: no basis change.
-
-Major Iteration Log
-major minor  func  grad  residual    step  type prox    inorm  (label)
-    0     0     8     2 8.5392e+01           I 7.8e-01 5.9e+01 (maxConsumer(r1))
-    1     2    11     3 3.7282e+02  6.4e-01 RB 3.1e-01 2.6e+02 (con_supplier_se)
-    2    47    12     4 1.2583e+02  1.0e+00 CO 1.2e-01 7.5e+01 (con_supplier_se)
-    3    80    13     5 1.1977e+02  1.0e+00 IO 5.0e-02 7.4e+01 (con_supplier_se)
-    4    34    14     6 1.1977e+02  1.0e+00 CO 2.0e-02 7.4e+01 (con_supplier_se)
-    5    49    15     7 8.3285e+01  1.0e+00 CO 7.9e-03 4.3e+01 (con_supplier_pr)
-    6     2    23     8 6.9508e+01  6.9e-02 RG 3.2e-03 3.4e+01 (maxConsumer(r1))
-    7     6    24     9 1.2868e+00  1.0e+00 SO 1.3e-03 1.3e+00 (maxSupplier_q_p)
-    8     3    25    10 3.6733e-02  1.0e+00 SO 5.1e-04 2.1e-02 (balanceEqu(r2))
-    9     1    26    11 6.1025e-06  1.0e+00 SO 2.0e-04 4.3e-06 (maxConsumer(r2))
-   10     1    27    12 2.4701e-11  1.0e+00 SO 6.1e-07 1.6e-11 (balanceEqu(r2))
-
-FINAL STATISTICS
-Inf-Norm of Complementarity . .  5.4884e-10 eqn: (con_consumer_low(r2))
-Inf-Norm of Normal Map. . . . .  1.5799e-11 eqn: (balanceEqu(r2))
-Inf-Norm of Minimum Map . . . .  1.5799e-11 eqn: (balanceEqu(r2))
-Inf-Norm of Fischer Function. .  1.5799e-11 eqn: (balanceEqu(r2))
-Inf-Norm of Grad Fischer Fcn. .  2.8965e-11 eqn: (maxConsumer(r2))
-Two-Norm of Grad Fischer Fcn. .  5.1058e-11
-
-FINAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  1.0000e+03 var: (quantities_prod(r2))
-Maximum of F. . . . . . . . . .  1.0000e+03 eqn: (con_supplier_sellCap_up(r2))
-Maximum of Grad F . . . . . . .  3.0000e+00 eqn: (maxSupplier_q_sell(r2,r1))
-                                            var: (mu_sellCap_low(r2))
-
- ** EXIT - solution found.
-
-Major Iterations. . . . 10
-Minor Iterations. . . . 263
-Restarts. . . . . . . . 0
-Crash Iterations. . . . 1
-Gradient Steps. . . . . 1
-Function Evaluations. . 27
-Gradient Evaluations. . 12
-Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.000000
-Residual. . . . . . . . 2.470123e-11
-
---- Reading solution for model cournot
-*** Status: Normal completion
---- Job selfMadeOilMarket.gms Stop 06/19/24 12:28:08 elapsed 0:00:00.044
+--- selfMadeOilMarket.gms(134) 3 Mb 1 Error
+*** Error 171 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Domain violation for set
+--- selfMadeOilMarket.gms(158) 3 Mb 2 Errors
+*** Error 257 in C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+    Solve statement not checked because of previous errors
+--- selfMadeOilMarket.gms(158) 3 Mb 2 Errors
+*** Status: Compilation error(s)
+--- Job selfMadeOilMarket.gms Stop 06/27/24 16:39:14 elapsed 0:00:00.007
