@@ -1,1 +1,31 @@
 B 3 C o m p i l a t i o n
+B 141 Include File Summary
+B 153 Equation Listing    SOLVE cournot Using EMP From line 137
+D 156 maxSupplier_q_sell
+D 165 con_supplier_transCap_low
+D 176 con_supplier_transCap_up
+D 187 con_supplier_sellCap_low
+D 196 con_supplier_sellCap_up
+D 205 con_supplier_prodCap_low
+D 214 con_supplier_prodCap_up
+D 223 price_EQ
+B 233 Column Listing      SOLVE cournot Using EMP From line 137
+E 236 quantities_sold
+E 267 quantities_prod
+E 291 price
+E 315 profit
+B 331 Range Statistics    SOLVE cournot Using EMP From line 137
+B 342 Model Statistics    SOLVE cournot Using EMP From line 137
+B 356 Solution Report     SOLVE cournot Using EMP From line 137
+F 427 maxSupplier_q_sell
+F 435 con_supplier_transCap_low
+F 449 con_supplier_transCap_up
+F 463 con_supplier_sellCap_low
+F 471 con_supplier_sellCap_up
+F 479 con_supplier_prodCap_low
+F 487 con_supplier_prodCap_up
+F 495 price_EQ
+G 503 quantities_sold
+G 517 quantities_prod
+G 525 price
+G 533 profit
