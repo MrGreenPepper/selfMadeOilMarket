@@ -3,27 +3,27 @@
 \usepackage{setspace}
 \usepackage{tabto}
 \usepackage[document]{ragged2e}
-\setstretch{2}
-\title{ResEco - formulas}
-\author{Mr Green Pepper}
+\setstretch{1.5}
+\title{Resource Economics - formulas}
+\author{Sebastian Trümper}
 \date{June 2024}
 
 \begin{document}
 
 \maketitle
 
-\section{base formulas}
-\textbf{general supplier function for maximizing profit}\\
+\section{Base formulas}
+\textbf{General supplier function for maximizing profit}\\
 %base formula
 for one  supplier\\
-$max \sum_{region} Q_{sell}(region) *\Big(price(region) - C_{trans}(region)\Big) $\\
-$- Q_{prod}*C_{prod}$\\
+\quad$max \sum_{region} Q_{sell}(region) *\Big(price(region) - C_{trans}(region)\Big) $\\
+\quad$- Q_{prod}*C_{prod}$\\
 for all supplier:\\
-$\pi(supplier) = \sum_{region} Q_{sell}(supplier, region) *\Big(price(region) - C_{trans}(supplier,region)\Big) $\\
-$- Q_{prod}(supplier)*C_{prod}(supplier)\: \forall \:supplier,region$\\
+\quad$\pi(supplier) = \sum_{region} Q_{sell}(supplier, region) *\Big(price(region) - C_{trans}(supplier,region)\Big) $\\
+\quad$- Q_{prod}(supplier)*C_{prod}(supplier)\: \forall \:supplier$\\
 
 %constraints
-\textbf{Constraints}\\
+\section*{Constraints}
 There are several supplier constraints that must be taken into account.\\
 They have the following logic:\\
 "$Q_{sell} \leq transCap(supplier, region) \leq Q_{prod} \leq productionCap(supplier) \: \forall \: supplier,regions$"\\
@@ -38,70 +38,60 @@ Production cap constraint:\\
 \quad$Q_{prod}(supplier) \leq ProdCap(supplier)\:\forall \: supplier$\\
 
 \hfill
-\paragraph*{For gams:}
+\paragraph*{Make the constraints useable:}
 \hfill\\
 We need to apply the following steps for usability in gams:\\
 1. introduce lower bound\\
 2. split into 2 sepperate equations\\
-3. get the 0 on one side\\
-4. change equations to $\geq$ 0\\
-5. introduce dual variables ($\mu$'s)\\
+3. For Laplace: bring constraints into standard form (constraint $\leq 0 \perp $ dualVariable)\\
+4. For GAMS: change equations to $\geq 0$ (for gams)\\
 \hfil\\
 \hfill\\
-\textbf{for	transport constraint: }\\
+\textbf{For	transport constraint: }\\
 1. introduce lower bound\\
 \quad$0 \leq Q_{sell}(supplier, region) \leq transCap(supplier, region)\: \forall \: supplier,regions$\\
 2. split into 2 sepperate equations\\
 \quad$0 \leq Q_{sell}(supplier, region)\: \forall \: supplier,regions$\\
 \quad$Q_{sell}(supplier, region) \leq transCap(supplier, region)\: \forall \: supplier,regions$\\
-3. get the 0 on one side\\
-\quad$0 \leq Q_{sell}(supplier, region)\: \forall \: supplier,regions$\\
-\quad$Q_{sell}(supplier, region) - transCap(supplier, region) \leq 0\: \forall \: supplier,regions$\\
-4. change equations to $\geq 0$\\
+3. For Laplace: bring constraints into standard form\\
+\quad$- Q_{sell}(supplier, region) \leq 0 : \mu_{transCapLow}\: \forall \: supplier,regions$\\
+\quad$Q_{sell}(supplier, region) - transCap(supplier, region) \leq 0  : \mu_{transCapUp}\: \forall \: supplier,regions$\\
+4. For GAMS: change equations to $\geq 0$\\
 \quad$ Q_{sell}(supplier, region) \geq 0 \: \forall \: supplier,regions$\\
 \quad$transCap(supplier, region) - Q_{sell}(supplier, region) \geq 0 \: \forall \: supplier,regions$\\
-5. introduce Lagrange variable ($\mu$'s)\\
-\quad$Q_{sell}(supplier, region) \geq 0  \perp\: \mu_{transCapLow} \: \forall \: supplier,regions$\\
-\quad$transCap(supplier, region) - Q_{sell}(supplier, region) \geq 0  \perp\: \mu_{transCapUp} \: \forall \: supplier,regions$\\
 
 \hfill\\
-\textbf{for	selling cap constraint: }\\
+\textbf{For	selling cap constraint: }\\
 1. introduce lower bound\\
 \quad	$0 \leq \sum_{region} Q_{sell}(supplier, region)  \leq Q_{prod}(supplier) \: \forall \: supplier$\\
 2. split into 2 sepperate equations\\
 \quad$0 \leq \sum_{region} Q_{sell}(supplier, region) \: \forall \: supplier $\\
 \quad$\sum_{region} Q_{sell}(supplier, region) \leq Q_{prod}(supplier) \: \forall \: supplier$\\
-3. get the 0 on one side\\
-\quad$0 \leq \sum_{region} Q_{sell}(supplier, region) \: \forall \: supplier $\\
-\quad$Q_{prod}(supplier)  - \sum_{region} Q_{sell}(supplier, region) \geq 0\: \forall \: supplier$\\
-4. change equations to $\geq$ 0\\
+3. For Laplace: bring constraints into standard form\\
+\quad$ - \sum_{region} Q_{sell}(supplier, region) \leq 0 : \mu_{sellCapLow}\: \forall \: supplier $\\
+\quad$\sum_{region} Q_{sell}(supplier, region) - Q_{prod}(supplier)  \leq 0 : \mu_{sellCapUp}\: \forall \: supplier$\\
+4. For GAMS: change equations to $\geq$ 0\\
 \quad$ \sum_{region} Q_{sell}(supplier, region) \geq 0 \: \forall \: supplier $\\
 \quad$Q_{prod}(supplier)  - \sum_{region} Q_{sell}(supplier, region) \geq 0\: \forall \: supplier$\\
-5. introduce dual variables ($\mu$'s)\\
-\quad$ \sum_{region} Q_{sell}(supplier, region) \geq 0 \perp \mu_{sellCapLow} \: \forall \: supplier $\\
-\quad$Q_{prod}(supplier)  - \sum_{region} Q_{sell}(supplier, region) \geq 0  \perp \mu_{sellCapUp}\: \forall \: supplier$\\
 
 
 \hfill\\
-\textbf{for	production cap constraint: }\\
+\textbf{For	production cap constraint: }\\
 1. introduce lower bound\\
 \quad$0 \leq Q_{prod}(supplier) \leq ProdCap(supplier) \: \forall \: supplier$\\  
 2. split into 2 sepperate equations\\
 \quad$0 \leq Q_{prod}(supplier) $\\  
 \quad$Q_{prod}(supplier) \leq ProdCap(supplier)$\\
-3. get the 0 on one side\\
-\quad$0 \leq Q_{prod}(supplier) $\\  
-\quad$Q_{prod}(supplier) - ProdCap(supplier)\leq 0$\\
-4. change equations to $\geq$ 0\\
+3. For Laplace: bring constraints into standard form\\
+\quad$- Q_{prod}(supplier) \leq 0 : \mu_{prodCapLow} $\\  
+\quad$Q_{prod}(supplier) - ProdCap(supplier)\leq 0  : \mu_{prodCapUp}$\\
+4. For GAMS: change equations to $\geq$ 0\\
 \quad$Q_{prod}(supplier) \geq 0 $\\  
 \quad$ProdCap(supplier) - Q_{prod}(supplier) \geq 0$\\
-5. introduce dual variables ($\mu$'s)\\
-\quad$Q_{prod}(supplier) \geq 0 \perp\: \mu_{prodCapLow} \: \forall \: supplier$\\
-\quad$ProdCap(supplier) - Q_{prod}(supplier) \geq 0 \perp\: \mu_{prodCapUp} \: \forall \: supplier$\\
 
-
-
-\textbf{Object function for gams:}\\
+\hfill\\ 
+\hfill\\
+\section*{Object function}
 %pure gams code
 \quad$ max\:\sum_{region} Q_{sell}(supplier, region) *\Big(price(region) - C_{trans}(supplier,region)\Big) $\\
 \quad$- Q_{prod}(supplier)*C_{prod}(supplier)\:\forall\: supplier $\\
@@ -114,57 +104,33 @@ We need to apply the following steps for usability in gams:\\
 \textbf{$\rightarrow$ add constraints:}
 
 \quad$ - \mu_{transCapLow} * Q_{sell}(supplier, region)$\\
-\quad$ + \mu_{transCapUp} * \Big(transCap(supplier, region) - Q_{sell}(supplier, region)\Big)$\\
+\quad$ + \mu_{transCapUp} * \Big( Q_{sell}(supplier, region) - transCap(supplier, region) \Big)$\\
 \quad$ - \mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
-\quad$ + \mu_{sellCapUp}*\Big( Q_{prod}(supplier) -\sum_{region} Q_{sell}(supplier, region)\Big)$\\
+\quad$ + \mu_{sellCapUp}*\Big( \sum_{region} Q_{sell}(supplier, region) - Q_{prod}(supplier)\Big)$\\
 \quad$ - \mu_{prodCapLow} * Q_{prod}(supplier)$\\
-\quad$ + \mu_{prodCapUp}*\Big( ProdCap(supplier) - Q_{prod}(supplier)\Big)	$\\
+\quad$ + \mu_{prodCapUp}*\Big(Q_{prod}(supplier) - ProdCap(supplier)\Big)$\\
 
 
 \textbf{derivation obj for supplier ($Q_{sell}$)}\\
 \quad$\frac{\partial f}{\partial Q_{sell}} = \:\sum_{region} (C_{trans}(supplier,region) - price(region))$\\
 %add constraints
 \quad$ - \mu_{transCapLow}$\\
-\quad$ - \mu_{transCapUp}$\\
-\quad$ - \sum_{region} \mu_{sellCapLow}$\\
-\quad$ - \sum_{region} \mu_{sellCapUp}$\\
+\quad$ + \mu_{transCapUp} $\\
+\quad$ - \sum_{region} \mu_{sellCapLow} $\\
+\quad$ + \sum_{region} \mu_{sellCapUp}$\\
 
 \quad$\forall \:supplier$\\
 
 \textbf{derivation obj for supplier ($Q_{prod}$):}\\
 \quad$\frac{\partial f}{\partial Q_{prod}} = C_{prod}(supplier)\:$\\
 %add constraints
-\quad$ + \mu_{sellCapUp}$\\
+\quad$ - \mu_{sellCapUp}$\\
 \quad$ - \mu_{prodCapLow}$\\
-\quad$ - \mu_{prodCapUp}$\\
+\quad$ + \mu_{prodCapUp}$\\
 
 \quad$\forall \:supplier$\\
 
 
 
-\section*{demand}
-max demand\\
-\quad $max Q_{d}(region) * (Utility(region)-price(region))$\\
-constraints:\\
-\quad $0\leq Q_d(region) \leq MaxConsumption(region)$\\
-\hfill\\
-We need to apply the following steps for usability in gams:\\
-1. introduce lower bound\\
-2. split into 2 sepperate equations\\
-3. get the 0 on one side\\
-4. change equations to $\geq$ 0\\
-5. introduce dual variables ($\mu$'s)\\
-\hfill\\
-1. introduce lower bound\\
-\quad $0\leq Q_d(region) \leq MaxConsumption(region)$\\
-2. split into 2 sepperate equations\\
-\quad $0\leq Q_d(region)$\\
-\quad $Q_d(region) \leq MaxConsumption(region)$\\
-3. get the 0 on one side\\
-\quad $0\leq Q_d(region)$\\
-\quad $Q_d(region) - MaxConsumption(region) \leq 0$\\
-4. change equations to $\geq$ 0\\
-\quad $Q_d(region) \geq 0$\\
-\quad $ MaxConsumption(region) - Q_d(region)\geq 0$\\
-5. introduce dual variables ($\mu$'s)\\
+
 \end{document}

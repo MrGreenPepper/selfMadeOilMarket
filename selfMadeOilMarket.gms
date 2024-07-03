@@ -17,7 +17,8 @@ quantities_prod(supplier)
 mu_transCap_low
 mu_transCap_up
 
-mu_sellCap
+mu_sellCap_low
+mu_sellCap_up
 
 mu_prodCap_low
 mu_prodCap_up
@@ -36,10 +37,6 @@ mu_prodCap_low.lo(supplier)  = 0;
 mu_prodCap_up.lo(supplier)  = 0;
 
 
-Variable
-mu_sellCap
-
-;
 Equations
 
 
@@ -56,7 +53,8 @@ maxSupplier_q_prod
 con_supplier_transCap_low(supplier, region)
 con_supplier_transCap_up(supplier, region)
 
-con_supplier_sellCap(supplier)
+con_supplier_sellCap_low(supplier)
+con_supplier_sellCap_up(supplier)
 
 con_supplier_prodCap_low(supplier)
 con_supplier_prodCap_up(supplier)
@@ -74,32 +72,34 @@ con_consumer_up(region)..                       MaxConsumption(region) - quantit
 $offText
 *supplier
 
-maxSupplier_q_sell(supplier, region)..          (TransportationCosts(supplier, region)-price(region))
-                                                + mu_transCap_low(supplier, region)
-                                                - mu_transCap_up(supplier, region)
-                                                + mu_sellCap(supplier)
+maxSupplier_q_sell(supplier, region)..          sum(regionB, (TransportationCosts(supplier, regionB)-price(regionB)))
+                                                - mu_transCap_low(supplier, region)
+                                                + mu_transCap_up(supplier, region)
+                                                - sum(regionB, mu_sellCap_low(supplier))
+                                                + sum(regionB, mu_sellCap_up(supplier))
                                                 =e= 0;
                                                 
 maxSupplier_q_prod(supplier)..                  ProductionCosts(supplier)
-                                                -mu_sellCap(supplier)
+                                                -mu_sellCap_up(supplier)
                                                 +mu_prodCap_low(supplier)
                                                 -mu_prodCap_up(supplier)
                                                 =e= 0;
 
 *transCap                                      
-con_supplier_transCap_low(supplier, region)..     quantities_sold(supplier,region) =g= 0;
-con_supplier_transCap_up(supplier, region)..      TransportationCap(supplier, region) - quantities_sold(supplier,region) =g= 0;
+con_supplier_transCap_low(supplier, region)..       quantities_sold(supplier,region) =g= 0;
+con_supplier_transCap_up(supplier, region)..        TransportationCap(supplier, region) - quantities_sold(supplier,region) =g= 0;
 
 *sellCap
-con_supplier_sellCap(supplier)..                    quantities_prod(supplier) - sum((region), quantities_sold(supplier, region)) =g= 0;
+con_supplier_sellCap_low(supplier)..                sum((region), quantities_sold(supplier, region))=g= 0;
+con_supplier_sellCap_up(supplier)..                 quantities_prod(supplier) - sum((region), quantities_sold(supplier, region)) =g= 0;
 
 *prodCap
-con_supplier_prodCap_low(supplier)..              quantities_prod(supplier) =g= 0;
-con_supplier_prodCap_up(supplier)..               ProductionCap(supplier) - quantities_prod(supplier)=g= 0;
+con_supplier_prodCap_low(supplier)..                quantities_prod(supplier) =g= 0;
+con_supplier_prodCap_up(supplier)..                 ProductionCap(supplier) - quantities_prod(supplier)=g= 0;
 
 *overall
-*balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
-price_EQ(region)..                              price(region) =e= (SlopeDemand(region)/1000*sum(supplier, quantities_sold(supplier, region))) / MaxConsumption(region);  
+*balanceEqu(region)..                               sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
+price_EQ(region)..                                  price(region) =e= MaxConsumption(region) - (SlopeDemand(region)*sum(supplier, quantities_sold(supplier, region))) ;  
 model cournot /
 *balanceEqu.price,
 price_EQ.price,
@@ -116,8 +116,8 @@ maxSupplier_q_prod.quantities_prod,
 con_supplier_transCap_low.mu_transCap_low,
 con_supplier_transCap_up.mu_transCap_up,
 *sellCap
-
-con_supplier_sellCap.mu_sellCap,
+con_supplier_sellCap_low.mu_sellCap_low,
+con_supplier_sellCap_up.mu_sellCap_up,
 *prodCap
 con_supplier_prodCap_low.mu_prodCap_low,
 con_supplier_prodCap_up.mu_prodCap_up

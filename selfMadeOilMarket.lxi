@@ -6,34 +6,38 @@ D 192 maxSupplier_q_sell
 D 203 maxSupplier_q_prod
 D 212 con_supplier_transCap_low
 D 223 con_supplier_transCap_up
-D 234 con_supplier_sellCap
-D 243 con_supplier_prodCap_low
-D 252 con_supplier_prodCap_up
-B 262 Column Listing      SOLVE cournot Using MCP From line 166
-E 265 quantities_sold
-E 290 quantities_prod
-E 311 mu_transCap_low
-E 327 mu_transCap_up
-E 343 mu_sellCap
-E 367 mu_prodCap_low
-E 382 mu_prodCap_up
-E 397 price
-B 422 Range Statistics    SOLVE cournot Using MCP From line 166
-B 433 Model Statistics    SOLVE cournot Using MCP From line 166
-B 447 Solution Report     SOLVE cournot Using MCP From line 166
-F 494 price_EQ
-F 502 maxSupplier_q_sell
-F 516 maxSupplier_q_prod
-F 524 con_supplier_transCap_low
-F 538 con_supplier_transCap_up
-F 552 con_supplier_sellCap
-F 560 con_supplier_prodCap_low
-F 568 con_supplier_prodCap_up
-G 576 quantities_sold
-G 590 quantities_prod
-G 598 mu_transCap_low
-G 612 mu_transCap_up
-G 626 mu_sellCap
-G 634 mu_prodCap_low
-G 642 mu_prodCap_up
-G 650 price
+D 234 con_supplier_sellCap_low
+D 243 con_supplier_sellCap_up
+D 252 con_supplier_prodCap_low
+D 261 con_supplier_prodCap_up
+B 271 Column Listing      SOLVE cournot Using MCP From line 166
+E 274 quantities_sold
+E 302 quantities_prod
+E 323 mu_transCap_low
+E 339 mu_transCap_up
+E 355 mu_sellCap_low
+E 376 mu_sellCap_up
+E 400 mu_prodCap_low
+E 415 mu_prodCap_up
+E 430 price
+B 473 Range Statistics    SOLVE cournot Using MCP From line 166
+B 484 Model Statistics    SOLVE cournot Using MCP From line 166
+B 498 Solution Report     SOLVE cournot Using MCP From line 166
+F 545 price_EQ
+F 553 maxSupplier_q_sell
+F 567 maxSupplier_q_prod
+F 575 con_supplier_transCap_low
+F 589 con_supplier_transCap_up
+F 603 con_supplier_sellCap_low
+F 611 con_supplier_sellCap_up
+F 619 con_supplier_prodCap_low
+F 627 con_supplier_prodCap_up
+G 635 quantities_sold
+G 649 quantities_prod
+G 657 mu_transCap_low
+G 671 mu_transCap_up
+G 685 mu_sellCap_low
+G 693 mu_sellCap_up
+G 701 mu_prodCap_low
+G 709 mu_prodCap_up
+G 717 price
