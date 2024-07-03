@@ -1,5 +1,5 @@
-*$include testData.gms
-$include realData.gms
+$include testData.gms
+*$include realData.gms
 
 
 Positive Variable
@@ -89,16 +89,17 @@ maxSupplier_q_prod(supplier)..                  ProductionCosts(supplier)
 *transCap                                      
 con_supplier_transCap_low(supplier, region)..     quantities_sold(supplier,region) =g= 0;
 con_supplier_transCap_up(supplier, region)..      TransportationCap(supplier, region) - quantities_sold(supplier,region) =g= 0;
-*sellCap
 
+*sellCap
 con_supplier_sellCap(supplier)..                    quantities_prod(supplier) - sum((region), quantities_sold(supplier, region)) =g= 0;
+
 *prodCap
 con_supplier_prodCap_low(supplier)..              quantities_prod(supplier) =g= 0;
 con_supplier_prodCap_up(supplier)..               ProductionCap(supplier) - quantities_prod(supplier)=g= 0;
 
 *overall
 *balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
-price_EQ(region)..                              price(region) =e= MaxConsumption(region) + SlopeDemand(region)*sum(supplier, quantities_sold(supplier, region));  
+price_EQ(region)..                              price(region) =e= (SlopeDemand(region)/1000*sum(supplier, quantities_sold(supplier, region))) / MaxConsumption(region);  
 model cournot /
 *balanceEqu.price,
 price_EQ.price,

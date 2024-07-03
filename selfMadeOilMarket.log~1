@@ -1,12 +1,11 @@
 
-Debug-Server started. Listening at port 3563
---- Job selfMadeOilMarket.gms Start 06/27/24 17:48:40 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+--- Job selfMadeOilMarket.gms Start 07/03/24 11:55:43 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\46\gmsprmNT.txt
 --- GAMS Parameters defined
     Input C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
     PageSize 0
-    ScrDir C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\225c\
+    ScrDir C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\225e\
     SysDir C:\GAMS\46\
     LogOption 3
     ErrMsg 1
@@ -22,251 +21,94 @@ Licensee: Course License                                 S240430|0002AO-GEN
 Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
 GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
 --- Starting compilation
---- selfMadeOilMarket.gms(2) 2 Mb
---- . realData.gms(21) 3 Mb
---- call gdxxrw.exe ModelInputData.xlsx par=SlopeDemand rng=Tabelle1!A2:C7 dim=1 cdim=0 rdim=1 log=SlopeDemand.txt
-Debug-Server: Socket connected to GAMS
---- . realData.gms(23) 3 Mb
---- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- GDX File ($gdxIn) C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- . realData.gms(28) 3 Mb
---- call gdxxrw.exe ModelInputData.xlsx par=MaxConsumption rng=Tabelle1!A28:B32 dim=1 cdim=0 rdim=1 log=MaxConsumption.txt
---- . realData.gms(30) 3 Mb
---- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- GDX File ($gdxIn) C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- . realData.gms(36) 3 Mb
---- call gdxxrw.exe ModelInputData.xlsx par=ProductionCosts rng=Tabelle1!A19:B23 dim=1 cdim=0 rdim=1 log=ProductionCosts.txt
---- . realData.gms(38) 3 Mb
---- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- GDX File ($gdxIn) C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- . realData.gms(43) 3 Mb
---- call gdxxrw.exe ModelInputData.xlsx par=ProductionCap rng=Tabelle1!A38:B42 dim=1 cdim=0 rdim=1 log=ProductionCap.txt
---- . realData.gms(45) 3 Mb
---- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- GDX File ($gdxIn) C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- . realData.gms(50) 3 Mb
---- call gdxxrw.exe ModelInputData.xlsx par=TransportationCosts rng=Tabelle1!A10:F15 dim=2 cdim=1 rdim=1 log=TransportationCosts.txt
---- . realData.gms(52) 3 Mb
---- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- GDX File ($gdxIn) C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- . realData.gms(57) 3 Mb
---- call gdxxrw.exe ModelInputData.xlsx par=TransportationCap rng=Tabelle1!A47:F52 dim=2 cdim=1 rdim=1 log=TransportationCap.txt
---- . realData.gms(59) 3 Mb
---- GDXin=C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- GDX File ($gdxIn) C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- . realData.gms(64) 3 Mb
---- selfMadeOilMarket.gms(125) 3 Mb
---- Starting execution: elapsed 0:00:05.066
---- selfMadeOilMarket.gms(100) 4 Mb
+--- selfMadeOilMarket.gms(1) 2 Mb
+--- . testData.gms(40) 3 Mb
+--- selfMadeOilMarket.gms(126) 3 Mb
+--- Starting execution: elapsed 0:00:00.009
+--- selfMadeOilMarket.gms(76) 4 Mb
 --- Generating MCP model cournot
---- selfMadeOilMarket.gms(189) 6 Mb
----   100 rows  100 columns  235 non-zeroes
+--- selfMadeOilMarket.gms(166) 6 Mb
+---   42 rows  42 columns  93 non-zeroes
 ---   0 nl-code  0 nl-non-zeroes
 --- Range statistics (absolute non-zero finite values)
---- RHS       [min, max] : [ 7.330E+00, 1.000E+10] - Zero values observed as well
+--- RHS       [min, max] : [ 1.000E+00, 2.000E+02] - Zero values observed as well
 --- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
---- Matrix    [min, max] : [ 2.000E-02, 1.000E+00]
---- selfMadeOilMarket.gms(189) 4 Mb
---- Executing PATH (Solvelink=2): elapsed 0:00:14.485
+--- Matrix    [min, max] : [ 5.000E-06, 1.000E+00]
+--- selfMadeOilMarket.gms(166) 4 Mb
+--- Executing PATH (Solvelink=2): elapsed 0:00:00.015
 Reading dictionary...
 Reading row data...
 Evaluating functions...
 Checking model...
 Calculating Jacobian...
 
-100 row/cols, 235 non-zeros, 2.35% dense.
+42 row/cols, 93 non-zeros, 5.27% dense.
 
 Path 5.0.07 (Tue Mar  5 04:38:27 2024)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 
 INITIAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  0.0000e+00 var: (price(NorthAmerica))
-Maximum of F. . . . . . . . . .  1.0000e+10 eqn: (con_supplier_prodCap_up(North)
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(NorthAmerica))
-                                            var: (price(NorthAmerica))
+Maximum of X. . . . . . . . . .  0.0000e+00 var: (price(r1))
+Maximum of F. . . . . . . . . .  2.0000e+02 eqn: (con_supplier_prodCap_up(r3))
+Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(r1))
+                                            var: (price(r1))
 
 INITIAL JACOBIAN NORM STATISTICS
-Maximum Row Norm. . . . . . . .  6.0000e+00 eqn: (con_supplier_sellCap(NorthAme)
-Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (con_supplier_transCap_low(Nor)
-Maximum Column Norm . . . . . .  6.0000e+00 var: (price(NorthAmerica))
-Minimum Column Norm . . . . . .  1.0000e+00 var: (mu_transCap_low(NorthAmerica,)
+Maximum Row Norm. . . . . . . .  4.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
+Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (con_supplier_transCap_low(r1,)
+Maximum Column Norm . . . . . .  4.0000e+00 var: (price(r1))
+Minimum Column Norm . . . . . .  1.0000e+00 var: (mu_transCap_low(r1,r1))
 
 Crash Log
 major  func  diff  size  residual    step       prox   (label)
-    0     0             4.0420e+06             0.0e+00 (price_EQ(FarEast))
-    1     1     0    40 3.7407e+06  1.0e+00    1.0e+01 (price_EQ(FarEast))
+    0     0             2.0025e+01             0.0e+00 (maxSupplier_q_prod(r3))
+    1    10    12    18 2.0023e+01  1.9e-03    2.0e-01 (maxSupplier_q_prod(r3))
+    2    11    12    30 1.8694e+01  1.0e+00    1.8e-01 (maxSupplier_q_prod(r3))
+    3    19     2    18 1.8684e+01  2.8e-02    1.6e-01 (maxSupplier_q_prod(r3))
 pn_search terminated: no basis change.
 
 Major Iteration Log
 major minor  func  grad  residual    step  type prox    inorm  (label)
-    0     0     2     2 3.7407e+06           I 9.0e+00 2.5e+06 (price_EQ(FarEas)
-    1    11     3     3 3.5466e+06  1.0e+00 SO 3.6e+00 1.9e+06 (price_EQ(FarEas)
-    2     1     4     4 4.5336e+06  1.0e+00 SO 1.4e+00 8.6e+05 (maxSupplier_q_s)
-    3    59     5     5 3.9230e+06  1.0e+00 CO 5.8e-01 8.2e+05 (price_EQ(FarEas)
-    4   113     6     6 3.9230e+06  1.0e+00 CO 2.3e-01 8.2e+05 (price_EQ(FarEas)
-    5    45     7     7 3.9230e+06  1.0e+00 CO 9.2e-02 8.2e+05 (price_EQ(FarEas)
-    6    39     8     8 3.9230e+06  1.0e+00 CO 3.7e-02 8.2e+05 (price_EQ(FarEas)
-    7     1     9     9 3.7167e+05  1.0e+00 SM 1.5e-02 1.5e+05 (maxSupplier_q_p)
-    8     1    10    10 1.4293e+04  1.0e+00 SO 5.9e-03 5.2e+03 (maxSupplier_q_p)
-    9     1    11    11 2.9060e+02  1.0e+00 SO 2.4e-03 1.3e+02 (maxSupplier_q_s)
-   10     1    12    12 2.0538e+02  1.0e+00 SO 9.4e-04 1.1e+02 (maxSupplier_q_s)
-   11     1    13    13 2.0538e+02  1.0e+00 SO 3.8e-04 1.1e+02 (maxSupplier_q_s)
-   12     1    14    14 2.0538e+02  1.0e+00 SO 1.5e-04 1.1e+02 (maxSupplier_q_s)
-   13     1    15    15 2.0538e+02  1.0e+00 SO 6.0e-05 1.1e+02 (maxSupplier_q_s)
-   14    33    16    16 2.9301e+02  1.0e+00 CM 2.4e-05 1.5e+02 (maxSupplier_q_s)
-   15    21    17    17 2.3315e+02  1.0e+00 CM 9.7e-06 1.2e+02 (maxSupplier_q_s)
-   16    26    18    18 1.7131e+02  1.0e+00 CM 3.9e-06 8.7e+01 (maxSupplier_q_s)
-   17    31    19    19 1.7131e+02  1.0e+00 CO 1.5e-06 8.7e+01 (maxSupplier_q_s)
-   18    47    20    20 1.5653e+02  1.0e+00 CM 6.2e-07 8.1e+01 (maxSupplier_q_s)
-   19     2    23    21 1.4196e+02  8.0e-01 RG 2.5e-07 6.5e+01 (con_supplier_tr)
-   20    24    24    22 1.0200e+02  1.0e+00 SO 1.0e+01 4.8e+01 (maxSupplier_q_s)
-   21     1    25    23 1.0229e+02  1.0e+00 SO 4.0e+00 4.4e+01 (maxSupplier_q_s)
-   22     1    26    24 1.4625e+02  1.0e+00 SO 1.6e+00 5.4e+01 (maxSupplier_q_s)
-   23    39    27    25 2.9887e+02  1.0e+00 CD 6.4e-01 9.1e+01 (con_supplier_tr)
-   24     1    28    26 1.9213e+02  1.0e+00 SO 2.6e-01 8.1e+01 (maxSupplier_q_s)
-   25     1    29    27 1.2564e+02  1.0e+00 SO 1.0e-01 6.2e+01 (maxSupplier_q_s)
-   26     1    30    28 1.2308e+02  1.0e+00 SO 4.1e-02 6.1e+01 (maxSupplier_q_s)
-   27     1    31    29 1.2304e+02  1.0e+00 SO 1.6e-02 6.1e+01 (maxSupplier_q_s)
-   28     1    32    30 1.2304e+02  1.0e+00 SO 6.6e-03 6.1e+01 (maxSupplier_q_s)
-   29     1    33    31 1.2304e+02  1.0e+00 SO 2.6e-03 6.1e+01 (maxSupplier_q_s)
-   30     1    34    32 1.2304e+02  1.0e+00 SO 1.0e-03 6.1e+01 (maxSupplier_q_s)
-   31     1    35    33 1.2304e+02  1.0e+00 SO 4.2e-04 6.1e+01 (maxSupplier_q_s)
-   32     1    36    34 1.2304e+02  1.0e+00 SO 1.7e-04 6.1e+01 (maxSupplier_q_s)
-   33     1    37    35 1.2304e+02  1.0e+00 SM 6.7e-05 6.1e+01 (maxSupplier_q_s)
-   34     1    38    36 1.2304e+02  1.0e+00 SM 2.7e-05 6.1e+01 (maxSupplier_q_s)
-   35    27    39    37 1.2304e+02  1.0e+00 CM 1.1e-05 6.1e+01 (maxSupplier_q_s)
-   36    19    40    38 1.2304e+02  1.0e+00 CO 4.3e-06 6.1e+01 (maxSupplier_q_s)
-   37    23    41    39 1.2304e+02  1.0e+00 CD 1.7e-06 6.1e+01 (maxSupplier_q_s)
-   38    19    42    40 1.2304e+02  1.0e+00 CO 6.9e-07 6.1e+01 (maxSupplier_q_s)
-   39    19    43    41 1.2304e+02  1.0e+00 CD 2.7e-07 6.1e+01 (maxSupplier_q_s)
-   40     2    49    42 8.6888e+01  2.6e-01 RG 1.0e+01 4.1e+01 (maxSupplier_q_s)
-   41    28    50    43 9.9015e+01  1.0e+00 SO 4.0e+00 4.2e+01 (maxSupplier_q_s)
-   42     1    51    44 1.4952e+02  1.0e+00 SD 1.6e+00 5.7e+01 (maxSupplier_q_s)
-   43    29    52    45 2.7966e+02  1.0e+00 CD 6.4e-01 8.8e+01 (con_supplier_tr)
-   44     1    53    46 1.8366e+02  1.0e+00 SD 2.6e-01 8.2e+01 (maxSupplier_q_s)
-   45     1    54    47 1.2543e+02  1.0e+00 SD 1.0e-01 6.2e+01 (maxSupplier_q_s)
-   46     1    55    48 1.2308e+02  1.0e+00 SD 4.1e-02 6.1e+01 (maxSupplier_q_s)
-   47     1    56    49 1.2304e+02  1.0e+00 SD 1.6e-02 6.1e+01 (maxSupplier_q_s)
-   48     1    57    50 1.2304e+02  1.0e+00 SD 6.6e-03 6.1e+01 (maxSupplier_q_s)
-   49     1    58    51 1.2304e+02  1.0e+00 SD 2.6e-03 6.1e+01 (maxSupplier_q_s)
-   50     1    59    52 1.2304e+02  1.0e+00 SD 1.0e-03 6.1e+01 (maxSupplier_q_s)
-   51     1    60    53 1.2304e+02  1.0e+00 SM 4.2e-04 6.1e+01 (maxSupplier_q_s)
-   52     1    61    54 1.2304e+02  1.0e+00 SD 1.7e-04 6.1e+01 (maxSupplier_q_s)
-   53     1    62    55 1.2304e+02  1.0e+00 SM 6.7e-05 6.1e+01 (maxSupplier_q_s)
-   54     1    73    56 1.2304e+02  1.5e-03 SB 2.7e-05 6.1e+01 (maxSupplier_q_s)
-   55    27    87    57 1.2304e+02  1.2e-06 CB 1.1e-05 6.1e+01 (maxSupplier_q_s)
-   56    27    97    58 1.2304e+02  9.2e-03 CB 4.3e-06 6.1e+01 (maxSupplier_q_s)
-   57    31   106    59 1.2304e+02  2.3e-02 CB 1.7e-06 6.1e+01 (maxSupplier_q_s)
-   58    19   127    60 7.8634e+01  1.7e-01 CG 1.0e+01 3.2e+01 (maxSupplier_q_s)
-   59    28   128    61 9.3348e+01  1.0e+00 SD 4.0e+00 4.1e+01 (maxSupplier_q_s)
-   60     1   129    62 1.2227e+02  1.0e+00 SD 1.6e+00 4.1e+01 (maxSupplier_q_s)
-   61    69   130    63 2.7769e+02  1.0e+00 CD 6.4e-01 8.4e+01 (con_supplier_tr)
-   62     1   131    64 1.8005e+02  1.0e+00 SD 2.6e-01 8.0e+01 (maxSupplier_q_s)
-   63     1   132    65 1.2522e+02  1.0e+00 SD 1.0e-01 6.2e+01 (maxSupplier_q_s)
-   64     1   133    66 1.2308e+02  1.0e+00 SD 4.1e-02 6.1e+01 (maxSupplier_q_s)
-   65     1   134    67 1.2304e+02  1.0e+00 SD 1.6e-02 6.1e+01 (maxSupplier_q_s)
-   66     1   135    68 1.2304e+02  1.0e+00 SD 6.6e-03 6.1e+01 (maxSupplier_q_s)
-   67     1   136    69 1.2304e+02  1.0e+00 SD 2.6e-03 6.1e+01 (maxSupplier_q_s)
-   68     1   144    70 7.8618e+01  5.5e-02 SW 1.0e+01 3.2e+01 (maxSupplier_q_s)
-   69    28   145    71 9.3335e+01  1.0e+00 SD 4.0e+00 4.1e+01 (maxSupplier_q_s)
-   70     1   146    72 1.2350e+02  1.0e+00 SD 1.6e+00 4.2e+01 (maxSupplier_q_s)
-   71    29   147    73 2.7785e+02  1.0e+00 CD 6.4e-01 8.4e+01 (con_supplier_tr)
-   72     1   148    74 1.8016e+02  1.0e+00 SD 2.6e-01 8.0e+01 (maxSupplier_q_s)
-   73     1   149    75 1.2522e+02  1.0e+00 SD 1.0e-01 6.2e+01 (maxSupplier_q_s)
-   74     1   150    76 1.2308e+02  1.0e+00 SD 4.1e-02 6.1e+01 (maxSupplier_q_s)
-   75     1   151    77 1.2304e+02  1.0e+00 SD 1.6e-02 6.1e+01 (maxSupplier_q_s)
-   76     1   152    78 1.2304e+02  1.0e+00 SD 6.6e-03 6.1e+01 (maxSupplier_q_s)
-   77     1   153    79 1.2304e+02  1.0e+00 SD 2.6e-03 6.1e+01 (maxSupplier_q_s)
-   78     1   162    80 7.8629e+01  2.3e-02 SW 1.0e+01 3.3e+01 (maxSupplier_q_s)
-   79    28   163    81 9.3335e+01  1.0e+00 SD 4.0e+00 4.0e+01 (maxSupplier_q_s)
-   80     1   164    82 1.2401e+02  1.0e+00 SD 1.6e+00 4.2e+01 (maxSupplier_q_s)
-   81    39   165    83 2.7792e+02  1.0e+00 CD 6.4e-01 8.4e+01 (con_supplier_tr)
-   82     1   166    84 1.8021e+02  1.0e+00 SD 2.6e-01 8.0e+01 (maxSupplier_q_s)
-   83     1   167    85 1.2523e+02  1.0e+00 SD 1.0e-01 6.2e+01 (maxSupplier_q_s)
-   84     1   168    86 1.2308e+02  1.0e+00 SD 4.1e-02 6.1e+01 (maxSupplier_q_s)
-   85     1   169    87 1.2304e+02  1.0e+00 SD 1.6e-02 6.1e+01 (maxSupplier_q_s)
-   86     1   170    88 1.2304e+02  1.0e+00 SD 6.6e-03 6.1e+01 (maxSupplier_q_s)
-   87     1   171    89 1.2304e+02  1.0e+00 SD 2.6e-03 6.1e+01 (maxSupplier_q_s)
-   88     1   182    90 7.8630e+01  1.5e-03 SW 1.0e+01 3.3e+01 (maxSupplier_q_s)
-   89    28   183    91 9.3336e+01  1.0e+00 SD 4.0e+00 4.0e+01 (maxSupplier_q_s)
-   90     1   184    92 1.2405e+02  1.0e+00 SD 1.6e+00 4.2e+01 (maxSupplier_q_s)
-   91    39   185    93 2.7793e+02  1.0e+00 CD 6.4e-01 8.4e+01 (con_supplier_tr)
-   92     1   186    94 1.8021e+02  1.0e+00 SD 2.6e-01 8.0e+01 (maxSupplier_q_s)
-   93     1   187    95 1.2523e+02  1.0e+00 SD 1.0e-01 6.2e+01 (maxSupplier_q_s)
-   94     1   188    96 1.2308e+02  1.0e+00 SD 4.1e-02 6.1e+01 (maxSupplier_q_s)
-   95     1   189    97 1.2304e+02  1.0e+00 SD 1.6e-02 6.1e+01 (maxSupplier_q_s)
-   96     1   190    98 1.2304e+02  1.0e+00 SD 6.6e-03 6.1e+01 (maxSupplier_q_s)
-   97     1   191    99 1.2304e+02  1.0e+00 SD 2.6e-03 6.1e+01 (maxSupplier_q_s)
-   98     1   202   100 7.8631e+01  1.5e-03 SW 1.0e+01 3.3e+01 (maxSupplier_q_s)
-   99    28   203   101 9.3336e+01  1.0e+00 SD 4.0e+00 4.0e+01 (maxSupplier_q_s)
-  100     1   204   102 1.2408e+02  1.0e+00 SD 1.6e+00 4.2e+01 (maxSupplier_q_s)
-  101    39   205   103 2.7793e+02  1.0e+00 CD 6.4e-01 8.4e+01 (con_supplier_tr)
-  102     1   206   104 1.8021e+02  1.0e+00 SD 2.6e-01 8.0e+01 (maxSupplier_q_s)
-  103     1   207   105 1.2523e+02  1.0e+00 SD 1.0e-01 6.2e+01 (maxSupplier_q_s)
-  104     1   208   106 1.2308e+02  1.0e+00 SD 4.1e-02 6.1e+01 (maxSupplier_q_s)
-  105     1   209   107 1.2304e+02  1.0e+00 SD 1.6e-02 6.1e+01 (maxSupplier_q_s)
-  106     1   210   108 1.2304e+02  1.0e+00 SD 6.6e-03 6.1e+01 (maxSupplier_q_s)
-  107     1   211   109 1.2304e+02  1.0e+00 SD 2.6e-03 6.1e+01 (maxSupplier_q_s)
-  108     1   222   110 7.8632e+01  1.5e-03 SW 1.0e+01 3.3e+01 (maxSupplier_q_s)
-  109    28   223   111 9.3336e+01  1.0e+00 SD 4.0e+00 4.0e+01 (maxSupplier_q_s)
-  110     1   224   112 1.2412e+02  1.0e+00 SD 1.6e+00 4.2e+01 (maxSupplier_q_s)
-  111   169   225   113 2.7794e+02  1.0e+00 CD 6.4e-01 8.4e+01 (con_supplier_tr)
-  112     1   226   114 1.8022e+02  1.0e+00 SD 2.6e-01 8.0e+01 (maxSupplier_q_s)
-  113     1   227   115 1.2523e+02  1.0e+00 SD 1.0e-01 6.2e+01 (maxSupplier_q_s)
-  114     1   228   116 1.2308e+02  1.0e+00 SD 4.1e-02 6.1e+01 (maxSupplier_q_s)
-  115     1   229   117 1.2304e+02  1.0e+00 SD 1.6e-02 6.1e+01 (maxSupplier_q_s)
-  116     1   230   118 1.2304e+02  1.0e+00 SD 6.6e-03 6.1e+01 (maxSupplier_q_s)
-  117     1   231   119 1.2304e+02  1.0e+00 SD 2.6e-03 6.1e+01 (maxSupplier_q_s)
-
-Restart Log
-proximal_perturbation 0
-crash_method none
-crash_perturb yes
-nms_initial_reference_factor 2
-lemke_start_type slack
-proximal_perturbation 1.0000e-01
-
-Major Iteration Log
-major minor  func  grad  residual    step  type prox    inorm  (label)
-  117     0   233   120 4.0420e+06           R 1.0e-01 2.8e+06 (price_EQ(FarEas)
-  118     6   234   121 3.7420e+05  1.0e+00 SO 4.0e-02 1.1e+05 (price_EQ(FarEas)
-  119    19   235   122 1.2147e+05  1.0e+00 SO 1.6e-02 9.9e+04 (maxSupplier_q_p)
-  120     1   236   123 5.0420e+04  1.0e+00 SO 6.4e-03 4.0e+04 (maxSupplier_q_p)
-  121    18   237   124 3.9624e+04  1.0e+00 SO 2.6e-03 3.2e+04 (maxSupplier_q_p)
-  122     1   238   125 4.0249e+01  1.0e+00 SO 1.0e-03 3.2e+01 (con_supplier_pr)
-  123     1   239   126 1.6542e-02  1.0e+00 SO 4.1e-04 1.3e-02 (maxSupplier_q_p)
-  124     1   240   127 2.6739e-06  1.0e+00 SO 1.6e-04 2.1e-06 (con_supplier_pr)
-  125     1   241   128 6.4629e-10  1.0e+00 SO 2.7e-07 4.7e-10 (price_EQ(FarEas)
+    0     0    20     4 1.8684e+01           I 1.5e-01 1.1e+01 (maxSupplier_q_p)
+    1     2    28     5 3.9123e+01  5.5e-02 RB 5.8e-02 2.3e+01 (con_supplier_pr)
+    2    33    29     6 3.9123e+01  1.0e+00 CO 2.3e-02 2.3e+01 (con_supplier_pr)
+    3    21    30     7 3.9123e+01  1.0e+00 CO 9.3e-03 2.3e+01 (con_supplier_pr)
+    4    21    31     8 3.9123e+01  1.0e+00 CO 3.7e-03 2.3e+01 (con_supplier_pr)
+    5    84    32     9 3.9123e+01  1.0e+00 IO 1.5e-03 2.3e+01 (con_supplier_pr)
+    6     2    37    10 1.8271e+01  4.1e-01 RG 5.8e-02 8.1e+00 (maxSupplier_q_p)
+    7    10    38    11 6.6361e+00  1.0e+00 SO 2.3e-02 4.7e+00 (maxSupplier_q_p)
+    8     2    39    12 6.6078e-02  1.0e+00 SO 9.3e-03 5.4e-02 (con_supplier_pr)
+    9     1    40    13 3.1227e-04  1.0e+00 SO 3.7e-03 2.0e-04 (maxSupplier_q_p)
+   10     1    41    14 1.6035e-08  1.0e+00 SO 3.1e-05 1.0e-08 (con_supplier_pr)
 
 FINAL STATISTICS
-Inf-Norm of Complementarity . .  2.7615e-08 eqn: (con_supplier_transCap_low(EU,)
-Inf-Norm of Normal Map. . . . .  4.6566e-10 eqn: (price_EQ(FarEast))
-Inf-Norm of Minimum Map . . . .  4.6566e-10 eqn: (price_EQ(FarEast))
-Inf-Norm of Fischer Function. .  4.6566e-10 eqn: (price_EQ(FarEast))
-Inf-Norm of Grad Fischer Fcn. .  3.6253e-10 eqn: (con_supplier_sellCap(EU))
-Two-Norm of Grad Fischer Fcn. .  9.2516e-10
+Inf-Norm of Complementarity . .  1.5016e-07 eqn: (con_supplier_prodCap_up(r3))
+Inf-Norm of Normal Map. . . . .  1.0009e-08 eqn: (con_supplier_prodCap_up(r3))
+Inf-Norm of Minimum Map . . . .  1.0009e-08 eqn: (con_supplier_prodCap_up(r3))
+Inf-Norm of Fischer Function. .  1.0009e-08 eqn: (con_supplier_prodCap_up(r3))
+Inf-Norm of Grad Fischer Fcn. .  1.3741e-08 eqn: (maxSupplier_q_prod(r3))
+Two-Norm of Grad Fischer Fcn. .  2.4455e-08
 
 FINAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  2.7758e+06 var: (price(FarEast))
-Maximum of F. . . . . . . . . .  1.0000e+10 eqn: (con_supplier_prodCap_up(North)
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(NorthAmerica))
-                                            var: (price(NorthAmerica))
+Maximum of X. . . . . . . . . .  2.0000e+02 var: (quantities_prod(r3))
+Maximum of F. . . . . . . . . .  2.0000e+02 eqn: (con_supplier_prodCap_low(r3))
+Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(r1))
+                                            var: (price(r1))
 
  ** EXIT - solution found.
 
-Major Iterations. . . . 125
-Minor Iterations. . . . 1543
-Restarts. . . . . . . . 1
-Crash Iterations. . . . 1
-Gradient Steps. . . . . 3
-Function Evaluations. . 241
-Gradient Evaluations. . 128
+Major Iterations. . . . 10
+Minor Iterations. . . . 213
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 3
+Gradient Steps. . . . . 1
+Function Evaluations. . 41
+Gradient Evaluations. . 14
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.016000
-Residual. . . . . . . . 6.462883e-10
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 1.603536e-08
 
---- Reading solution for model cournotDebug-Server: Socket disconnected
-[LST:494]
+--- Reading solution for model cournot
 *** Status: Normal completion
---- Job selfMadeOilMarket.gms Stop 06/27/24 17:48:55 elapsed 0:00:14.979
+--- Job selfMadeOilMarket.gms Stop 07/03/24 11:55:43 elapsed 0:00:00.048

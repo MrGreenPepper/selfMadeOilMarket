@@ -113,30 +113,30 @@ We need to apply the following steps for usability in gams:\\
 
 \textbf{$\rightarrow$ add constraints:}
 
-\quad$\mu_{transCapLow} * Q_{sell}(supplier, region)$\\
-\quad$\mu_{transCapUp} * \Big(transCap(supplier, region) - Q_{sell}(supplier, region)\Big)$\\
-\quad$\mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
-\quad$\mu_{sellCapUp}*\Big( Q_{prod}(supplier) -\sum_{region} Q_{sell}(supplier, region)\Big)$\\
-\quad$\mu_{prodCapLow} * Q_{prod}(supplier)$\\
-\quad$\mu_{prodCapUp}*\Big( ProdCap(supplier) - Q_{prod}(supplier)\Big)	$\\
+\quad$ - \mu_{transCapLow} * Q_{sell}(supplier, region)$\\
+\quad$ + \mu_{transCapUp} * \Big(transCap(supplier, region) - Q_{sell}(supplier, region)\Big)$\\
+\quad$ - \mu_{sellCapLow} * \sum_{region} Q_{sell}(supplier, region)$\\
+\quad$ + \mu_{sellCapUp}*\Big( Q_{prod}(supplier) -\sum_{region} Q_{sell}(supplier, region)\Big)$\\
+\quad$ - \mu_{prodCapLow} * Q_{prod}(supplier)$\\
+\quad$ + \mu_{prodCapUp}*\Big( ProdCap(supplier) - Q_{prod}(supplier)\Big)	$\\
 
 
 \textbf{derivation obj for supplier ($Q_{sell}$)}\\
 \quad$\frac{\partial f}{\partial Q_{sell}} = \:\sum_{region} (C_{trans}(supplier,region) - price(region))$\\
 %add constraints
-\quad$+ \mu_{transCapLow}$\\
-\quad$- \mu_{transCapUp} $\\
-\quad$+ \sum_{region} \mu_{sellCapLow}$\\
-\quad$- \sum_{region} \mu_{sellCapUp}$\\
-\quad$\forall \:supplier,region$\\
+\quad$ - \mu_{transCapLow}$\\
+\quad$ - \mu_{transCapUp}$\\
+\quad$ - \sum_{region} \mu_{sellCapLow}$\\
+\quad$ - \sum_{region} \mu_{sellCapUp}$\\
 
+\quad$\forall \:supplier$\\
 
 \textbf{derivation obj for supplier ($Q_{prod}$):}\\
 \quad$\frac{\partial f}{\partial Q_{prod}} = C_{prod}(supplier)\:$\\
 %add constraints
-\quad$+ \mu_{sellCapUp}$\\
-\quad$+ \mu_{prodCapLow}$\\
-\quad$- \mu_{prodCapUp}$\\
+\quad$ + \mu_{sellCapUp}$\\
+\quad$ - \mu_{prodCapLow}$\\
+\quad$ - \mu_{prodCapUp}$\\
 
 \quad$\forall \:supplier$\\
 

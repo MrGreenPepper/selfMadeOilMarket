@@ -1,178 +1,169 @@
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/27/24 17:52:20 Page 1
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
 
-   1  *$include testData.gms
-INCLUDE    C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\realData.gms
-       
-      $call gdxxrw.exe ModelInputData.xlsx par=region rng=Tabelle1!A1:A7 dim=1 cdim=1 rdim=0 log=region.txt
-      Set region
-      $gdxIn ModelInputData.gdx
-      $load region
-      $gdxIn
-      ;
-       
+INCLUDE    C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\testData.gms
+   2   
+   3   
+   4  Sets
+   5   
+   6  region                   /r1*r3/
+   7  consumer(region)         /r1*r2/
+   8  supplier(region)         /r1*r3/
+   9   
+  10  alias(region,regionB)
+  11  ;
+  12   
   13   
   14   
-  15  Sets
-  16  region                      /NorthAmerica,EU,Russia,OPEC,FarEast/
-  17  supplier(region)            /NorthAmerica,EU,Russia,OPEC,FarEast/
-  18  alias(region,regionB)
-  19  ;
+  15   
+  16   
+  17  Parameter
+  18  *baseUtility(region)                     /r1  60, r2  60, r3 0/
+  19  MaxConsumption(region)                  /r1  100, r2  200, r3 100/
   20   
-  21   
-  22   
-  24  Parameter SlopeDemand(region)
-GDXIN   C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- LOAD  SlopeDemand = 1:SlopeDemand
-  28  ;
-  29   
-  31  Parameter MaxConsumption(region)
-GDXIN   C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- LOAD  MaxConsumption = 1:MaxConsumption
-  35  ;
-  36   
-  37   
-  39  Parameter ProductionCosts(region)
-GDXIN   C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- LOAD  ProductionCosts = 1:ProductionCosts
-  43  ;
+  21  ProductionCosts(supplier)               /r1  8, r2  10, r3  15/
+  22  ProductionCap(supplier)                 /r1  50, r2  100, r3 200/
+  23  SlopeDemand(region)                     /r1 -1, r2 -1, r3 -1/
+  24  ;
+  25   
+  26   
+  27  Parameter Table
+  28  TransportationCosts(region, regionB)
+  29      r1      r2      r3
+  30  r1  0       1       2
+  31  r2  1       0       1
+  32  r3  2       1       0
+  33  ;
+  34   
+  35  Parameter Table
+  36  TransportationCap(supplier, regionB)
+  37      r1      r2      r3
+  38  r1  100     100     100
+  39  r2  100     100     100
+  40  r3  50      100     150
+  41  ;
+  42  *$include realData.gms
+  43   
   44   
-  46  Parameter ProductionCap(region)
-GDXIN   C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- LOAD  ProductionCap = 1:ProductionCap
-  50  ;
-  51   
-  53  Parameter TransportationCosts(region, regionB)
-GDXIN   C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- LOAD  TransportationCosts = 1:TransportationCosts
-  57  ;
-  58   
-  60  Parameter TransportationCap(supplier, region)
-GDXIN   C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
---- LOAD  TransportationCap = 1:TransportationCap
-  64  ;
-  65   
+  45  Positive Variable
+  46  transport(region, regionB)
+  47  *is supplier here necessary?
+  48  Variables
+  49  quantities_demand(region)
+  50  consumerSurplus(region)
+  51  Mu_de_low(region)
+  52  Mu_de_up(region)
+  53   
+  54  quantities_sold(supplier, region)
+  55  quantities_prod(supplier)
+  56   
+  57  mu_transCap_low
+  58  mu_transCap_up
+  59   
+  60  mu_sellCap
+  61   
+  62  mu_prodCap_low
+  63  mu_prodCap_up
+  64   
+  65  price(region)
   66   
-  67   
+  67  ;
   68   
-  69  Positive Variable
-  70  transport(region, regionB)
-  71  *is supplier here necessary?
-  72  Variables
-  73  quantities_demand(region)
-  74  consumerSurplus(region)
-  75  Mu_de_low(region)
-  76  Mu_de_up(region)
+  69  Mu_de_low.lo(region)  = 0;
+  70  Mu_de_up.lo(region)  = 0;
+  71   
+  72  mu_transCap_low.lo(supplier, region)  = 0;
+  73  mu_transCap_up.lo(supplier, region)  = 0;
+  74   
+  75  mu_prodCap_low.lo(supplier)  = 0;
+  76  mu_prodCap_up.lo(supplier)  = 0;
   77   
-  78  quantities_sold(supplier, region)
-  79  quantities_prod(supplier)
-  80   
-  81  mu_transCap_low
-  82  mu_transCap_up
-  83   
-  84  mu_sellCap
+  78   
+  79  Variable
+  80  mu_sellCap
+  81   
+  82  ;
+  83  Equations
+  84   
   85   
-  86  mu_prodCap_low
-  87  mu_prodCap_up
-  88   
-  89  price(region)
-  90   
-  91  ;
-  92   
-  93  Mu_de_low.lo(region)  = 0;
-  94  Mu_de_up.lo(region)  = 0;
-  95   
-  96  mu_transCap_low.lo(supplier, region)  = 0;
-  97  mu_transCap_up.lo(supplier, region)  = 0;
-  98   
-  99  mu_prodCap_low.lo(supplier)  = 0;
- 100  mu_prodCap_up.lo(supplier)  = 0;
- 101   
- 102   
- 103  Variable
- 104  mu_sellCap
- 105   
- 106  ;
- 107  Equations
- 108   
- 109   
- 110  *demand
+  86  *demand
       maxConsumer
       con_consumer_low
       con_consumer_up
- 116   
- 117  *supplier
- 118  maxSupplier_q_sell
- 119  maxSupplier_q_prod
- 120  con_supplier_transCap_low(supplier, region)
- 121  con_supplier_transCap_up(supplier, region)
- 122   
- 123  con_supplier_sellCap(supplier)
- 124   
- 125  con_supplier_prodCap_low(supplier)
- 126  con_supplier_prodCap_up(supplier)
- 127   
- 128  *overall
- 129  *balanceEqu
- 130  price_EQ
- 131  ;
- 132   
- 133  *demand
+  92   
+  93  *supplier
+  94  maxSupplier_q_sell
+  95  maxSupplier_q_prod
+  96  con_supplier_transCap_low(supplier, region)
+  97  con_supplier_transCap_up(supplier, region)
+  98   
+  99  con_supplier_sellCap(supplier)
+ 100   
+ 101  con_supplier_prodCap_low(supplier)
+ 102  con_supplier_prodCap_up(supplier)
+ 103   
+ 104  *overall
+ 105  *balanceEqu
+ 106  price_EQ
+ 107  ;
+ 108   
+ 109  *demand
       maxConsumer(region)..                           price(region) - baseUtility(region) + Mu_de_low(region) - Mu_de_up(region) =e= 0;
       con_consumer_low(region)..                      quantities_demand(region) =g= 0;
       con_consumer_up(region)..                       MaxConsumption(region) - quantities_demand(region) =g= 0;
- 139  *supplier
- 140   
- 141  maxSupplier_q_sell(supplier, region)..          (TransportationCosts(supplier, region)/1000-price(region))
- 142                                                  + mu_transCap_low(supplier, region)
- 143                                                  - mu_transCap_up(supplier, region)
- 144                                                  + mu_sellCap(supplier)
- 145                                                  =e= 0;
- 146   
- 147  maxSupplier_q_prod(supplier)..                  ProductionCosts(supplier)
- 148                                                  -mu_sellCap(supplier)
- 149                                                  +mu_prodCap_low(supplier)
- 150                                                  -mu_prodCap_up(supplier)
- 151                                                  =e= 0;
- 152   
- 153  *transCap
- 154  con_supplier_transCap_low(supplier, region)..     quantities_sold(supplier,region) =g= 0;
- 155  con_supplier_transCap_up(supplier, region)..      TransportationCap(supplier, region) - quantities_sold(supplier,region) =g= 0;
- 156  *sellCap
- 157   
- 158  con_supplier_sellCap(supplier)..                    quantities_prod(supplier) - sum((region), quantities_sold(supplier, region)) =g= 0;
- 159  *prodCap
- 160  con_supplier_prodCap_low(supplier)..              quantities_prod(supplier) =g= 0;
- 161  con_supplier_prodCap_up(supplier)..               ProductionCap(supplier) - quantities_prod(supplier)=g= 0;
- 162   
- 163  *overall
- 164  *balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
- 165  price_EQ(region)..                              price(region) =e= MaxConsumption(region) + SlopeDemand(region)*sum(supplier, quantities_sold(supplier, region));
- 166  model cournot /
- 167  *balanceEqu.price,
- 168  price_EQ.price,
- 169  *demand
+ 115  *supplier
+ 116   
+ 117  maxSupplier_q_sell(supplier, region)..          (TransportationCosts(supplier, region)-price(region))
+ 118                                                  + mu_transCap_low(supplier, region)
+ 119                                                  - mu_transCap_up(supplier, region)
+ 120                                                  + mu_sellCap(supplier)
+ 121                                                  =e= 0;
+ 122   
+ 123  maxSupplier_q_prod(supplier)..                  ProductionCosts(supplier)
+ 124                                                  -mu_sellCap(supplier)
+ 125                                                  +mu_prodCap_low(supplier)
+ 126                                                  -mu_prodCap_up(supplier)
+ 127                                                  =e= 0;
+ 128   
+ 129  *transCap
+ 130  con_supplier_transCap_low(supplier, region)..     quantities_sold(supplier,region) =g= 0;
+ 131  con_supplier_transCap_up(supplier, region)..      TransportationCap(supplier, region) - quantities_sold(supplier,region) =g= 0;
+ 132   
+ 133  *sellCap
+ 134  con_supplier_sellCap(supplier)..                    quantities_prod(supplier) - sum((region), quantities_sold(supplier, region)) =g= 0;
+ 135   
+ 136  *prodCap
+ 137  con_supplier_prodCap_low(supplier)..              quantities_prod(supplier) =g= 0;
+ 138  con_supplier_prodCap_up(supplier)..               ProductionCap(supplier) - quantities_prod(supplier)=g= 0;
+ 139   
+ 140  *overall
+ 141  *balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
+ 142  price_EQ(region)..                              price(region) =e= (SlopeDemand(region)/1000*sum(supplier, quantities_sold(supplier, region))) / MaxConsumption(region);
+ 143  model cournot /
+ 144  *balanceEqu.price,
+ 145  price_EQ.price,
+ 146  *demand
       maxConsumer.quantities_demand,
       con_consumer_low.Mu_de_low,
       con_consumer_up.Mu_de_up,
- 175  *supplier
- 176  maxSupplier_q_sell.quantities_sold,
- 177  maxSupplier_q_prod.quantities_prod,
- 178  *transCap
- 179  con_supplier_transCap_low.mu_transCap_low,
- 180  con_supplier_transCap_up.mu_transCap_up,
- 181  *sellCap
- 182   
- 183  con_supplier_sellCap.mu_sellCap,
- 184  *prodCap
- 185  con_supplier_prodCap_low.mu_prodCap_low,
- 186  con_supplier_prodCap_up.mu_prodCap_up
- 187  /;
- 188   
- 189  Solve cournot using mcp;
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 06/27/24 17:52:20 Page 2
+ 152  *supplier
+ 153  maxSupplier_q_sell.quantities_sold,
+ 154  maxSupplier_q_prod.quantities_prod,
+ 155  *transCap
+ 156  con_supplier_transCap_low.mu_transCap_low,
+ 157  con_supplier_transCap_up.mu_transCap_up,
+ 158  *sellCap
+ 159   
+ 160  con_supplier_sellCap.mu_sellCap,
+ 161  *prodCap
+ 162  con_supplier_prodCap_low.mu_prodCap_low,
+ 163  con_supplier_prodCap_up.mu_prodCap_up
+ 164  /;
+ 165   
+ 166  Solve cournot using mcp;
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
@@ -180,16 +171,507 @@ Include File Summary
    SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
 
      1        1 INPUT          0       0  C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
-     2        2 INCLUDE        1       2  .C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\realData.gms
-     3       23 CALL           2      21  .gdxxrw.exe ModelInputData.xlsx par=SlopeDemand rng=Tabelle1!A2:C7 dim=1 cdim=0 rdim=1 log=SlopeDemand.txt
-     4       25 GDXIN          2      23  .C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
-     5       30 CALL           2      28  .gdxxrw.exe ModelInputData.xlsx par=MaxConsumption rng=Tabelle1!A28:B32 dim=1 cdim=0 rdim=1 log=MaxConsumption.txt
-     6       32 GDXIN          2      30  .C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
-     7       38 CALL           2      36  .gdxxrw.exe ModelInputData.xlsx par=ProductionCosts rng=Tabelle1!A19:B23 dim=1 cdim=0 rdim=1 log=ProductionCosts.txt
-     8       40 GDXIN          2      38  .C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
-     9       45 CALL           2      43  .gdxxrw.exe ModelInputData.xlsx par=ProductionCap rng=Tabelle1!A38:B42 dim=1 cdim=0 rdim=1 log=ProductionCap.txt
-    10       47 GDXIN          2      45  .C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
-    11       52 CALL           2      50  .gdxxrw.exe ModelInputData.xlsx par=TransportationCosts rng=Tabelle1!A10:F15 dim=2 cdim=1 rdim=1 log=TransportationCosts.txt
-    12       54 GDXIN          2      52  .C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\ModelInputData.gdx
-    13       59 CALL           2      57  .gdxxrw.exe ModelInputData.xlsx par=TransportationCap rng=Tabelle1!A47:F52 dim=2 cdim=1 rdim=1 log=TransportationCap.txt
-    14       61 
+     2        1 INCLUDE        1       1  .C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\testData.gms
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  46.2.0 ac4adda6 WEX-WEI
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE cournot Using MCP From line 166
+
+
+---- price_EQ  =E=  
+
+price_EQ(r1)..  1E-5*quantities_sold(r1,r1) + 1E-5*quantities_sold(r2,r1) + 1E-5*quantities_sold(r3,r1) + price(r1) =E= 0 ; (LHS = 0)
+     
+price_EQ(r2)..  5E-6*quantities_sold(r1,r2) + 5E-6*quantities_sold(r2,r2) + 5E-6*quantities_sold(r3,r2) + price(r2) =E= 0 ; (LHS = 0)
+     
+price_EQ(r3)..  1E-5*quantities_sold(r1,r3) + 1E-5*quantities_sold(r2,r3) + 1E-5*quantities_sold(r3,r3) + price(r3) =E= 0 ; (LHS = 0)
+     
+
+---- maxSupplier_q_sell  =E=  
+
+maxSupplier_q_sell(r1,r1)..  mu_transCap_low(r1,r1) - mu_transCap_up(r1,r1) + mu_sellCap(r1) - price(r1) =E= 0 ; (LHS = 0)
+     
+maxSupplier_q_sell(r1,r2)..  mu_transCap_low(r1,r2) - mu_transCap_up(r1,r2) + mu_sellCap(r1) - price(r2) =E= -1 ; (LHS = 0, INFES = 1 ****)
+     
+maxSupplier_q_sell(r1,r3)..  mu_transCap_low(r1,r3) - mu_transCap_up(r1,r3) + mu_sellCap(r1) - price(r3) =E= -2 ; (LHS = 0, INFES = 2 ****)
+     
+REMAINING 6 ENTRIES SKIPPED
+
+
+---- maxSupplier_q_prod  =E=  
+
+maxSupplier_q_prod(r1)..  - mu_sellCap(r1) + mu_prodCap_low(r1) - mu_prodCap_up(r1) =E= -8 ; (LHS = 0, INFES = 8 ****)
+     
+maxSupplier_q_prod(r2)..  - mu_sellCap(r2) + mu_prodCap_low(r2) - mu_prodCap_up(r2) =E= -10 ; (LHS = 0, INFES = 10 ****)
+     
+maxSupplier_q_prod(r3)..  - mu_sellCap(r3) + mu_prodCap_low(r3) - mu_prodCap_up(r3) =E= -15 ; (LHS = 0, INFES = 15 ****)
+     
+
+---- con_supplier_transCap_low  =G=  
+
+con_supplier_transCap_low(r1,r1)..  quantities_sold(r1,r1) =G= 0 ; (LHS = 0)
+     
+con_supplier_transCap_low(r1,r2)..  quantities_sold(r1,r2) =G= 0 ; (LHS = 0)
+     
+con_supplier_transCap_low(r1,r3)..  quantities_sold(r1,r3) =G= 0 ; (LHS = 0)
+     
+REMAINING 6 ENTRIES SKIPPED
+
+
+---- con_supplier_transCap_up  =G=  
+
+con_supplier_transCap_up(r1,r1)..  - quantities_sold(r1,r1) =G= -100 ; (LHS = 0)
+     
+con_supplier_transCap_up(r1,r2)..  - quantities_sold(r1,r2) =G= -100 ; (LHS = 0)
+     
+con_supplier_transCap_up(r1,r3)..  - quantities_sold(r1,r3) =G= -100 ; (LHS = 0)
+     
+REMAINING 6 ENTRIES SKIPPED
+
+
+---- con_supplier_sellCap  =G=  
+
+con_supplier_sellCap(r1)..  - quantities_sold(r1,r1) - quantities_sold(r1,r2) - quantities_sold(r1,r3) + quantities_prod(r1) =G= 0 ; (LHS = 0)
+     
+con_supplier_sellCap(r2)..  - quantities_sold(r2,r1) - quantities_sold(r2,r2) - quantities_sold(r2,r3) + quantities_prod(r2) =G= 0 ; (LHS = 0)
+     
+con_supplier_sellCap(r3)..  - quantities_sold(r3,r1) - quantities_sold(r3,r2) - quantities_sold(r3,r3) + quantities_prod(r3) =G= 0 ; (LHS = 0)
+     
+
+---- con_supplier_prodCap_low  =G=  
+
+con_supplier_prodCap_low(r1)..  quantities_prod(r1) =G= 0 ; (LHS = 0)
+     
+con_supplier_prodCap_low(r2)..  quantities_prod(r2) =G= 0 ; (LHS = 0)
+     
+con_supplier_prodCap_low(r3)..  quantities_prod(r3) =G= 0 ; (LHS = 0)
+     
+
+---- con_supplier_prodCap_up  =G=  
+
+con_supplier_prodCap_up(r1)..  - quantities_prod(r1) =G= -50 ; (LHS = 0)
+     
+con_supplier_prodCap_up(r2)..  - quantities_prod(r2) =G= -100 ; (LHS = 0)
+     
+con_supplier_prodCap_up(r3)..  - quantities_prod(r3) =G= -200 ; (LHS = 0)
+     
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE cournot Using MCP From line 166
+
+
+---- quantities_sold  
+
+quantities_sold(r1,r1)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+  1.0000000E-5  price_EQ(r1)
+        1       con_supplier_transCap_low(r1,r1)
+       -1       con_supplier_transCap_up(r1,r1)
+       -1       con_supplier_sellCap(r1)
+
+quantities_sold(r1,r2)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+  5.0000000E-6  price_EQ(r2)
+        1       con_supplier_transCap_low(r1,r2)
+       -1       con_supplier_transCap_up(r1,r2)
+       -1       con_supplier_sellCap(r1)
+
+quantities_sold(r1,r3)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+  1.0000000E-5  price_EQ(r3)
+        1       con_supplier_transCap_low(r1,r3)
+       -1       con_supplier_transCap_up(r1,r3)
+       -1       con_supplier_sellCap(r1)
+
+REMAINING 6 ENTRIES SKIPPED
+
+---- quantities_prod  
+
+quantities_prod(r1)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       con_supplier_sellCap(r1)
+        1       con_supplier_prodCap_low(r1)
+       -1       con_supplier_prodCap_up(r1)
+
+quantities_prod(r2)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       con_supplier_sellCap(r2)
+        1       con_supplier_prodCap_low(r2)
+       -1       con_supplier_prodCap_up(r2)
+
+quantities_prod(r3)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       con_supplier_sellCap(r3)
+        1       con_supplier_prodCap_low(r3)
+       -1       con_supplier_prodCap_up(r3)
+
+
+---- mu_transCap_low  
+
+mu_transCap_low(r1,r1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxSupplier_q_sell(r1,r1)
+
+mu_transCap_low(r1,r2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxSupplier_q_sell(r1,r2)
+
+mu_transCap_low(r1,r3)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxSupplier_q_sell(r1,r3)
+
+REMAINING 6 ENTRIES SKIPPED
+
+---- mu_transCap_up  
+
+mu_transCap_up(r1,r1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxSupplier_q_sell(r1,r1)
+
+mu_transCap_up(r1,r2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxSupplier_q_sell(r1,r2)
+
+mu_transCap_up(r1,r3)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxSupplier_q_sell(r1,r3)
+
+REMAINING 6 ENTRIES SKIPPED
+
+---- mu_sellCap  
+
+mu_sellCap(r1)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       maxSupplier_q_sell(r1,r1)
+        1       maxSupplier_q_sell(r1,r2)
+        1       maxSupplier_q_sell(r1,r3)
+       -1       maxSupplier_q_prod(r1)
+
+mu_sellCap(r2)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       maxSupplier_q_sell(r2,r1)
+        1       maxSupplier_q_sell(r2,r2)
+        1       maxSupplier_q_sell(r2,r3)
+       -1       maxSupplier_q_prod(r2)
+
+mu_sellCap(r3)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       maxSupplier_q_sell(r3,r1)
+        1       maxSupplier_q_sell(r3,r2)
+        1       maxSupplier_q_sell(r3,r3)
+       -1       maxSupplier_q_prod(r3)
+
+
+---- mu_prodCap_low  
+
+mu_prodCap_low(r1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxSupplier_q_prod(r1)
+
+mu_prodCap_low(r2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxSupplier_q_prod(r2)
+
+mu_prodCap_low(r3)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       maxSupplier_q_prod(r3)
+
+
+---- mu_prodCap_up  
+
+mu_prodCap_up(r1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxSupplier_q_prod(r1)
+
+mu_prodCap_up(r2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxSupplier_q_prod(r2)
+
+mu_prodCap_up(r3)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       maxSupplier_q_prod(r3)
+
+
+---- price  
+
+price(r1)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       price_EQ(r1)
+       -1       maxSupplier_q_sell(r1,r1)
+       -1       maxSupplier_q_sell(r2,r1)
+       -1       maxSupplier_q_sell(r3,r1)
+
+price(r2)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       price_EQ(r2)
+       -1       maxSupplier_q_sell(r1,r2)
+       -1       maxSupplier_q_sell(r2,r2)
+       -1       maxSupplier_q_sell(r3,r2)
+
+price(r3)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       price_EQ(r3)
+       -1       maxSupplier_q_sell(r1,r3)
+       -1       maxSupplier_q_sell(r2,r3)
+       -1       maxSupplier_q_sell(r3,r3)
+
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Range Statistics    SOLVE cournot Using MCP From line 166
+
+
+RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
+
+RHS       [min, max] : [ 1.000E+00, 2.000E+02] - Zero values observed as well
+Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+Matrix    [min, max] : [ 5.000E-06, 1.000E+00]
+
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE cournot Using MCP From line 166
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           8     SINGLE EQUATIONS           42
+BLOCKS OF VARIABLES           8     SINGLE VARIABLES           42
+NON ZERO ELEMENTS            93     NON LINEAR N-Z              0
+CODE LENGTH                   0     CONSTANT POOL              16
+
+
+GENERATION TIME      =        0.016 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE cournot Using MCP From line 166
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   cournot             
+     TYPE    MCP                 
+     SOLVER  PATH                FROM LINE  166
+
+**** SOLVER STATUS     1 Normal Completion
+**** MODEL STATUS      1 Optimal
+
+ RESOURCE USAGE, LIMIT          0.000 10000000000.000
+ ITERATION COUNT, LIMIT       213    2147483647
+ EVALUATION ERRORS              0             0
+42 row/cols, 93 non-zeros, 5.27% dense.
+
+Path 5.0.07 (Tue Mar  5 04:38:27 2024)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  0.0000e+00 var: (price(r1))
+Maximum of F. . . . . . . . . .  2.0000e+02 eqn: (con_supplier_prodCap_up(r3))
+Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(r1))
+                                            var: (price(r1))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  4.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
+Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (con_supplier_transCap_low(r1,)
+Maximum Column Norm . . . . . .  4.0000e+00 var: (price(r1))
+Minimum Column Norm . . . . . .  1.0000e+00 var: (mu_transCap_low(r1,r1))
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.5016e-07 eqn: (con_supplier_prodCap_up(r3))
+Inf-Norm of Normal Map. . . . .  1.0009e-08 eqn: (con_supplier_prodCap_up(r3))
+Inf-Norm of Minimum Map . . . .  1.0009e-08 eqn: (con_supplier_prodCap_up(r3))
+Inf-Norm of Fischer Function. .  1.0009e-08 eqn: (con_supplier_prodCap_up(r3))
+Inf-Norm of Grad Fischer Fcn. .  1.3741e-08 eqn: (maxSupplier_q_prod(r3))
+Two-Norm of Grad Fischer Fcn. .  2.4455e-08
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  2.0000e+02 var: (quantities_prod(r3))
+Maximum of F. . . . . . . . . .  2.0000e+02 eqn: (con_supplier_prodCap_low(r3))
+Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(r1))
+                                            var: (price(r1))
+
+
+---- EQU price_EQ  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1          .       1.125487E-10          .            -0.0005      
+r2          .       1.025001E-10          .            -0.0005      
+r3          .       1.126638E-10          .            -0.0020      
+
+---- EQU maxSupplier_q_sell  
+
+             LOWER          LEVEL          UPPER         MARGINAL
+
+r1.r1          .       -4.25910E-10          .       5.1276687E-9      
+r1.r2        -1.0000        -1.0000        -1.0000   5.1069530E-9      
+r1.r3        -2.0000        -2.0000        -2.0000        50.0000      
+r2.r1        -1.0000        -1.0000        -1.0000   3.612474E-11      
+r2.r2          .       -1.12246E-11          .       2.390048E-11      
+r2.r3        -1.0000        -1.0000        -1.0000       100.0000      
+r3.r1        -2.0000        -2.0000        -2.0000        50.0000      
+r3.r2        -1.0000        -1.0000        -1.0000       100.0000      
+r3.r3          .       1.2602820E-9          .            50.0000      
+
+---- EQU maxSupplier_q_prod  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1        -8.0000        -8.0000        -8.0000        50.0000      
+r2       -10.0000       -10.0000       -10.0000       100.0000      
+r3       -15.0000       -15.0000       -15.0000       200.0000      
+
+---- EQU con_supplier_transCap_low  
+
+             LOWER          LEVEL          UPPER         MARGINAL
+
+r1.r1          .       5.1276687E-9        +INF            2.0015      
+r1.r2          .       5.1069530E-9        +INF            1.0015      
+r1.r3          .            50.0000        +INF             .          
+r2.r1          .       3.612474E-11        +INF      2.0635327E-5      
+r2.r2          .       2.390048E-11        +INF            1.0000      
+r2.r3          .           100.0000        +INF             .          
+r3.r1          .            50.0000        +INF             .          
+r3.r2          .           100.0000        +INF             .          
+r3.r3          .            50.0000        +INF             .          
+
+---- EQU con_supplier_transCap_up  
+
+             LOWER          LEVEL          UPPER         MARGINAL
+
+r1.r1      -100.0000   -5.127674E-9        +INF             .          
+r1.r2      -100.0000   -5.106955E-9        +INF             .          
+r1.r3      -100.0000       -50.0000        +INF             .          
+r2.r1      -100.0000   -3.61240E-11        +INF             .          
+r2.r2      -100.0000   -2.39027E-11        +INF             .          
+r2.r3      -100.0000      -100.0000        +INF            0.0015      
+r3.r1       -50.0000       -50.0000        +INF            1.9985      
+r3.r2      -100.0000      -100.0000        +INF            0.9985      
+r3.r3      -150.0000       -50.0000        +INF             .          
+
+---- EQU con_supplier_sellCap  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1          .       -3.728715E-9        +INF           -2.0020      
+r2          .       7.348433E-11        +INF           -1.0005      
+r3          .       -3.732055E-9        +INF           -0.0020      
+
+---- EQU con_supplier_prodCap_low  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1          .            50.0000        +INF             .          
+r2          .           100.0000        +INF             .          
+r3          .           200.0000        +INF             .          
+
+---- EQU con_supplier_prodCap_up  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1       -50.0000       -50.0000        +INF           10.0020      
+r2      -100.0000      -100.0000        +INF           11.0005      
+r3      -200.0000      -200.0000        +INF           15.0020      
+
+---- VAR quantities_sold  
+
+             LOWER          LEVEL          UPPER         MARGINAL
+
+r1.r1        -INF      5.1276687E-9        +INF      -4.25910E-10      
+r1.r2        -INF      5.1069530E-9        +INF      -4.10107E-10      
+r1.r3        -INF           50.0000        +INF      1.1134962E-9      
+r2.r1        -INF      3.612474E-11        +INF      2.241386E-10      
+r2.r2        -INF      2.390048E-11        +INF      -1.12246E-11      
+r2.r3        -INF          100.0000        +INF      7.925449E-11      
+r3.r1        -INF           50.0000        +INF      -3.93440E-10      
+r3.r2        -INF          100.0000        +INF      -3.71687E-10      
+r3.r3        -INF           50.0000        +INF      1.2602820E-9      
+
+---- VAR quantities_prod  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1        -INF           50.0000        +INF      7.181882E-10      
+r2        -INF          100.0000        +INF      3.806111E-10      
+r3        -INF          200.0000        +INF      9.898162E-10      
+
+---- VAR mu_transCap_low  
+
+             LOWER          LEVEL          UPPER         MARGINAL
+
+r1.r1          .             2.0015        +INF      5.1276687E-9      
+r1.r2          .             1.0015        +INF      5.1069530E-9      
+r1.r3          .              .            +INF           50.0000      
+r2.r1          .       2.0635327E-5        +INF      3.612474E-11      
+r2.r2          .             1.0000        +INF      2.390048E-11      
+r2.r3          .              .            +INF          100.0000      
+r3.r1          .              .            +INF           50.0000      
+r3.r2          .              .            +INF          100.0000      
+r3.r3          .              .            +INF           50.0000      
+
+---- VAR mu_transCap_up  
+
+             LOWER          LEVEL          UPPER         MARGINAL
+
+r1.r1          .              .            +INF          100.0000      
+r1.r2          .              .            +INF          100.0000      
+r1.r3          .              .            +INF           50.0000      
+r2.r1          .              .            +INF          100.0000      
+r2.r2          .              .            +INF          100.0000      
+r2.r3          .             0.0015        +INF      2.5042368E-9      
+r3.r1          .             1.9985        +INF      -3.858254E-9      
+r3.r2          .             0.9985        +INF      -2.563766E-9      
+r3.r3          .              .            +INF          100.0000      
+
+---- VAR mu_sellCap  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1        -INF           -2.0020        +INF      -3.728715E-9      
+r2        -INF           -1.0005        +INF      7.348433E-11      
+r3        -INF           -0.0020        +INF      -3.732055E-9      
+
+---- VAR mu_prodCap_low  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1          .              .            +INF           50.0000      
+r2          .              .            +INF          100.0000      
+r3          .              .            +INF          200.0000      
+
+---- VAR mu_prodCap_up  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1          .            10.0020        +INF      6.1793912E-9      
+r2          .            11.0005        +INF      2.3707258E-9      
+r3          .            15.0020        +INF      1.0009046E-8      
+
+---- VAR price  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+r1        -INF           -0.0005        +INF      1.125487E-10      
+r2        -INF           -0.0005        +INF      1.025001E-10      
+r3        -INF           -0.0020        +INF      1.126638E-10      
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0  REDEFINED
+                             0     ERRORS
+
+
+EXECUTION TIME       =        0.047 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
+
+
+USER: Course License                                 S240430|0002AO-GEN
+      TU Dresden, Business Management and Economics             DCE3456
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
+Output     C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.lst
