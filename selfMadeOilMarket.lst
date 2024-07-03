@@ -1,4 +1,4 @@
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 1
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/04/24 00:32:05 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -140,7 +140,7 @@ INCLUDE    C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFile
  139   
  140  *overall
  141  *balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
- 142  price_EQ(region)..                              price(region) =e= (SlopeDemand(region)/1000*sum(supplier, quantities_sold(supplier, region))) / MaxConsumption(region);
+ 142  price_EQ(region)..                              price(region) =e= (SlopeDemand(region)*sum(supplier, quantities_sold(supplier, region))) / MaxConsumption(region);
  143  model cournot /
  144  *balanceEqu.price,
  145  price_EQ.price,
@@ -163,7 +163,7 @@ INCLUDE    C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFile
  164  /;
  165   
  166  Solve cournot using mcp;
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 2
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/04/24 00:32:05 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
@@ -175,18 +175,18 @@ Include File Summary
 
 
 COMPILATION TIME     =        0.000 SECONDS      3 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 3
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/04/24 00:32:05 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE cournot Using MCP From line 166
 
 
 ---- price_EQ  =E=  
 
-price_EQ(r1)..  1E-5*quantities_sold(r1,r1) + 1E-5*quantities_sold(r2,r1) + 1E-5*quantities_sold(r3,r1) + price(r1) =E= 0 ; (LHS = 0)
+price_EQ(r1)..  0.01*quantities_sold(r1,r1) + 0.01*quantities_sold(r2,r1) + 0.01*quantities_sold(r3,r1) + price(r1) =E= 0 ; (LHS = 0)
      
-price_EQ(r2)..  5E-6*quantities_sold(r1,r2) + 5E-6*quantities_sold(r2,r2) + 5E-6*quantities_sold(r3,r2) + price(r2) =E= 0 ; (LHS = 0)
+price_EQ(r2)..  0.005*quantities_sold(r1,r2) + 0.005*quantities_sold(r2,r2) + 0.005*quantities_sold(r3,r2) + price(r2) =E= 0 ; (LHS = 0)
      
-price_EQ(r3)..  1E-5*quantities_sold(r1,r3) + 1E-5*quantities_sold(r2,r3) + 1E-5*quantities_sold(r3,r3) + price(r3) =E= 0 ; (LHS = 0)
+price_EQ(r3)..  0.01*quantities_sold(r1,r3) + 0.01*quantities_sold(r2,r3) + 0.01*quantities_sold(r3,r3) + price(r3) =E= 0 ; (LHS = 0)
      
 
 ---- maxSupplier_q_sell  =E=  
@@ -257,7 +257,7 @@ con_supplier_prodCap_up(r2)..  - quantities_prod(r2) =G= -100 ; (LHS = 0)
      
 con_supplier_prodCap_up(r3)..  - quantities_prod(r3) =G= -200 ; (LHS = 0)
      
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 4
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/04/24 00:32:05 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE cournot Using MCP From line 166
 
@@ -266,21 +266,21 @@ Column Listing      SOLVE cournot Using MCP From line 166
 
 quantities_sold(r1,r1)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
-  1.0000000E-5  price_EQ(r1)
+        0.01    price_EQ(r1)
         1       con_supplier_transCap_low(r1,r1)
        -1       con_supplier_transCap_up(r1,r1)
        -1       con_supplier_sellCap(r1)
 
 quantities_sold(r1,r2)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
-  5.0000000E-6  price_EQ(r2)
+        0.005   price_EQ(r2)
         1       con_supplier_transCap_low(r1,r2)
        -1       con_supplier_transCap_up(r1,r2)
        -1       con_supplier_sellCap(r1)
 
 quantities_sold(r1,r3)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
-  1.0000000E-5  price_EQ(r3)
+        0.01    price_EQ(r3)
         1       con_supplier_transCap_low(r1,r3)
        -1       con_supplier_transCap_up(r1,r3)
        -1       con_supplier_sellCap(r1)
@@ -417,7 +417,7 @@ price(r3)
        -1       maxSupplier_q_sell(r2,r3)
        -1       maxSupplier_q_sell(r3,r3)
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 5
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/04/24 00:32:05 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Range Statistics    SOLVE cournot Using MCP From line 166
 
@@ -426,9 +426,9 @@ RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
 
 RHS       [min, max] : [ 1.000E+00, 2.000E+02] - Zero values observed as well
 Bound     [min, max] : [        NA,        NA] - Zero values observed as well
-Matrix    [min, max] : [ 5.000E-06, 1.000E+00]
+Matrix    [min, max] : [ 5.000E-03, 1.000E+00]
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 6
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/04/24 00:32:05 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE cournot Using MCP From line 166
 
@@ -441,8 +441,8 @@ NON ZERO ELEMENTS            93     NON LINEAR N-Z              0
 CODE LENGTH                   0     CONSTANT POOL              16
 
 
-GENERATION TIME      =        0.016 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/03/24 11:55:45 Page 7
+GENERATION TIME      =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 07/04/24 00:32:05 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE cournot Using MCP From line 166
 
@@ -457,7 +457,7 @@ Solution Report     SOLVE cournot Using MCP From line 166
 **** MODEL STATUS      1 Optimal
 
  RESOURCE USAGE, LIMIT          0.000 10000000000.000
- ITERATION COUNT, LIMIT       213    2147483647
+ ITERATION COUNT, LIMIT       222    2147483647
  EVALUATION ERRORS              0             0
 42 row/cols, 93 non-zeros, 5.27% dense.
 
@@ -477,12 +477,12 @@ Maximum Column Norm . . . . . .  4.0000e+00 var: (price(r1))
 Minimum Column Norm . . . . . .  1.0000e+00 var: (mu_transCap_low(r1,r1))
 
 FINAL STATISTICS
-Inf-Norm of Complementarity . .  1.5016e-07 eqn: (con_supplier_prodCap_up(r3))
-Inf-Norm of Normal Map. . . . .  1.0009e-08 eqn: (con_supplier_prodCap_up(r3))
-Inf-Norm of Minimum Map . . . .  1.0009e-08 eqn: (con_supplier_prodCap_up(r3))
-Inf-Norm of Fischer Function. .  1.0009e-08 eqn: (con_supplier_prodCap_up(r3))
-Inf-Norm of Grad Fischer Fcn. .  1.3741e-08 eqn: (maxSupplier_q_prod(r3))
-Two-Norm of Grad Fischer Fcn. .  2.4455e-08
+Inf-Norm of Complementarity . .  2.6180e-11 eqn: (con_supplier_transCap_low(r1,)
+Inf-Norm of Normal Map. . . . .  2.6180e-11 eqn: (con_supplier_transCap_low(r1,)
+Inf-Norm of Minimum Map . . . .  2.6181e-11 eqn: (con_supplier_transCap_low(r1,)
+Inf-Norm of Fischer Function. .  2.6180e-11 eqn: (con_supplier_transCap_low(r1,)
+Inf-Norm of Grad Fischer Fcn. .  3.7332e-11 eqn: (maxSupplier_q_sell(r1,r1))
+Two-Norm of Grad Fischer Fcn. .  6.3503e-11
 
 FINAL POINT STATISTICS
 Maximum of X. . . . . . . . . .  2.0000e+02 var: (quantities_prod(r3))
@@ -495,23 +495,23 @@ Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(r1))
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1          .       1.125487E-10          .            -0.0005      
-r2          .       1.025001E-10          .            -0.0005      
-r3          .       1.126638E-10          .            -0.0020      
+r1          .       -3.59490E-13          .            -0.5000      
+r2          .       -6.35633E-13          .       -5.77659E-13      
+r3          .       -7.30083E-13          .            -3.0000      
 
 ---- EQU maxSupplier_q_sell  
 
              LOWER          LEVEL          UPPER         MARGINAL
 
-r1.r1          .       -4.25910E-10          .       5.1276687E-9      
-r1.r2        -1.0000        -1.0000        -1.0000   5.1069530E-9      
+r1.r1          .       2.699174E-12          .       -2.61805E-11      
+r1.r2        -1.0000        -1.0000        -1.0000   -1.20044E-11      
 r1.r3        -2.0000        -2.0000        -2.0000        50.0000      
-r2.r1        -1.0000        -1.0000        -1.0000   3.612474E-11      
-r2.r2          .       -1.12246E-11          .       2.390048E-11      
+r2.r1        -1.0000        -1.0000        -1.0000   -2.46048E-11      
+r2.r2          .       -1.67333E-12          .       2.104628E-13      
 r2.r3        -1.0000        -1.0000        -1.0000       100.0000      
 r3.r1        -2.0000        -2.0000        -2.0000        50.0000      
-r3.r2        -1.0000        -1.0000        -1.0000       100.0000      
-r3.r3          .       1.2602820E-9          .            50.0000      
+r3.r2        -1.0000        -1.0000        -1.0000   1.989520E-13      
+r3.r3          .       1.132427E-13          .           150.0000      
 
 ---- EQU maxSupplier_q_prod  
 
@@ -525,37 +525,37 @@ r3       -15.0000       -15.0000       -15.0000       200.0000
 
              LOWER          LEVEL          UPPER         MARGINAL
 
-r1.r1          .       5.1276687E-9        +INF            2.0015      
-r1.r2          .       5.1069530E-9        +INF            1.0015      
+r1.r1          .       -2.61805E-11        +INF            4.5000      
+r1.r2          .       -1.20044E-11        +INF            4.0000      
 r1.r3          .            50.0000        +INF             .          
-r2.r1          .       3.612474E-11        +INF      2.0635327E-5      
-r2.r2          .       2.390048E-11        +INF            1.0000      
+r2.r1          .       -2.46048E-11        +INF      3.7040006E-5      
+r2.r2          .       2.104628E-13        +INF            1.5000      
 r2.r3          .           100.0000        +INF             .          
 r3.r1          .            50.0000        +INF             .          
-r3.r2          .           100.0000        +INF             .          
-r3.r3          .            50.0000        +INF             .          
+r3.r2          .       1.989520E-13        +INF             .          
+r3.r3          .           150.0000        +INF             .          
 
 ---- EQU con_supplier_transCap_up  
 
              LOWER          LEVEL          UPPER         MARGINAL
 
-r1.r1      -100.0000   -5.127674E-9        +INF             .          
-r1.r2      -100.0000   -5.106955E-9        +INF             .          
+r1.r1      -100.0000   2.617639E-11        +INF             .          
+r1.r2      -100.0000   1.200817E-11        +INF             .          
 r1.r3      -100.0000       -50.0000        +INF             .          
-r2.r1      -100.0000   -3.61240E-11        +INF             .          
-r2.r2      -100.0000   -2.39027E-11        +INF             .          
-r2.r3      -100.0000      -100.0000        +INF            0.0015      
-r3.r1       -50.0000       -50.0000        +INF            1.9985      
-r3.r2      -100.0000      -100.0000        +INF            0.9985      
-r3.r3      -150.0000       -50.0000        +INF             .          
+r2.r1      -100.0000   2.459899E-11        +INF             .          
+r2.r2      -100.0000   -2.13163E-13        +INF             .          
+r2.r3      -100.0000      -100.0000        +INF            2.5000      
+r3.r1       -50.0000       -50.0000        +INF            1.5000      
+r3.r2      -100.0000   -1.98952E-13        +INF             .          
+r3.r3      -150.0000      -150.0000        +INF            2.0000      
 
 ---- EQU con_supplier_sellCap  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1          .       -3.728715E-9        +INF           -2.0020      
-r2          .       7.348433E-11        +INF           -1.0005      
-r3          .       -3.732055E-9        +INF           -0.0020      
+r1          .       1.114842E-11        +INF           -5.0000      
+r2          .       -9.66338E-13        +INF           -1.5000      
+r3          .       -5.68434E-13        +INF           -1.0000      
 
 ---- EQU con_supplier_prodCap_low  
 
@@ -569,45 +569,45 @@ r3          .           200.0000        +INF             .
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1       -50.0000       -50.0000        +INF           10.0020      
-r2      -100.0000      -100.0000        +INF           11.0005      
-r3      -200.0000      -200.0000        +INF           15.0020      
+r1       -50.0000       -50.0000        +INF           13.0000      
+r2      -100.0000      -100.0000        +INF           11.5000      
+r3      -200.0000      -200.0000        +INF           16.0000      
 
 ---- VAR quantities_sold  
 
              LOWER          LEVEL          UPPER         MARGINAL
 
-r1.r1        -INF      5.1276687E-9        +INF      -4.25910E-10      
-r1.r2        -INF      5.1069530E-9        +INF      -4.10107E-10      
-r1.r3        -INF           50.0000        +INF      1.1134962E-9      
-r2.r1        -INF      3.612474E-11        +INF      2.241386E-10      
-r2.r2        -INF      2.390048E-11        +INF      -1.12246E-11      
-r2.r3        -INF          100.0000        +INF      7.925449E-11      
-r3.r1        -INF           50.0000        +INF      -3.93440E-10      
-r3.r2        -INF          100.0000        +INF      -3.71687E-10      
-r3.r3        -INF           50.0000        +INF      1.2602820E-9      
+r1.r1        -INF      -2.61805E-11        +INF      2.699174E-12      
+r1.r2        -INF      -1.20044E-11        +INF      1.108447E-12      
+r1.r3        -INF           50.0000        +INF      -4.50884E-12      
+r2.r1        -INF      -2.46048E-11        +INF      4.179324E-12      
+r2.r2        -INF      2.104628E-13        +INF      -1.67333E-12      
+r2.r3        -INF          100.0000        +INF      -3.35332E-12      
+r3.r1        -INF           50.0000        +INF      6.274981E-13      
+r3.r2        -INF      1.989520E-13        +INF      -2.00662E-12      
+r3.r3        -INF          150.0000        +INF      1.132427E-13      
 
 ---- VAR quantities_prod  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1        -INF           50.0000        +INF      7.181882E-10      
-r2        -INF          100.0000        +INF      3.806111E-10      
-r3        -INF          200.0000        +INF      9.898162E-10      
+r1        -INF           50.0000        +INF      -2.23821E-12      
+r2        -INF          100.0000        +INF      5.186962E-13      
+r3        -INF          200.0000        +INF      -1.81011E-12      
 
 ---- VAR mu_transCap_low  
 
              LOWER          LEVEL          UPPER         MARGINAL
 
-r1.r1          .             2.0015        +INF      5.1276687E-9      
-r1.r2          .             1.0015        +INF      5.1069530E-9      
+r1.r1          .             4.5000        +INF      -2.61805E-11      
+r1.r2          .             4.0000        +INF      -1.20044E-11      
 r1.r3          .              .            +INF           50.0000      
-r2.r1          .       2.0635327E-5        +INF      3.612474E-11      
-r2.r2          .             1.0000        +INF      2.390048E-11      
+r2.r1          .       3.7040006E-5        +INF      -2.46048E-11      
+r2.r2          .             1.5000        +INF      2.104628E-13      
 r2.r3          .              .            +INF          100.0000      
 r3.r1          .              .            +INF           50.0000      
-r3.r2          .              .            +INF          100.0000      
-r3.r3          .              .            +INF           50.0000      
+r3.r2          .              .            +INF      1.989520E-13      
+r3.r3          .              .            +INF          150.0000      
 
 ---- VAR mu_transCap_up  
 
@@ -618,18 +618,18 @@ r1.r2          .              .            +INF          100.0000
 r1.r3          .              .            +INF           50.0000      
 r2.r1          .              .            +INF          100.0000      
 r2.r2          .              .            +INF          100.0000      
-r2.r3          .             0.0015        +INF      2.5042368E-9      
-r3.r1          .             1.9985        +INF      -3.858254E-9      
-r3.r2          .             0.9985        +INF      -2.563766E-9      
-r3.r3          .              .            +INF          100.0000      
+r2.r3          .             2.5000        +INF      -2.44427E-11      
+r3.r1          .             1.5000        +INF      -2.20268E-13      
+r3.r2          .              .            +INF          100.0000      
+r3.r3          .             2.0000        +INF      3.410605E-13      
 
 ---- VAR mu_sellCap  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1        -INF           -2.0020        +INF      -3.728715E-9      
-r2        -INF           -1.0005        +INF      7.348433E-11      
-r3        -INF           -0.0020        +INF      -3.732055E-9      
+r1        -INF           -5.0000        +INF      1.114842E-11      
+r2        -INF           -1.5000        +INF      -9.66338E-13      
+r3        -INF           -1.0000        +INF      -5.68434E-13      
 
 ---- VAR mu_prodCap_low  
 
@@ -643,17 +643,17 @@ r3          .              .            +INF          200.0000
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1          .            10.0020        +INF      6.1793912E-9      
-r2          .            11.0005        +INF      2.3707258E-9      
-r3          .            15.0020        +INF      1.0009046E-8      
+r1          .            13.0000        +INF      -1.12337E-11      
+r2          .            11.5000        +INF      9.237056E-13      
+r3          .            16.0000        +INF      4.831691E-13      
 
 ---- VAR price  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1        -INF           -0.0005        +INF      1.125487E-10      
-r2        -INF           -0.0005        +INF      1.025001E-10      
-r3        -INF           -0.0020        +INF      1.126638E-10      
+r1        -INF           -0.5000        +INF      -3.59490E-13      
+r2        -INF      -5.77659E-13        +INF      -6.35633E-13      
+r3        -INF           -3.0000        +INF      -7.30083E-13      
 
 
 **** REPORT SUMMARY :        0     NONOPT
@@ -663,7 +663,7 @@ r3        -INF           -0.0020        +INF      1.126638E-10
                              0     ERRORS
 
 
-EXECUTION TIME       =        0.047 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
+EXECUTION TIME       =        0.031 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
 
 
 USER: Course License                                 S240430|0002AO-GEN

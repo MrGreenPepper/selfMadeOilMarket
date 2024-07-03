@@ -99,7 +99,7 @@ con_supplier_prodCap_up(supplier)..               ProductionCap(supplier) - quan
 
 *overall
 *balanceEqu(region)..                            sum((supplier), quantities_sold(supplier, region)) - quantities_demand(region) =e= 0;
-price_EQ(region)..                              price(region) =e= (SlopeDemand(region)/1000*sum(supplier, quantities_sold(supplier, region))) / MaxConsumption(region);  
+price_EQ(region)..                              price(region) =e= (SlopeDemand(region)*sum(supplier, quantities_sold(supplier, region))) / MaxConsumption(region);  
 model cournot /
 *balanceEqu.price,
 price_EQ.price,
