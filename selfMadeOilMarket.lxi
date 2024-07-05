@@ -1,43 +1,30 @@
 B 3 C o m p i l a t i o n
-B 168 Include File Summary
-B 180 Equation Listing    SOLVE cournot Using MCP From line 166
-D 183 price_EQ
-D 192 maxSupplier_q_sell
-D 203 maxSupplier_q_prod
-D 212 con_supplier_transCap_low
-D 223 con_supplier_transCap_up
-D 234 con_supplier_sellCap_low
-D 243 con_supplier_sellCap_up
-D 252 con_supplier_prodCap_low
-D 261 con_supplier_prodCap_up
-B 271 Column Listing      SOLVE cournot Using MCP From line 166
-E 274 quantities_sold
-E 302 quantities_prod
-E 323 mu_transCap_low
-E 339 mu_transCap_up
-E 355 mu_sellCap_low
-E 376 mu_sellCap_up
-E 400 mu_prodCap_low
-E 415 mu_prodCap_up
-E 430 price
-B 473 Range Statistics    SOLVE cournot Using MCP From line 166
-B 484 Model Statistics    SOLVE cournot Using MCP From line 166
-B 498 Solution Report     SOLVE cournot Using MCP From line 166
-F 545 price_EQ
-F 553 maxSupplier_q_sell
-F 567 maxSupplier_q_prod
-F 575 con_supplier_transCap_low
-F 589 con_supplier_transCap_up
-F 603 con_supplier_sellCap_low
-F 611 con_supplier_sellCap_up
-F 619 con_supplier_prodCap_low
-F 627 con_supplier_prodCap_up
-G 635 quantities_sold
-G 649 quantities_prod
-G 657 mu_transCap_low
-G 671 mu_transCap_up
-G 685 mu_sellCap_low
-G 693 mu_sellCap_up
-G 701 mu_prodCap_low
-G 709 mu_prodCap_up
-G 717 price
+B 150 Equation Listing    SOLVE cournot Using MCP From line 145
+D 153 price_EQ
+D 162 maxSupplier_q_sell
+D 173 maxSupplier_q_prod
+D 182 con_supplier_transCap
+D 193 con_supplier_massBal
+D 202 con_supplier_prodCap
+B 212 Column Listing      SOLVE cournot Using MCP From line 145
+E 215 quantities_sold
+E 240 quantities_prod
+E 258 mu_transCap
+E 274 mu_prodCap
+E 289 price
+E 304 mu_massBal
+B 329 Range Statistics    SOLVE cournot Using MCP From line 145
+B 340 Model Statistics    SOLVE cournot Using MCP From line 145
+B 354 Solution Report     SOLVE cournot Using MCP From line 145
+F 375 price_EQ
+F 383 maxSupplier_q_sell
+F 397 maxSupplier_q_prod
+F 405 con_supplier_transCap
+F 419 con_supplier_massBal
+F 427 con_supplier_prodCap
+G 435 quantities_sold
+G 449 quantities_prod
+G 457 mu_transCap
+G 471 mu_prodCap
+G 479 price
+G 487 mu_massBal

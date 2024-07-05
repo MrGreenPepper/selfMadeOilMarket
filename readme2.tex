@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{setspace}
+\usepackage{tabto}
+\usepackage[document]{ragged2e}
+\setstretch{1.5}
+\title{Resource Economics - formulas}
+\author{Sebastian Trümper}
+\date{June 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Base formulas}
+\textbf{General supplier function for maximizing profit}\\
+%base formula
+for one  supplier\\
+\quad$max \sum_{region} \Big(q_{sell}(region) * (price(region) - C_{trans}(region))\Big) $\\
+\quad$- q_{prod}*C_{prod}$\\
+$\rightarrow$\\
+\quad$min \sum_{region} \Big(q_{sell}(region) *(C_{trans}(region) - price(region)) \Big) $\\
+\quad$+ q_{prod}*C_{prod}$\\
+
+with: \\
+\quad$price(region) = IntersectionPoint(region) - Slope * \sum_{supplier} q_{sell}(region)$\\
+
+$\rightarrow$\\
+\quad$min \sum_{region}\Big( q_{sell}(region) $\\
+\quad$*(C_{trans}(region) - IntersectionPoint(region) + Slope * \sum_{supplier} q_{sell}(region))\Big) $\\
+\quad$+ q_{prod}*C_{prod}$\\
+
+
+\hfill\\
+\textbf{For	transport constraint: }\\
+
+1. Define constraint\\
+\quad$q_{sell}(region) \leq TransCap(region)\: \forall \: region$\\
+3. For Laplace: bring constraints into standard form\\
+\quad$q_{sell}(region) - TransCap(region) \leq 0  : \mu_{TransCap}\: \forall \: regions$\\
+4. For GAMS: change equations to $\geq 0$\\
+\quad$TransCap(region) - q_{sell}(region) \geq 0 \: \forall \: regions$\\
+
+\hfill\\
+\textbf{For	selling cap constraint: }\\
+
+1. Define constraint\\
+\quad$\sum_{region} q_{sell}(region) \leq q_{prod} $\\
+3. For Laplace: bring constraints into standard form\\
+\quad$\sum_{region} q_{sell}(region) - q_{prod}  \leq 0 : \mu_{massBal}$\\
+4. For GAMS: change equations to $\geq$ 0\\
+\quad$q_{prod}  - \sum_{region} q_{sell}(region) \geq 0\: $\\
+
+
+\hfill\\
+\textbf{For	production cap constraint: }\\
+1. Define constraint\\
+\quad$q_{prod} \leq ProdCap$\\
+3. For Laplace: bring constraints into standard form\\
+\quad$q_{prod} - ProdCap\leq 0  : \mu_{prodCap}$\\
+4. For GAMS: change equations to $\geq$ 0\\
+\quad$ProdCap - q_{prod} \geq 0$\\
+
+
+\hfill\\ 
+\hfill\\
+\section*{Laplace function}
+%pure gams code
+\quad$min \sum_{region}\Big( q_{sell}(region) $\\
+\quad$*(C_{trans}(region) - IntersectionPoint(region) + Slope * \sum_{supplier} q_{sell}(region))\Big) $\\
+\quad$+ q_{prod}*C_{prod}$\\
+add constraints:\\
+\quad$+\mu_{TransCap} * (q_{sell}(region) - TransCap(region))$\\
+\quad$+\mu_{massBal} * (\sum_{region} q_{sell}(region) - q_{prod})$\\
+\quad$+\mu_{prodCap}* (q_{prod} - ProdCap)$\\
+
+Derive KKT's:\\ 	
+for $q_{sell}:$\\
+\quad$\frac{\partial f}{\partial Q_{sell}} = $\\
+\quad$2*Slope*q_{sell} $\\
+\quad$- IntersectionPoint + C_{trans}$\\
+\quad$+\mu_{TransCap}$\\
+\quad$+\mu_{massBal}$\\
+
+for $q_{prod}:$\\
+\quad$\frac{\partial f}{\partial Q_{prod}} = C_{prod} - \mu_{massBal} + \mu_{prodCap}$\\
+\end{document}

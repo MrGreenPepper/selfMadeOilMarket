@@ -1,5 +1,5 @@
 
---- Job selfMadeOilMarket.gms Start 07/03/24 23:49:00 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+--- Job selfMadeOilMarket.gms Start 07/05/24 02:03:31 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\46\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -21,145 +21,44 @@ Licensee: Course License                                 S240430|0002AO-GEN
 Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
 GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
 --- Starting compilation
---- selfMadeOilMarket.gms(1) 2 Mb
---- . testData.gms(40) 3 Mb
---- selfMadeOilMarket.gms(126) 3 Mb
+--- selfMadeOilMarket.gms(145) 3 Mb
 --- Starting execution: elapsed 0:00:00.006
---- selfMadeOilMarket.gms(77) 4 Mb
 --- Generating MCP model cournot
---- selfMadeOilMarket.gms(166) 6 Mb
----   45 rows  45 columns  129 non-zeroes
+--- selfMadeOilMarket.gms(145) 6 Mb
+---   30 rows  30 columns  69 non-zeroes
 ---   0 nl-code  0 nl-non-zeroes
 --- Range statistics (absolute non-zero finite values)
---- RHS       [min, max] : [ 2.000E+00, 1.000E+03] - Zero values observed as well
---- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
---- Matrix    [min, max] : [ 1.000E+00, 3.000E+00]
---- selfMadeOilMarket.gms(166) 4 Mb
---- Executing PATH (Solvelink=2): elapsed 0:00:00.014
+--- RHS       [min, max] : [ 8.000E+00, 1.000E+03] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA]
+--- Matrix    [min, max] : [ 1.000E+00, 2.000E+00]
+--- selfMadeOilMarket.gms(145) 4 Mb
+--- Executing PATH (Solvelink=2): elapsed 0:00:00.017
 Reading dictionary...
 Reading row data...
 Evaluating functions...
 Checking model...
 Calculating Jacobian...
 
-45 row/cols, 129 non-zeros, 6.37% dense.
+30 row/cols, 69 non-zeros, 7.67% dense.
 
 Path 5.0.07 (Tue Mar  5 04:38:27 2024)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
-Zero:     0 Single:    18 Double:     0
-Preprocessed size   : 27
+Zero: infeasible.
 
-INITIAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  0.0000e+00 var: (price(r1))
-Maximum of F. . . . . . . . . .  1.0000e+03 eqn: (price_EQ(r3))
-Maximum of Grad F . . . . . . .  3.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
-                                            var: (mu_sellCap_low(r1))
+ *** EXIT - infeasible.
 
-INITIAL JACOBIAN NORM STATISTICS
-Maximum Row Norm. . . . . . . .  9.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
-Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (con_supplier_prodCap_low(r1))
-Maximum Column Norm . . . . . .  1.0000e+01 var: (price(r1))
-Minimum Column Norm . . . . . .  1.0000e+00 var: (mu_prodCap_low(r1))
-
-Crash Log
-major  func  diff  size  residual    step       prox   (label)
-    0     0             1.0101e+03             0.0e+00 (price_EQ(r3))
-    1     1    12    12 9.8598e+02  1.0e+00    1.0e+01 (price_EQ(r3))
-    2     2    12    24 9.6961e+02  1.0e+00    9.0e+00 (price_EQ(r3))
-    3     7     0    24 9.6945e+02  2.6e-01    8.1e+00 (price_EQ(r3))
-pn_search terminated: no basis change.
-
-Major Iteration Log
-major minor  func  grad  residual    step  type prox    inorm  (label)
-    0     0     8     4 9.6945e+02           I 7.3e+00 8.7e+02 (price_EQ(r3))
-    1     5     9     5 1.0086e+03  1.0e+00 SM 2.9e+00 7.7e+02 (price_EQ(r3))
-    2     4    10     6 7.6981e+02  1.0e+00 SO 1.2e+00 4.1e+02 (price_EQ(r3))
-    3    13    11     7 3.6992e+03  1.0e+00 SM 4.7e-01 2.3e+03 (con_supplier_pr)
-    4     2    20     8 4.1275e+03  2.3e-02 SB 1.9e-01 2.5e+03 (con_supplier_pr)
-    5     2    31     9 4.2421e+03  1.5e-03 SB 7.5e-02 2.6e+03 (con_supplier_pr)
-    6     2    43    10 4.3087e+03  2.6e-04 SB 3.0e-02 2.6e+03 (con_supplier_pr)
-    7     2    57    11 4.3083e+03  1.2e-06 SB 1.2e-02 2.6e+03 (con_supplier_pr)
-    8     4    58    12 1.4167e+02  1.0e+00 SM 4.8e-03 9.7e+01 (con_supplier_se)
-    9     2    59    13 6.4511e+02  1.0e+00 SM 1.9e-03 4.4e+02 (con_supplier_pr)
-   10     1    60    14 2.1620e+03  1.0e+00 SM 7.6e-04 1.5e+03 (con_supplier_pr)
-   11     1    61    15 2.1622e+03  1.0e+00 SO 1.0e+01 1.5e+03 (con_supplier_pr)
-   12     1    62    16 2.1624e+03  1.0e+00 SO 4.0e+00 1.5e+03 (con_supplier_pr)
-   13     1    63    17 2.1632e+03  1.0e+00 SO 1.6e+00 1.5e+03 (con_supplier_pr)
-   14     1    64    18 2.1650e+03  1.0e+00 SO 6.4e-01 1.5e+03 (con_supplier_pr)
-   15     1    65    19 2.1696e+03  1.0e+00 SM 2.6e-01 1.5e+03 (con_supplier_pr)
-   16     1    81    20 1.1798e+02  1.0e+00 SG 4.8e-03 6.6e+01 (con_supplier_pr)
-   17     5   102    21 9.7926e+01  1.7e-01 SG 1.9e-03 6.0e+01 (con_supplier_pr)
-   18     5   123    22 8.6575e+01  1.7e-01 SG 7.6e-04 5.0e+01 (con_supplier_pr)
-   19     8   144    23 7.9379e+01  1.7e-01 SG 3.1e-04 4.6e+01 (con_supplier_pr)
-   20     5   166    24 7.5747e+01  6.9e-02 SG 1.2e-04 4.4e+01 (con_supplier_pr)
-
-Restart Log
-proximal_perturbation 0
-crash_method none
-crash_perturb yes
-nms_initial_reference_factor 2
-lemke_start_type slack
-proximal_perturbation 1.0000e-01
-
-Major Iteration Log
-major minor  func  grad  residual    step  type prox    inorm  (label)
-   20     0   187    25 1.0101e+03           R 1.0e-01 1.0e+03 (price_EQ(r3))
-   21     1   188    26 7.0567e+02  1.0e+00 SO 4.0e-02 3.8e+02 (con_supplier_pr)
-   22     1   189    27 2.4495e+03  1.0e+00 SD 1.6e-02 1.3e+03 (con_supplier_pr)
-   23     1   194    28 1.2750e+03  3.3e-01 SW 4.0e-02 6.9e+02 (con_supplier_pr)
-   24     1   195    29 3.0208e+03  1.0e+00 SD 1.6e-02 1.6e+03 (con_supplier_pr)
-   25     1   203    30 1.3708e+03  5.5e-02 SW 4.0e-02 7.4e+02 (con_supplier_pr)
-   26     1   204    31 3.1166e+03  1.0e+00 SD 1.6e-02 1.7e+03 (con_supplier_pr)
-   27     1   213    32 1.4100e+03  2.3e-02 SW 4.0e-02 7.6e+02 (con_supplier_pr)
-   28     1   214    33 3.1559e+03  1.0e+00 SD 1.6e-02 1.7e+03 (con_supplier_pr)
-   29     1   224    34 1.4261e+03  9.2e-03 SW 4.0e-02 7.7e+02 (con_supplier_pr)
-   30     1   225    35 3.1720e+03  1.0e+00 SD 1.6e-02 1.7e+03 (con_supplier_pr)
-   31     1   237    36 1.4265e+03  2.6e-04 SW 4.0e-02 7.7e+02 (con_supplier_pr)
-   32     1   238    37 3.1724e+03  1.0e+00 SD 1.6e-02 1.7e+03 (con_supplier_pr)
-
-Restart Log
-proximal_perturbation 0
-crash_method none
-crash_perturb no
-nms_initial_reference_factor 10
-nms_memory_size 2
-nms_mstep_frequency 1
-lemke_search_type slack
-
-Major Iteration Log
-major minor  func  grad  residual    step  type prox    inorm  (label)
-   32     0   240    38 1.0101e+03           R 0.0e+00 1.0e+03 (price_EQ(r3))
-   33    13   241    39 2.2737e-13  1.0e+00 SM 0.0e+00 2.3e-13 (price_EQ(r1))
-
-FINAL STATISTICS
-Inf-Norm of Complementarity . .  2.2737e-13 eqn: (price_EQ(r1))
-Inf-Norm of Normal Map. . . . .  2.2737e-13 eqn: (price_EQ(r1))
-Inf-Norm of Minimum Map . . . .  2.2737e-13 eqn: (price_EQ(r1))
-Inf-Norm of Fischer Function. .  2.2737e-13 eqn: (price_EQ(r1))
-Inf-Norm of Grad Fischer Fcn. .  2.2737e-13 eqn: (price_EQ(r1))
-Two-Norm of Grad Fischer Fcn. .  4.5475e-13
-
-FINAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  1.0000e+03 var: (price(r3))
-Maximum of F. . . . . . . . . .  2.0000e+02 eqn: (con_supplier_prodCap_up(r3))
-Maximum of Grad F . . . . . . .  3.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
-                                            var: (mu_sellCap_low(r1))
-
- ** EXIT - solution found.
-
-Major Iterations. . . . 33
-Minor Iterations. . . . 99
-Restarts. . . . . . . . 2
-Crash Iterations. . . . 3
-Gradient Steps. . . . . 6
-Function Evaluations. . 241
-Gradient Evaluations. . 39
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 0
+Gradient Evaluations. . 0
 Basis Time. . . . . . . 0.000000
 Total Time. . . . . . . 0.000000
-Residual. . . . . . . . 2.273737e-13
-Postsolved residual: 2.2737e-13
+Residual. . . . . . . . 1.000000e+20
 
 --- Reading solution for model cournot
 *** Status: Normal completion
---- Job selfMadeOilMarket.gms Stop 07/03/24 23:49:00 elapsed 0:00:00.047
+--- Job selfMadeOilMarket.gms Stop 07/05/24 02:03:31 elapsed 0:00:00.044

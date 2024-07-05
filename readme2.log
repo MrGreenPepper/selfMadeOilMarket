@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2024.6.15)  4 JUL 2024 00:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2024.6.15)  5 JUL 2024 01:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme.tex
-(c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme.tex
+**c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme2.tex
+(c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme2.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -79,8 +79,8 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 765.
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count193
 \l__pdf_internal_box=\box51
-) (readme.aux)
-\openout1 = `readme.aux'.
+) (readme2.aux)
+\openout1 = `readme2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
@@ -127,33 +127,18 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 19.
 
-Overfull \hbox (51.57858pt too wide) in paragraph at lines 22--22
- $\OML/cmm/m/it/10 ^^Y\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 )[]$  
- []
-
-
-Overfull \hbox (60.19672pt too wide) in paragraph at lines 29--29
-\OT1/cmr/m/n/10 "$\OML/cmm/m/it/10 Q[] \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 transCap\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 Q[] \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 productionCap\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 supplier; regions$\OT1/cmr/m/n/10 "  
+Overfull \hbox (8.11426pt too wide) in paragraph at lines 30--30
+ $\OMS/cmsy/m/n/10 ^^C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 IntersectionPoint\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 Slope \OMS/cmsy/m/n/10 ^^C [][] \OML/cmm/m/it/10 q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ))[]$  
  []
 
 [1
 
 {C:/Users/sebas/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (48.3588pt too wide) in paragraph at lines 58--58
- $\OML/cmm/m/it/10 Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 transCap\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^T \OT1/cmr/m/n/10 0 : \OML/cmm/m/it/10 ^^V[] \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 supplier; regions$  
+Overfull \hbox (8.11426pt too wide) in paragraph at lines 70--70
+ $\OMS/cmsy/m/n/10 ^^C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 IntersectionPoint\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 Slope \OMS/cmsy/m/n/10 ^^C [][] \OML/cmm/m/it/10 q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ))[]$  
  []
 
-[2]
-Overfull \hbox (9.31052pt too wide) in paragraph at lines 96--96
- $\OML/cmm/m/it/10 max  [][] Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 )[]$  
- []
-
-
-Overfull \hbox (7.75684pt too wide) in paragraph at lines 101--101
- $\OML/cmm/m/it/10 min  [][] Q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^C []\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 supplier; region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 price\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 )[]$  
- []
-
-[3] [4] (readme.aux)
+[2] [3] (readme2.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
@@ -161,16 +146,16 @@ L3 programming layer <2023-08-29>
  ) 
 Here is how much of TeX's memory you used:
  1604 strings out of 475247
- 28142 string characters out of 5757792
- 1926785 words of memory out of 5000000
+ 28155 string characters out of 5757792
+ 1924785 words of memory out of 5000000
  23148 multiletter control sequences out of 15000+600000
  562017 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,7n,65p,275b,207s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,7n,65p,276b,207s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on readme.pdf (4 pages, 131554 bytes).
+Output written on readme2.pdf (3 pages, 127487 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
+ 62 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
