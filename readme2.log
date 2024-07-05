@@ -1,25 +1,25 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2024.6.15)  5 JUL 2024 01:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.6.16)  5 JUL 2024 14:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme2.tex
 (c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme2.tex
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
 (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count185
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@subparagraph=\count190
-\c@figure=\count191
-\c@table=\count192
+\c@part=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\c@figure=\count193
+\c@table=\count194
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
@@ -76,8 +76,8 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 765.
 \RaggedRightParindent=\skip62
 \JustifyingParindent=\skip63
 ) (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count193
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count195
 \l__pdf_internal_box=\box51
 ) (readme2.aux)
 \openout1 = `readme2.aux'.
@@ -98,16 +98,16 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
  (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count194
+\scratchcounter=\count196
 \scratchdimen=\dimen147
 \scratchbox=\box52
-\nofMPsegments=\count195
-\nofMParguments=\count196
+\nofMPsegments=\count197
+\nofMParguments=\count198
 \everyMPshowfont=\toks19
-\MPscratchCnt=\count197
+\MPscratchCnt=\count199
 \MPscratchDim=\dimen148
-\MPnumerator=\count198
-\makeMPintoPDFobject=\count199
+\MPnumerator=\count266
+\makeMPintoPDFobject=\count267
 \everyMPtoPDFconversion=\toks20
 ) (C:\Users\sebas\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -133,29 +133,24 @@ Overfull \hbox (8.11426pt too wide) in paragraph at lines 30--30
 
 [1
 
-{C:/Users/sebas/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (8.11426pt too wide) in paragraph at lines 70--70
- $\OMS/cmsy/m/n/10 ^^C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 IntersectionPoint\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 Slope \OMS/cmsy/m/n/10 ^^C [][] \OML/cmm/m/it/10 q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 region\OT1/cmr/m/n/10 ))[]$  
- []
-
-[2] [3] (readme2.aux)
+{C:/Users/sebas/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] (readme2.aux)
  ***********
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1604 strings out of 475247
- 28155 string characters out of 5757792
- 1924785 words of memory out of 5000000
- 23148 multiletter control sequences out of 15000+600000
+ 1604 strings out of 474486
+ 28160 string characters out of 5743755
+ 1931542 words of memory out of 5000000
+ 23909 multiletter control sequences out of 15000+600000
  562017 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,7n,65p,276b,207s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on readme2.pdf (3 pages, 127487 bytes).
+<C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on readme2.pdf (3 pages, 136291 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
+ 67 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

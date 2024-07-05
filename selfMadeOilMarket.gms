@@ -5,8 +5,7 @@
 Sets
 
 region                   /r1*r3/
-consumer(region)         /r1*r2/
-supplier(region)         /r1*r3/
+alias(region,supplier)
 
 alias(region,regionB)
 ;
@@ -17,7 +16,7 @@ alias(region,regionB)
 
 Parameter 
 *baseUtility(region)                     /r1  60, r2  60, r3 0/
-IntersectionPoint(region)                  /r1  100, r2  150, r3 200/
+IntersectionPoint(region)                /r1  100, r2  100, r3 100/
                
 ProductionCosts(supplier)               /r1  8, r2  10, r3  15/
 ProductionCap(supplier)                 /r1  50, r2  100, r3 200/
@@ -36,9 +35,9 @@ r3  2       1       0
 Parameter Table
 TransportationCap(supplier, regionB)                       
     r1      r2      r3
-r1  1000     100     100
-r2  100     1000     100
-r3  100      100     1000
+r1  100     100     100
+r2  100     100     100
+r3  100     100     100
 ;
 
 
@@ -58,14 +57,14 @@ mu_transCap
 mu_prodCap(supplier)
 
 
-price(region)
-
-;
-Variables
-
 mu_massBal(supplier)
+
+
 ;
 
+Variable
+price(region)
+;
 
 Equations
 
@@ -101,13 +100,22 @@ maxSupplier_q_prod(supplier)..                  ProductionCosts(supplier)
                                                 +mu_prodCap(supplier)   
                                                 -mu_massBal(supplier)
                                                 =e= 0;
-                                                
+$onText                              
 maxSupplier_q_sell(supplier, region)..          TransportationCosts(supplier, region)
                                                 - IntersectionPoint(region) - 2 * quantities_sold(supplier, region) * SlopeDemand(region)
                                                 + mu_transCap(supplier, region)
                                                 + mu_massBal(supplier)
                                                 =e= 0;
-
+$offText
+                                         
+maxSupplier_q_sell(supplier, region)..          TransportationCosts(supplier, region)
+                                                - IntersectionPoint(region)
+                                                - SlopeDemand(region) * sum(regionB, quantities_sold(regionB, region))
+                                                - quantities_sold(supplier, region) * SlopeDemand(region)
+                                                + mu_transCap(supplier, region)
+                                                + mu_massBal(supplier)
+                                                =e= 0;
+*- quantities_sold(supplier, region) * SlopeDemand(region)
 *transCap                                      
 con_supplier_transCap(supplier, region)..        TransportationCap(supplier, region) - quantities_sold(supplier,region) =g= 0;
 

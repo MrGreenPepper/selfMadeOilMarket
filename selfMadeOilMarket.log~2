@@ -1,11 +1,14 @@
---- Job selfMadeOilMarket.gms Start 07/05/24 01:56:22 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+
+Debug-Server started. Listening at port 3563
+--- Job selfMadeOilMarket.gms Start 07/05/24 15:28:11 44.4.0 06604687 WEX-WEI x86 64bit/MS Windows
 --- Applying:
-    C:\GAMS\46\gmsprmNT.txt
+    C:\GAMS\44\gmsprmNT.txtDebug-Server: Socket connected to GAMS
+
 --- GAMS Parameters defined
     Input C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\selfMadeOilMarket.gms
     PageSize 0
     ScrDir C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFiles\225e\
-    SysDir C:\GAMS\46\
+    SysDir C:\GAMS\44\
     LogOption 3
     ErrMsg 1
     ErrorLog 99
@@ -16,50 +19,18 @@ Licensee: Course License                                 S240430|0002AO-GEN
           C:\Users\sebas\Documents\GAMS\gamslice.txt
           License Admin: Hannes Hobbie, hannes.hobbie@tu-dresden.de        
           Course license for use within the course and related course work
-          The evaluation period of the license will expire on Oct 27, 2024
 Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
-GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
+GAMS 44.4.0   Copyright (C) 1987-2023 GAMS Development. All rights reserved
 --- Starting compilation
---- selfMadeOilMarket.gms(1) 2 Mb
---- . testData.gms(40) 3 Mb
---- selfMadeOilMarket.gms(105) 3 Mb
---- Starting execution: elapsed 0:00:00.010
+--- selfMadeOilMarket.gms(154) 3 Mb
+--- Starting execution: elapsed 0:00:00.088
 --- Generating MCP model cournot
---- selfMadeOilMarket.gms(145) 6 Mb
----   30 rows  30 columns  69 non-zeroes
----   0 nl-code  0 nl-non-zeroes
---- Range statistics (absolute non-zero finite values)
---- RHS       [min, max] : [ 8.000E+00, 1.000E+03] - Zero values observed as well
---- Bound     [min, max] : [        NA,        NA]
---- Matrix    [min, max] : [ 1.000E+00, 2.000E+00]
---- selfMadeOilMarket.gms(145) 4 Mb
---- Executing PATH (Solvelink=2): elapsed 0:00:00.018
-Reading dictionary...
-Reading row data...
-Evaluating functions...
-Checking model...
-Calculating Jacobian...
+--- selfMadeOilMarket.gms(99) 6 Mb
+*** Error at line 99: Execution halted: Triggered by pending CtrlC event
+--- selfMadeOilMarket.gms(154) 4 Mb 1 Error
+*** SOLVE abortedDebug-Server: Socket disconnected
 
-30 row/cols, 69 non-zeros, 7.67% dense.
-
-Path 5.0.07 (Tue Mar  5 04:38:27 2024)
-Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
-
-Zero: infeasible.
-
- *** EXIT - infeasible.
-
-Major Iterations. . . . 0
-Minor Iterations. . . . 0
-Restarts. . . . . . . . 0
-Crash Iterations. . . . 0
-Gradient Steps. . . . . 0
-Function Evaluations. . 0
-Gradient Evaluations. . 0
-Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.000000
-Residual. . . . . . . . 1.000000e+20
-
---- Reading solution for model cournot
-*** Status: Normal completion
---- Job selfMadeOilMarket.gms Stop 07/05/24 01:56:22 elapsed 0:00:00.060
+--- selfMadeOilMarket.gms(154) 4 Mb 1 Error
+*** Status: Execution error(s)
+--- Job selfMadeOilMarket.gms Stop 07/05/24 15:28:42 elapsed 0:00:30.670
+Debug-Server stopped.

@@ -64,10 +64,10 @@ $\rightarrow$\\
 
 \hfill\\ 
 \hfill\\
-\section*{Laplace function}
+\section*{Lagrange function}
 %pure gams code
 \quad$min \sum_{region}\Big( q_{sell}(region) $\\
-\quad$*(C_{trans}(region) - IntersectionPoint(region) + Slope * \sum_{supplier} q_{sell}(region))\Big) $\\
+\quad$*(C_{trans}(region) - price(region))\Big) $\\
 \quad$+ q_{prod}*C_{prod}$\\
 add constraints:\\
 \quad$+\mu_{TransCap} * (q_{sell}(region) - TransCap(region))$\\
@@ -77,11 +77,17 @@ add constraints:\\
 Derive KKT's:\\ 	
 for $q_{sell}:$\\
 \quad$\frac{\partial f}{\partial Q_{sell}} = $\\
-\quad$2*Slope*q_{sell} $\\
-\quad$- IntersectionPoint + C_{trans}$\\
+\quad$C_{trans}(region)$\\ 
+\quad$-q_{sell}(region)*price'(region)$\\
+\quad$-1*price(region)$\\
 \quad$+\mu_{TransCap}$\\
 \quad$+\mu_{massBal}$\\
-
+\quad =\\
+\quad$C_{trans}(region)$\\
+\quad$-q_{sell}(region)*(Slope(region))$\\
+\quad$- IntersectionPoint(region) - Slope * \sum_{supplier} q_{sell}(region))$\\
+\quad$+\mu_{TransCap}$\\
+\quad$+\mu_{massBal}$\\
 for $q_{prod}:$\\
 \quad$\frac{\partial f}{\partial Q_{prod}} = C_{prod} - \mu_{massBal} + \mu_{prodCap}$\\
 \end{document}

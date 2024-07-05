@@ -18,7 +18,7 @@ Parameter
 MaxConsumption(region)                  /r1  100, r2  150, r3 200/
                
 ProductionCosts(supplier)               /r1  8, r2  10, r3  15/
-ProductionCap(supplier)                 /r1  50, r2  100, r3 200/
+ProductionCap(supplier)                 /r1  150, r2  150, r3 200/
 SlopeDemand(region)                     /r1 -1, r2 -1, r3 -1/         
 ;
 
@@ -34,7 +34,7 @@ r3  2       1       0
 Parameter Table
 TransportationCap(supplier, regionB)                       
     r1      r2      r3
-r1  1000     100     100
-r2  100     1000     100
-r3  100      100     1000
+r1  50     50     50
+r2  50     50     50
+r3  50     50     50
 ;

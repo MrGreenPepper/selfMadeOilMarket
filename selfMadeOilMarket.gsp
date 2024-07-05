@@ -16,6 +16,12 @@
         },
         {
             "codecMib": 106,
+            "file": "selfMadeOilMarket.gdx",
+            "name": "selfMadeOilMarket.gdx",
+            "type": "gdx"
+        },
+        {
+            "codecMib": 106,
             "file": "selfMadeOilMarket.gms",
             "name": "selfMadeOilMarket.gms",
             "type": "gms"
