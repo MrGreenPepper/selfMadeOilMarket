@@ -1,0 +1,23 @@
+profit = q_sell * (price (region) - transportCost(region)) - prodCost * q_prod
+--> min
+profit= q_sell(transCost(region) - price(region)) + prodCost * q_prod
+
+profit =  	q_sell*transCost(region)  
+			- q_sell(region)*price(region) 
+			+ prodCost * q_prodCost
+--> abl
+profit = 	transCost(region)
+			-price(region)
+			-q_sell*price'(region)
+			#
+profit = 	transCost(region)
+			- (IntersectionPoint(region) + slope * \sum q_sell(supplier))
+			- q_sell * (slope(region))
+
+
+
+
+price(region) = IntersectionPoint(region) + slope * \sum q_sell(supplier)
+
+-->
+

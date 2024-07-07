@@ -12,8 +12,9 @@ $offText
 
 Sets
 region                      /NorthAmerica,EU,Russia,OPEC,FarEast/
-supplier(region)            /NorthAmerica,EU,Russia,OPEC,FarEast/
+
 alias(region,regionB)
+alias(region,supplier)
 ;
 
 

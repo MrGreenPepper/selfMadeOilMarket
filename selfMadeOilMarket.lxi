@@ -1,30 +1,31 @@
 B 3 C o m p i l a t i o n
-B 156 Equation Listing    SOLVE cournot Using MCP From line 153
-D 159 price_EQ
-D 168 maxSupplier_q_sell
-D 179 maxSupplier_q_prod
-D 188 con_supplier_transCap
-D 199 con_supplier_massBal
-D 208 con_supplier_prodCap
-B 218 Column Listing      SOLVE cournot Using MCP From line 153
-E 221 quantities_sold
-E 252 quantities_prod
-E 270 mu_transCap
-E 286 mu_prodCap
-E 301 mu_massBal
-E 325 price
-B 341 Range Statistics    SOLVE cournot Using MCP From line 153
-B 352 Model Statistics    SOLVE cournot Using MCP From line 153
-B 366 Solution Report     SOLVE cournot Using MCP From line 153
-F 387 price_EQ
-F 395 maxSupplier_q_sell
-F 409 maxSupplier_q_prod
-F 417 con_supplier_transCap
-F 431 con_supplier_massBal
-F 439 con_supplier_prodCap
-G 447 quantities_sold
-G 461 quantities_prod
-G 469 mu_transCap
-G 483 mu_prodCap
-G 491 mu_massBal
-G 499 price
+B 149 Include File Summary
+B 161 Equation Listing    SOLVE cournot Using MCP From line 149
+D 164 price_EQ
+D 171 maxSupplier_q_sell
+D 182 maxSupplier_q_prod
+D 189 con_supplier_transCap
+D 200 con_supplier_massBal
+D 207 con_supplier_prodCap
+B 215 Column Listing      SOLVE cournot Using MCP From line 149
+E 218 quantities_sold
+E 246 quantities_prod
+E 257 mu_transCap
+E 273 mu_prodCap
+E 284 price
+E 295 mu_massBal
+B 311 Range Statistics    SOLVE cournot Using MCP From line 149
+B 322 Model Statistics    SOLVE cournot Using MCP From line 149
+B 336 Solution Report     SOLVE cournot Using MCP From line 149
+F 383 price_EQ
+F 390 maxSupplier_q_sell
+F 399 maxSupplier_q_prod
+F 406 con_supplier_transCap
+F 415 con_supplier_massBal
+F 422 con_supplier_prodCap
+G 429 quantities_sold
+G 438 quantities_prod
+G 445 mu_transCap
+G 454 mu_prodCap
+G 461 price
+G 468 mu_massBal
