@@ -85,7 +85,7 @@ for $q_{sell}:$\\
 \quad =\\
 \quad$C_{trans}(region)$\\
 \quad$-q_{sell}(region)*(Slope(region))$\\
-\quad$- IntersectionPoint(region) - Slope * \sum_{supplier} q_{sell}(region))$\\
+\quad$- (IntersectionPoint(region) + Slope * \sum_{supplier} q_{sell}(region)))$\\
 \quad$+\mu_{TransCap}$\\
 \quad$+\mu_{massBal}$\\
 for $q_{prod}:$\\

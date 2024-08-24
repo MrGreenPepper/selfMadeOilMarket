@@ -14,10 +14,10 @@ alias(region,regionB)
 
 Parameter 
 *baseUtility(region)                     /r1  60, r2  60, r3 0/
-MaxConsumption(region)                  /r1  100, r2  100/
+MaxConsumption(region)                  /r1  1000, r2  1000/
                
-ProductionCosts(supplier)               /r1  8, r2  10/
-ProductionCap(supplier)                 /r1  10, r2  0/
+ProductionCosts(supplier)               /r1  10, r2  10/
+ProductionCap(supplier)                 /r1  100, r2  100/
 SlopeDemand(region)                     /r1 -1, r2 -1/        
 ;
 

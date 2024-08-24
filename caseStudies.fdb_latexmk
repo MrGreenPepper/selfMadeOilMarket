@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1720393770.67836 "c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme2.tex" "readme2.pdf" "readme2" 1720393771.17655 0
+["pdflatex"] 1721080850.03865 "c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/caseStudies.tex" "caseStudies.pdf" "caseStudies" 1721080850.55898 0
   "C:/Users/sebas/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1718535462 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/sebas/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1718451988 24141949 3ca06adc220a135faba75c2ddf4c33e8 ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx10.tfm" 1136765053 1328 c834bbb027764024c09d3d2bf908b5f0 ""
@@ -18,13 +18,11 @@
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1247596667 30251 6afa5cb1d0204815a708a080681d4674 ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
-  "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1247596667 37912 07513ec114ac737ab54cea0152f4424b ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1247596667 36281 c355509802a035cadc5f15869451dcee ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
-  "C:/Users/sebas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/tex/latex/00miktex/epstopdf-sys.cfg" 1616067285 584 2a1075dd71571459f59146da9f7502ad ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/tex/latex/base/article.cls" 1687174146 20144 fbcf51733730d8f1a62143512ff5b1fe ""
@@ -41,11 +39,11 @@
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/tex/latex/ragged2e/ragged2e.sty" 1687525147 10085 3dececaeed388e31285c366e124c0c4e ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "C:/Users/sebas/AppData/Local/Programs/MiKTeX/tex/latex/tabto-ltx/tabto.sty" 1551419894 7571 bbe73377bcd3b71daa9dc07c784655b3 ""
-  "c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/readme2.tex" 1720393770 3084 9d1b5fc5b6511c4718ad4646f29cb4d1 ""
-  "readme2.aux" 1720393771 133 ea6c1b2a2eecdbc0f944b6e9a68543e8 "pdflatex"
-  "readme2.tex" 1720393770 3084 9d1b5fc5b6511c4718ad4646f29cb4d1 ""
+  "c:/Users/sebas/Documents/CloudDrive/Uni/SS24/ResEco/gamsFiles/ownFiles/caseStudies.tex" 1721080848 1360 c68b4227b43eb41bae409aa268036b00 ""
+  "caseStudies.aux" 1721080850 139 1c1494986c00394286c686cd1f4ce6bd "pdflatex"
+  "caseStudies.tex" 1721080848 1360 c68b4227b43eb41bae409aa268036b00 ""
   (generated)
-  "readme2.aux"
-  "readme2.log"
-  "readme2.pdf"
+  "caseStudies.aux"
+  "caseStudies.log"
+  "caseStudies.pdf"
   (rewritten before read)

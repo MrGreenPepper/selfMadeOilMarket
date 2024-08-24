@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{setspace}
+\usepackage{tabto}
+\usepackage[document]{ragged2e}
+\setstretch{1.5}
+\title{CaseStudies}
+\author{Sebastian Trümper}
+\date{June 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{stochastic formulas}
+\textbf{stochastic total costs}\\
+$totalCosts = \big(\sum_{scenarios, t, plants, countries} scenarioProbability $\\
+\quad\quad\quad\quad\quad\quad $* powerGenerationCosts_{scenario, t, country}(plant)\big)$\\
+\quad\quad\quad\quad\quad\quad$ + investmentCosts$\\
+
+
+\textbf{stochastic demand}\\
+$totalPowerGeneration = powerDemand(country)*scenarioFactor  $\\
+\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$+ export $\\
+\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$ + storageloading$\\
+
+$ = totalPowerGeneration$\\
+
+
+\textbf{stage 2 implementation}\\
+$powerGeneration(plant,country) \leq \big(plantsCapacities(plant, country) $\\
+\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$+ buildCapacities(plant, country)$\\
+\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$+ StageOneInvestmentsDecision(plant, country)\big)$\\
+\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$* PlantsAvailability(plant)$\\
+\end{document}
+
+\end{document}
