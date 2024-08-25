@@ -1,34 +1,135 @@
 B 3 C o m p i l a t i o n
-B 138 Include File Summary
-B 150 Equation Listing    SOLVE cournot Using MCP From line 133
-D 153 price_EQ
-D 160 maxSupplier_q_sell
-D 171 maxSupplier_q_prod
-D 178 con_supplier_transCap
-D 189 con_supplier_massBal
-D 196 con_supplier_prodCap
-B 204 Column Listing      SOLVE cournot Using MCP From line 133
-E 207 quantities_sold
-E 229 quantities_prod
-E 242 mu_transCap
-E 258 mu_prodCap
-E 269 price
-E 284 mu_massBal
-B 300 Range Statistics    SOLVE cournot Using MCP From line 133
-B 311 Model Statistics    SOLVE cournot Using MCP From line 133
-B 325 Solution Report     SOLVE cournot Using MCP From line 133
-F 372 price_EQ
-F 379 maxSupplier_q_sell
-F 388 maxSupplier_q_prod
-F 395 con_supplier_transCap
-F 404 con_supplier_massBal
-F 411 con_supplier_prodCap
-G 418 quantities_sold
-G 427 quantities_prod
-G 434 mu_transCap
-G 443 mu_prodCap
-G 450 price
-G 457 mu_massBal
-B 472 E x e c u t i o n
-I 472 price
-I 478 quantities_sold
+B 215 Include File Summary
+B 227 Equation Listing    SOLVE cournot Using MCP From line 161
+D 230 price_EQ
+D 237 maxSupplier_q_sell
+D 248 maxSupplier_q_prod
+D 255 con_supplier_transCap
+D 266 con_supplier_massBal
+D 273 con_supplier_prodCap
+D 280 profit_EQ
+D 287 total_profit_EQ
+D 292 wellfareDemand_EQ
+D 299 totalwellfare_EQ
+B 305 Column Listing      SOLVE cournot Using MCP From line 161
+E 308 quantities_sold
+E 336 quantities_prod
+E 351 mu_transCap
+E 367 mu_prodCap
+E 378 price
+E 399 mu_massBal
+E 414 profit
+E 429 total_profit
+E 436 wellfare
+E 449 totalWellfare
+B 457 Range Statistics    SOLVE cournot Using MCP From line 161
+B 468 Model Statistics    SOLVE cournot Using MCP From line 161
+B 482 Solution Report     SOLVE cournot Using MCP From line 161
+F 529 price_EQ
+F 536 maxSupplier_q_sell
+F 545 maxSupplier_q_prod
+F 552 con_supplier_transCap
+F 561 con_supplier_massBal
+F 568 con_supplier_prodCap
+F 575 profit_EQ
+F 584 total_profit_EQ
+F 586 wellfareDemand_EQ
+F 595 totalwellfare_EQ
+G 597 quantities_sold
+G 606 quantities_prod
+G 613 mu_transCap
+G 622 mu_prodCap
+G 629 price
+G 636 mu_massBal
+G 643 profit
+G 652 total_profit
+G 654 wellfare
+G 663 totalWellfare
+B 673 E x e c u t i o n
+I 673 price
+I 679 quantities_sold
+I 687 profit
+I 693 total_profit
+I 694 wellfare
+B 702 Equation Listing    SOLVE maxProducer Using NLP From line 185
+D 705 price_EQ
+D 712 profit_EQ
+D 719 total_profit_EQ
+D 724 wellfareDemand_EQ
+D 731 totalwellfare_EQ
+D 736 con_supplier_transCap
+D 747 con_supplier_massBal
+D 754 con_supplier_prodCap
+B 762 Column Listing      SOLVE maxProducer Using NLP From line 185
+E 765 quantities_sold
+E 793 quantities_prod
+E 808 price
+E 825 profit
+E 840 total_profit
+E 847 wellfare
+E 860 totalWellfare
+B 868 Range Statistics    SOLVE maxProducer Using NLP From line 185
+B 879 Model Statistics    SOLVE maxProducer Using NLP From line 185
+B 893 Solution Report     SOLVE maxProducer Using NLP From line 185
+F 940 price_EQ
+F 947 profit_EQ
+F 956 total_profit_EQ
+F 958 wellfareDemand_EQ
+F 967 totalwellfare_EQ
+F 969 con_supplier_transCap
+F 978 con_supplier_massBal
+F 985 con_supplier_prodCap
+G 992 quantities_sold
+G 1001 quantities_prod
+G 1008 price
+G 1015 profit
+G 1024 total_profit
+G 1026 wellfare
+G 1035 totalWellfare
+B 1044 E x e c u t i o n
+I 1044 price
+I 1050 quantities_sold
+I 1058 profit
+I 1064 total_profit
+I 1065 wellfare
+B 1073 Equation Listing    SOLVE maxWellfare Using NLP From line 209
+D 1076 price_EQ
+D 1083 profit_EQ
+D 1090 total_profit_EQ
+D 1095 wellfareDemand_EQ
+D 1102 totalwellfare_EQ
+D 1107 con_supplier_transCap
+D 1118 con_supplier_massBal
+D 1125 con_supplier_prodCap
+B 1133 Column Listing      SOLVE maxWellfare Using NLP From line 209
+E 1136 quantities_sold
+E 1164 quantities_prod
+E 1179 price
+E 1196 profit
+E 1211 total_profit
+E 1218 wellfare
+E 1231 totalWellfare
+B 1239 Range Statistics    SOLVE maxWellfare Using NLP From line 209
+B 1250 Model Statistics    SOLVE maxWellfare Using NLP From line 209
+B 1264 Solution Report     SOLVE maxWellfare Using NLP From line 209
+F 1312 price_EQ
+F 1319 profit_EQ
+F 1328 total_profit_EQ
+F 1330 wellfareDemand_EQ
+F 1339 totalwellfare_EQ
+F 1341 con_supplier_transCap
+F 1350 con_supplier_massBal
+F 1357 con_supplier_prodCap
+G 1364 quantities_sold
+G 1373 quantities_prod
+G 1380 price
+G 1387 profit
+G 1396 total_profit
+G 1398 wellfare
+G 1407 totalWellfare
+B 1416 E x e c u t i o n
+I 1416 price
+I 1422 quantities_sold
+I 1430 profit
+I 1436 total_profit
+I 1437 wellfare
