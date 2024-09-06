@@ -60,7 +60,7 @@ totalwellfare_EQ
 * profit = -price
 *(MaxConsumption(region) + SlopeDemand(region) * sum(regionB, quantities_sold(regionB, region)))
 
-maxSupplier_q_sell(supplier, region)..          (TransportationCosts(supplier, region) - price(region))
+maxSupplier_q_sell(supplier, region)..          (-2*SlopeDemand(region)*sum(consumer, quantities_sold(consumer, region))-MaxConsumption(region)+TransportationCosts(supplier, region))
                                                 + mu_transCap(supplier, region)
                                                 + mu_massBal(supplier) =e= 0;
                                                

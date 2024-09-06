@@ -1,5 +1,5 @@
 
---- Job selfMadeOilMarket.gms Start 08/25/24 20:54:32 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
+--- Job selfMadeOilMarket.gms Start 09/05/24 15:56:12 46.2.0 ac4adda6 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\46\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -23,14 +23,14 @@ GAMS 46.2.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
 --- Starting compilation
 --- selfMadeOilMarket.gms(1) 2 Mb
 --- . testData.gms(38) 3 Mb
---- selfMadeOilMarket.gms(176) 3 Mb
+--- selfMadeOilMarket.gms(173) 3 Mb
 --- Starting execution: elapsed 0:00:00.006
 --- Generating MCP model cournot
 --- selfMadeOilMarket.gms(161) 6 Mb
----   22 rows  22 columns  62 non-zeroes
+---   22 rows  22 columns  66 non-zeroes
 ---   38 nl-code  14 nl-non-zeroes
 --- Range statistics (absolute non-zero finite values)
---- RHS       [min, max] : [ 1.000E+00, 5.000E+04] - Zero values observed as well
+--- RHS       [min, max] : [ 1.000E+01, 5.000E+04] - Zero values observed as well
 --- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
 --- Matrix    [min, max] : [ 1.000E+00, 5.000E+01] - Zero values observed as well
 --- selfMadeOilMarket.gms(161) 4 Mb
@@ -41,86 +41,87 @@ Evaluating functions...
 Checking model...
 Calculating Jacobian...
 
-22 row/cols, 62 non-zeros, 12.81% dense.
+22 row/cols, 66 non-zeros, 13.64% dense.
 
 Path 5.0.07 (Tue Mar  5 04:38:27 2024)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 Zero:     0 Single:     6 Double:     0
 MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
-Preprocessed size   : 10
+MCPC: Zer:    0 One:    2 Two:    0 Thr:    0
+Preprocessed size   : 8
 
 INITIAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  0.0000e+00 var: (price(r1))
-Maximum of F. . . . . . . . . .  1.0000e+02 eqn: (price_EQ(r1))
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(r1))
-                                            var: (price(r1))
+Maximum of X. . . . . . . . . .  0.0000e+00 var: (quantities_sold(r1,r1))
+Maximum of F. . . . . . . . . .  1.0000e+02 eqn: (maxSupplier_q_sell(r1,r1))
+Maximum of Grad F . . . . . . .  2.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
+                                            var: (quantities_sold(r1,r1))
 
 INITIAL JACOBIAN NORM STATISTICS
-Maximum Row Norm. . . . . . . .  3.0000e+00 eqn: (price_EQ(r1))
+Maximum Row Norm. . . . . . . .  5.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
 Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (maxSupplier_q_prod(r1))
-Maximum Column Norm . . . . . .  3.0000e+00 var: (price(r1))
+Maximum Column Norm . . . . . .  5.0000e+00 var: (quantities_sold(r1,r1))
 Minimum Column Norm . . . . . .  1.0000e+00 var: (quantities_prod(r1))
 
 Crash Log
 major  func  diff  size  residual    step       prox   (label)
-    0     0             2.8284e+02             0.0e+00 (price_EQ(r1))
-    1     1     6     4 2.0565e+02  1.0e+00    2.8e+00 (price_EQ(r1))
-    2     2     6     8 1.1500e+02  1.0e+00    2.1e+00 (maxSupplier_q_sell(r1,r)
-    3     3     2    10 6.4409e+01  1.0e+00    1.2e+00 (con_supplier_massBal(r1)
-pn_search terminated: no basis change.
+    0     0             3.9586e+02             0.0e+00 (maxSupplier_q_sell(r1,r)
+pn_search terminated: no progress.
 
 Major Iteration Log
 major minor  func  grad  residual    step  type prox    inorm  (label)
-    0     0     4     4 6.4409e+01           I 6.4e-01 3.7e+01 (con_supplier_ma)
-    1     1     5     5 2.7793e+01  1.0e+00 SO 2.6e-01 2.4e+01 (maxSupplier_q_p)
-    2     2     6     6 8.0297e+00  1.0e+00 SO 1.0e-01 5.5e+00 (maxSupplier_q_p)
-    3     1     7     7 7.1470e-01  1.0e+00 SO 4.1e-02 3.2e-01 (con_supplier_ma)
-    4     1     8     8 1.5629e-02  1.0e+00 SO 1.6e-02 8.8e-03 (price_EQ(r2))
-    5     1     9     9 6.1461e-05  1.0e+00 SO 1.6e-03 4.9e-05 (maxSupplier_q_p)
-    6     1    10    10 1.2080e-09  1.0e+00 SO 6.1e-06 6.8e-10 (maxSupplier_q_p)
+    0     0    13     1 3.9586e+02           I 4.0e+00 2.0e+02 (maxSupplier_q_s)
+    1     8    24     2 6.7675e+02  1.5e-03 SB 1.6e+00 5.1e+02 (maxSupplier_q_s)
+    2     6    33     3 1.5074e+03  2.3e-02 SB 6.3e-01 8.5e+02 (maxSupplier_q_p)
+    3    44    34     4 1.7906e+02  1.0e+00 IO 2.5e-01 1.6e+02 (maxSupplier_q_p)
+    4     5    35     5 1.7089e+02  1.0e+00 SO 1.0e-01 1.2e+02 (con_supplier_ma)
+    5     2    36     6 1.1804e+01  1.0e+00 SO 4.1e-02 8.9e+00 (con_supplier_ma)
+    6     1    37     7 3.7645e-01  1.0e+00 SO 1.6e-02 2.3e-01 (con_supplier_ma)
+    7     1    38     8 3.7699e-03  1.0e+00 SO 6.5e-03 2.6e-03 (con_supplier_ma)
+    8     1    39     9 1.7911e-06  1.0e+00 SO 3.8e-04 1.3e-06 (con_supplier_ma)
+    9     1    40    10 3.8857e-13  1.0e+00 SO 1.8e-07 2.3e-13 (con_supplier_ma)
 
 FINAL STATISTICS
-Inf-Norm of Complementarity . .  1.1501e-07 eqn: (maxSupplier_q_prod(r2))
-Inf-Norm of Normal Map. . . . .  6.8054e-10 eqn: (maxSupplier_q_prod(r2))
-Inf-Norm of Minimum Map . . . .  6.8053e-10 eqn: (maxSupplier_q_prod(r2))
-Inf-Norm of Fischer Function. .  6.8054e-10 eqn: (maxSupplier_q_prod(r2))
-Inf-Norm of Grad Fischer Fcn. .  8.9917e-10 eqn: (price_EQ(r1))
-Two-Norm of Grad Fischer Fcn. .  1.3511e-09
+Inf-Norm of Complementarity . .  1.1477e-10 eqn: (maxSupplier_q_sell(r2,r2))
+Inf-Norm of Normal Map. . . . .  2.2737e-13 eqn: (maxSupplier_q_sell(r2,r2))
+Inf-Norm of Minimum Map . . . .  2.2737e-13 eqn: (maxSupplier_q_sell(r2,r2))
+Inf-Norm of Fischer Function. .  2.2737e-13 eqn: (con_supplier_massBal(r2))
+Inf-Norm of Grad Fischer Fcn. .  6.8212e-13 eqn: (maxSupplier_q_sell(r2,r2))
+Two-Norm of Grad Fischer Fcn. .  1.3633e-12
 
 FINAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  1.6900e+02 var: (quantities_prod(r2))
-Maximum of F. . . . . . . . . .  2.0000e+00 eqn: (maxSupplier_q_sell(r1,r2))
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(r1))
-                                            var: (price(r1))
+Maximum of X. . . . . . . . . .  1.1105e+03 var: (mu_massBal(r1))
+Maximum of F. . . . . . . . . .  1.1005e+03 eqn: (maxSupplier_q_prod(r1))
+Maximum of Grad F . . . . . . .  2.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
+                                            var: (quantities_sold(r1,r1))
 
  ** EXIT - solution found.
 
-Major Iterations. . . . 6
-Minor Iterations. . . . 7
+Major Iterations. . . . 9
+Minor Iterations. . . . 69
 Restarts. . . . . . . . 0
-Crash Iterations. . . . 3
+Crash Iterations. . . . 0
 Gradient Steps. . . . . 0
-Function Evaluations. . 10
+Function Evaluations. . 40
 Gradient Evaluations. . 10
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.032000
-Residual. . . . . . . . 1.207977e-09
-Postsolved residual: 1.2080e-09
+Total Time. . . . . . . 0.078000
+Residual. . . . . . . . 3.885677e-13
+Postsolved residual: 3.6587e-12
 
 --- Reading solution for model cournot
---- Executing after solve: elapsed 0:00:00.080
+--- Executing after solve: elapsed 0:00:00.126
 --- selfMadeOilMarket.gms(162) 4 Mb
 --- Generating NLP model maxProducer
---- selfMadeOilMarket.gms(188) 6 Mb
+--- selfMadeOilMarket.gms(185) 6 Mb
 ---   16 rows  14 columns  46 non-zeroes
 ---   38 nl-code  14 nl-non-zeroes
 --- Range statistics (absolute non-zero finite values)
 --- RHS       [min, max] : [ 1.000E+01, 5.000E+04] - Zero values observed as well
 --- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
---- Matrix    [min, max] : [ 1.000E+00, 9.000E+01] - Zero values observed as well
---- selfMadeOilMarket.gms(188) 4 Mb
---- Executing CONOPT (Solvelink=2): elapsed 0:00:00.083
+--- Matrix    [min, max] : [ 1.000E+00, 5.047E+02] - Zero values observed as well
+--- selfMadeOilMarket.gms(185) 4 Mb
+--- Executing CONOPT (Solvelink=2): elapsed 0:00:00.129
 
 CONOPT 4         46.2.0 ac4adda6 Mar 5, 2024           WEI x86 64bit/MS Window
 
@@ -140,7 +141,7 @@ CONOPT 4         46.2.0 ac4adda6 Mar 5, 2024           WEI x86 64bit/MS Window
     4 elements below the diagonal, and 6 nonlinear variables.
  
     Iter Phase   Ninf   Infeasibility   RGmax      NSB   Step  InItr MX OK
-       0   0          1.6770513867E-09 (Input point)
+       0   0          8.1000000000E+02 (Input point)
  
     The pre-triangular part of the model has 6 constraints and 0 variables.
     The post-triangular part of the model has 7 constraints and variables.
@@ -149,30 +150,31 @@ CONOPT 4         46.2.0 ac4adda6 Mar 5, 2024           WEI x86 64bit/MS Window
     with 9 Jacobian elements, 0 of which are nonlinear.
  
     Iter Phase   Ninf   Infeasibility   RGmax      NSB   Step  InItr MX OK
-                      1.3782255337E-09 (Full preprocessed model)
-                      2.1534773964E-11 (After scaling)
+                      1.0000000000E+01 (Full preprocessed model)
+                      1.5625000000E-01 (After scaling)
+                      1.8512968936E-14 (After adjusting individual variables)
  
- ** Feasible solution. Value of objective =    9.99999981506
+ ** Feasible solution. Value of objective =   -2090.00000000
  
     Iter Phase   Ninf     Objective     RGmax      NSB   Step  InItr MX OK
-       1   3          4.0152500000E+03 5.7E+03       2 5.6E-01     1 F  T
-       2   4          4.0152500000E+03 1.1E-08       2
+       1   3          4.0096012500E+03 7.0E+02       5 5.5E-01     1 F  T
+       3   4          4.0152500000E+03 0.0E+00       2
  
  ** Optimal solution. Reduced gradient less than tolerance.
  
 --- Reading solution for model maxProducer
---- Executing after solve: elapsed 0:00:00.109
---- selfMadeOilMarket.gms(189) 4 Mb
+--- Executing after solve: elapsed 0:00:00.158
+--- selfMadeOilMarket.gms(186) 4 Mb
 --- Generating NLP model maxWellfare
---- selfMadeOilMarket.gms(212) 6 Mb
+--- selfMadeOilMarket.gms(209) 6 Mb
 ---   16 rows  14 columns  46 non-zeroes
 ---   38 nl-code  14 nl-non-zeroes
 --- Range statistics (absolute non-zero finite values)
 --- RHS       [min, max] : [ 1.000E+01, 5.000E+04] - Zero values observed as well
 --- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
 --- Matrix    [min, max] : [ 1.000E+00, 5.550E+01] - Zero values observed as well
---- selfMadeOilMarket.gms(212) 4 Mb
---- Executing CONOPT (Solvelink=2): elapsed 0:00:00.112
+--- selfMadeOilMarket.gms(209) 4 Mb
+--- Executing CONOPT (Solvelink=2): elapsed 0:00:00.161
 
 CONOPT 4         46.2.0 ac4adda6 Mar 5, 2024           WEI x86 64bit/MS Window
 
@@ -192,7 +194,7 @@ CONOPT 4         46.2.0 ac4adda6 Mar 5, 2024           WEI x86 64bit/MS Window
     4 elements below the diagonal, and 6 nonlinear variables.
  
     Iter Phase   Ninf   Infeasibility   RGmax      NSB   Step  InItr MX OK
-       0   0          1.3792558207E-09 (Input point)
+       0   0          0.0000000000E+00 (Input point)
  
     The pre-triangular part of the model has 6 constraints and 0 variables.
     The post-triangular part of the model has 7 constraints and variables.
@@ -201,19 +203,19 @@ CONOPT 4         46.2.0 ac4adda6 Mar 5, 2024           WEI x86 64bit/MS Window
     with 9 Jacobian elements, 0 of which are nonlinear.
  
     Iter Phase   Ninf   Infeasibility   RGmax      NSB   Step  InItr MX OK
-                      1.3782255337E-09 (Full preprocessed model)
-                      2.1534773964E-11 (After scaling)
+                      0.0000000000E+00 (Full preprocessed model)
+                      0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    6017.87499994
+ ** Feasible solution. Value of objective =    6017.87500000
  
     Iter Phase   Ninf     Objective     RGmax      NSB   Step  InItr MX OK
-       1   3          8.0034124090E+03 1.4E+03       2 8.7E-01     1 F  T
-       5   4          8.0205000000E+03 2.9E-08       2
+       1   3          8.0202952582E+03 1.4E+03       2 8.1E-01     1 F  T
+       3   4          8.0205000000E+03 0.0E+00       2
  
  ** Optimal solution. Reduced gradient less than tolerance.
  
 --- Reading solution for model maxWellfare
---- Executing after solve: elapsed 0:00:00.136
---- selfMadeOilMarket.gms(213) 4 Mb
+--- Executing after solve: elapsed 0:00:00.190
+--- selfMadeOilMarket.gms(210) 4 Mb
 *** Status: Normal completion
---- Job selfMadeOilMarket.gms Stop 08/25/24 20:54:33 elapsed 0:00:00.136
+--- Job selfMadeOilMarket.gms Stop 09/05/24 15:56:12 elapsed 0:00:00.190

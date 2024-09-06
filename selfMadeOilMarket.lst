@@ -1,4 +1,4 @@
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 1
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -101,7 +101,7 @@ INCLUDE    C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFile
   98  * profit = -price
   99  *(MaxConsumption(region) + SlopeDemand(region) * sum(regionB, quantities_sold(regionB, region)))
  100   
- 101  maxSupplier_q_sell(supplier, region)..          (TransportationCosts(supplier, region) - price(region))
+ 101  maxSupplier_q_sell(supplier, region)..          (-2*SlopeDemand(region)*sum(consumer, quantities_sold(consumer, region))-MaxConsumption(region)+TransportationCosts(supplier, region))
  102                                                  + mu_transCap(supplier, region)
  103                                                  + mu_massBal(supplier) =e= 0;
  104   
@@ -187,7 +187,7 @@ INCLUDE    C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFile
  186  display price.l, quantities_sold.l,profit.l, total_profit.l, wellfare.l;
  187   
  188   
- 189  *maximize whole wellfare
+ 189  *maximize overall wellfare
  190  model maxWellfare /
  191   
  192  price_EQ,
@@ -210,7 +210,7 @@ INCLUDE    C:\Users\sebas\Documents\CloudDrive\Uni\SS24\ResEco\gamsFiles\ownFile
  209  Solve maxWellfare using nlp maximizing totalWellfare;
  210  display price.l, quantities_sold.l,profit.l, total_profit.l, wellfare.l;
  211   
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 2
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
@@ -222,7 +222,7 @@ Include File Summary
 
 
 COMPILATION TIME     =        0.000 SECONDS      3 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 3
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE cournot Using MCP From line 161
 
@@ -236,11 +236,11 @@ price_EQ(r2)..  quantities_sold(r1,r2) + quantities_sold(r2,r2) + price(r2) =E= 
 
 ---- maxSupplier_q_sell  =E=  
 
-maxSupplier_q_sell(r1,r1)..  mu_transCap(r1,r1) - price(r1) + mu_massBal(r1) =E= 0 ; (LHS = 0)
+maxSupplier_q_sell(r1,r1)..  2*quantities_sold(r1,r1) + 2*quantities_sold(r2,r1) + mu_transCap(r1,r1) + mu_massBal(r1) =E= 100 ; (LHS = 0, INFES = 100 ****)
      
-maxSupplier_q_sell(r1,r2)..  mu_transCap(r1,r2) - price(r2) + mu_massBal(r1) =E= -1 ; (LHS = 0, INFES = 1 ****)
+maxSupplier_q_sell(r1,r2)..  2*quantities_sold(r1,r2) + 2*quantities_sold(r2,r2) + mu_transCap(r1,r2) + mu_massBal(r1) =E= 99 ; (LHS = 0, INFES = 99 ****)
      
-maxSupplier_q_sell(r2,r1)..  mu_transCap(r2,r1) - price(r1) + mu_massBal(r2) =E= -1 ; (LHS = 0, INFES = 1 ****)
+maxSupplier_q_sell(r2,r1)..  2*quantities_sold(r1,r1) + 2*quantities_sold(r2,r1) + mu_transCap(r2,r1) + mu_massBal(r2) =E= 99 ; (LHS = 0, INFES = 99 ****)
      
 REMAINING ENTRY SKIPPED
 
@@ -300,7 +300,7 @@ wellfareDemand_EQ(r2)..  - (50)*quantities_sold(r1,r2) - (50)*quantities_sold(r2
 
 totalwellfare_EQ..  - profit(r1) - profit(r2) - wellfare(r1) - wellfare(r2) + totalWellfare =E= 0 ; (LHS = 0)
      
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 4
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE cournot Using MCP From line 161
 
@@ -310,6 +310,8 @@ Column Listing      SOLVE cournot Using MCP From line 161
 quantities_sold(r1,r1)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
         1       price_EQ(r1)
+        2       maxSupplier_q_sell(r1,r1)
+        2       maxSupplier_q_sell(r2,r1)
        -1       con_supplier_transCap(r1,r1)
        -1       con_supplier_massBal(r1)
        (0)      profit_EQ(r1)
@@ -318,6 +320,8 @@ quantities_sold(r1,r1)
 quantities_sold(r1,r2)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
         1       price_EQ(r2)
+        2       maxSupplier_q_sell(r1,r2)
+        2       maxSupplier_q_sell(r2,r2)
        -1       con_supplier_transCap(r1,r2)
        -1       con_supplier_massBal(r1)
        (1)      profit_EQ(r1)
@@ -326,6 +330,8 @@ quantities_sold(r1,r2)
 quantities_sold(r2,r1)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
         1       price_EQ(r1)
+        2       maxSupplier_q_sell(r1,r1)
+        2       maxSupplier_q_sell(r2,r1)
        -1       con_supplier_transCap(r2,r1)
        -1       con_supplier_massBal(r2)
        (1)      profit_EQ(r2)
@@ -380,8 +386,6 @@ mu_prodCap(r2)
 price(r1)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
         1       price_EQ(r1)
-       -1       maxSupplier_q_sell(r1,r1)
-       -1       maxSupplier_q_sell(r2,r1)
        (0)      profit_EQ(r1)
        (0)      profit_EQ(r2)
        (0)      wellfareDemand_EQ(r1)
@@ -389,8 +393,6 @@ price(r1)
 price(r2)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
         1       price_EQ(r2)
-       -1       maxSupplier_q_sell(r1,r2)
-       -1       maxSupplier_q_sell(r2,r2)
        (0)      profit_EQ(r1)
        (0)      profit_EQ(r2)
        (0)      wellfareDemand_EQ(r2)
@@ -452,18 +454,18 @@ totalWellfare
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       totalwellfare_EQ
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 5
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Range Statistics    SOLVE cournot Using MCP From line 161
 
 
 RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
 
-RHS       [min, max] : [ 1.000E+00, 5.000E+04] - Zero values observed as well
+RHS       [min, max] : [ 1.000E+01, 5.000E+04] - Zero values observed as well
 Bound     [min, max] : [        NA,        NA] - Zero values observed as well
 Matrix    [min, max] : [ 1.000E+00, 5.000E+01] - Zero values observed as well
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 6
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE cournot Using MCP From line 161
 
@@ -472,12 +474,12 @@ MODEL STATISTICS
 
 BLOCKS OF EQUATIONS          10     SINGLE EQUATIONS           22
 BLOCKS OF VARIABLES          10     SINGLE VARIABLES           22
-NON ZERO ELEMENTS            62     NON LINEAR N-Z             14
+NON ZERO ELEMENTS            66     NON LINEAR N-Z             14
 CODE LENGTH                  38     CONSTANT POOL              19
 
 
 GENERATION TIME      =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 7
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE cournot Using MCP From line 161
 
@@ -491,63 +493,63 @@ Solution Report     SOLVE cournot Using MCP From line 161
 **** SOLVER STATUS     1 Normal Completion
 **** MODEL STATUS      1 Optimal
 
- RESOURCE USAGE, LIMIT          0.047 10000000000.000
- ITERATION COUNT, LIMIT         7    2147483647
+ RESOURCE USAGE, LIMIT          0.032 10000000000.000
+ ITERATION COUNT, LIMIT         5    2147483647
  EVALUATION ERRORS              0             0
-22 row/cols, 62 non-zeros, 12.81% dense.
+22 row/cols, 66 non-zeros, 13.64% dense.
 
 Path 5.0.07 (Tue Mar  5 04:38:27 2024)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  0.0000e+00 var: (price(r1))
-Maximum of F. . . . . . . . . .  1.0000e+02 eqn: (price_EQ(r1))
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(r1))
-                                            var: (price(r1))
+Maximum of X. . . . . . . . . .  0.0000e+00 var: (quantities_sold(r1,r1))
+Maximum of F. . . . . . . . . .  1.0000e+02 eqn: (maxSupplier_q_sell(r1,r1))
+Maximum of Grad F . . . . . . .  2.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
+                                            var: (quantities_sold(r1,r1))
 
 INITIAL JACOBIAN NORM STATISTICS
-Maximum Row Norm. . . . . . . .  3.0000e+00 eqn: (price_EQ(r1))
+Maximum Row Norm. . . . . . . .  5.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
 Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (maxSupplier_q_prod(r1))
-Maximum Column Norm . . . . . .  3.0000e+00 var: (price(r1))
+Maximum Column Norm . . . . . .  5.0000e+00 var: (quantities_sold(r1,r1))
 Minimum Column Norm . . . . . .  1.0000e+00 var: (quantities_prod(r1))
 
 FINAL STATISTICS
-Inf-Norm of Complementarity . .  1.1501e-07 eqn: (maxSupplier_q_prod(r2))
-Inf-Norm of Normal Map. . . . .  6.8054e-10 eqn: (maxSupplier_q_prod(r2))
-Inf-Norm of Minimum Map . . . .  6.8053e-10 eqn: (maxSupplier_q_prod(r2))
-Inf-Norm of Fischer Function. .  6.8054e-10 eqn: (maxSupplier_q_prod(r2))
-Inf-Norm of Grad Fischer Fcn. .  8.9917e-10 eqn: (price_EQ(r1))
-Two-Norm of Grad Fischer Fcn. .  1.3511e-09
+Inf-Norm of Complementarity . .  4.2352e-07 eqn: (maxSupplier_q_prod(r2))
+Inf-Norm of Normal Map. . . . .  3.2075e-08 eqn: (con_supplier_massBal(r1))
+Inf-Norm of Minimum Map . . . .  3.2075e-08 eqn: (con_supplier_massBal(r1))
+Inf-Norm of Fischer Function. .  3.2075e-08 eqn: (con_supplier_massBal(r1))
+Inf-Norm of Grad Fischer Fcn. .  5.6401e-08 eqn: (maxSupplier_q_sell(r1,r1))
+Two-Norm of Grad Fischer Fcn. .  9.3793e-08
 
 FINAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  1.6900e+02 var: (quantities_prod(r2))
+Maximum of X. . . . . . . . . .  7.9500e+01 var: (quantities_prod(r2))
 Maximum of F. . . . . . . . . .  2.0000e+00 eqn: (maxSupplier_q_sell(r1,r2))
-Maximum of Grad F . . . . . . .  1.0000e+00 eqn: (price_EQ(r1))
-                                            var: (price(r1))
+Maximum of Grad F . . . . . . .  2.0000e+00 eqn: (maxSupplier_q_sell(r1,r1))
+                                            var: (quantities_sold(r1,r1))
 
 
 ---- EQU price_EQ  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1       100.0000       100.0000       100.0000        11.0000      
-r2       100.0000       100.0000       100.0000        10.0000      
+r1       100.0000       100.0000       100.0000        55.5000      
+r2       100.0000       100.0000       100.0000        55.0000      
 
 ---- EQU maxSupplier_q_sell  
 
              LOWER          LEVEL          UPPER         MARGINAL
 
-r1.r1          .       1.017728E-10          .            10.0000      
-r1.r2        -1.0000         1.0000        -1.0000          .     REDEF
-r2.r1        -1.0000        -1.0000        -1.0000        79.0000      
-r2.r2          .       3.831744E-10          .            90.0000      
+r1.r1       100.0000       100.0000       100.0000        10.0000      
+r1.r2        99.0000       101.0000        99.0000          .     REDEF
+r2.r1        99.0000        99.0000        99.0000        34.5000      
+r2.r2       100.0000       100.0000       100.0000        45.0000      
 
 ---- EQU maxSupplier_q_prod  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
 r1       -10.0000       -10.0000       -10.0000        10.0000      
-r2       -10.0000       -10.0000       -10.0000       169.0000      
+r2       -10.0000       -10.0000       -10.0000        79.5000      
 
 ---- EQU con_supplier_transCap  
 
@@ -555,60 +557,60 @@ r2       -10.0000       -10.0000       -10.0000       169.0000
 
 r1.r1    -50000.0000       -10.0000        +INF             .          
 r1.r2     -5000.0000          .            +INF             .          
-r2.r1     -5000.0000       -79.0000        +INF             .          
-r2.r2    -50000.0000       -90.0000        +INF             .          
+r2.r1     -5000.0000       -34.5000        +INF             .          
+r2.r2    -50000.0000       -45.0000        +INF             .          
 
 ---- EQU con_supplier_massBal  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1          .       -5.30953E-10          .            11.0000      
-r2          .       -2.98513E-10          .            10.0000      
+r1          .       -3.207459E-8          .            11.0000      
+r2          .       -1.424118E-8          .            10.0000      
 
 ---- EQU con_supplier_prodCap  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
 r1       -10.0000       -10.0000        +INF            1.0000      
-r2     -1000.0000      -169.0000        +INF             .          
+r2     -1000.0000       -79.5000        +INF             .          
 
 ---- EQU profit_EQ  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1          .              .              .            10.0000      
-r2          .              .              .       -1.719300E-7      
+r1          .              .              .           455.0000      
+r2          .              .              .          3560.2500      
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- EQU total_pro~          .              .              .            10.0000      
+---- EQU total_pro~          .              .              .          4015.2500      
 
 ---- EQU wellfareDemand_EQ  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1          .              .              .          3960.5000      
-r2          .              .              .          4050.0000      
+r1          .              .              .           990.1250      
+r2          .              .              .          1012.5000      
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- EQU totalwell~          .              .              .          8020.5000      
+---- EQU totalwell~          .              .              .          6017.8750      
 
 ---- VAR quantities_sold  
 
              LOWER          LEVEL          UPPER         MARGINAL
 
-r1.r1          .            10.0000        +INF      1.017728E-10      
+r1.r1          .            10.0000        +INF      1.1339679E-8      
 r1.r2          .              .            +INF            2.0000      
-r2.r1          .            79.0000        +INF      3.217568E-10      
-r2.r2          .            90.0000        +INF      3.831744E-10      
+r2.r1          .            34.5000        +INF      8.234338E-10      
+r2.r2          .            45.0000        +INF      6.4683974E-9      
 
 ---- VAR quantities_prod  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
 r1          .            10.0000        +INF             .          
-r2          .           169.0000        +INF      6.805365E-10      
+r2          .            79.5000        +INF      5.3272906E-9      
 
 ---- VAR mu_transCap  
 
@@ -616,51 +618,51 @@ r2          .           169.0000        +INF      6.805365E-10
 
 r1.r1          .              .            +INF        49990.0000      
 r1.r2          .              .            +INF         5000.0000      
-r2.r1          .              .            +INF         4921.0000      
-r2.r2          .              .            +INF        49910.0000      
+r2.r1          .              .            +INF         4965.5000      
+r2.r2          .              .            +INF        49955.0000      
 
 ---- VAR mu_prodCap  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
 r1          .             1.0000        +INF             .          
-r2          .              .            +INF          831.0000      
+r2          .              .            +INF          920.5000      
 
 ---- VAR price  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1          .            11.0000        +INF      -4.75637E-10      
-r2          .            10.0000        +INF      -3.71642E-10      
+r1          .            55.5000        +INF             .          
+r2          .            55.0000        +INF             .          
 
 ---- VAR mu_massBal  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1        -INF           11.0000        +INF      -5.30953E-10      
-r2        -INF           10.0000        +INF      -2.98513E-10      
+r1        -INF           11.0000        +INF      -3.207459E-8      
+r2        -INF           10.0000        +INF      -1.424118E-8      
 
 ---- VAR profit  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1        -INF           10.0000        +INF             .          
-r2        -INF      -1.719300E-7        +INF             .          
+r1        -INF          455.0000        +INF             .          
+r2        -INF         3560.2500        +INF             .          
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- VAR total_pro~        -INF           10.0000        +INF             .          
+---- VAR total_pro~        -INF         4015.2500        +INF             .          
 
 ---- VAR wellfare  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1        -INF         3960.5000        +INF             .          
-r2        -INF         4050.0000        +INF             .          
+r1        -INF          990.1250        +INF             .          
+r2        -INF         1012.5000        +INF             .          
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- VAR totalWell~        -INF         8020.5000        +INF             .          
+---- VAR totalWell~        -INF         6017.8750        +INF             .          
 
 
 **** REPORT SUMMARY :        0     NONOPT
@@ -668,14 +670,14 @@ r2        -INF         4050.0000        +INF             .
                              0  UNBOUNDED
                              1  REDEFINED (REDEF)
                              0     ERRORS
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 8
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 8
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
 ----    162 VARIABLE price.L  
 
-r1 11.000,    r2 10.000
+r1 55.500,    r2 55.000
 
 
 ----    162 VARIABLE quantities_sold.L  
@@ -683,37 +685,37 @@ r1 11.000,    r2 10.000
             r1          r2
 
 r1      10.000
-r2      79.000      90.000
+r2      34.500      45.000
 
 
 ----    162 VARIABLE profit.L  
 
-r1      10.000,    r2 -1.71930E-7
+r1  455.000,    r2 3560.250
 
 
-----    162 VARIABLE total_profit.L        =       10.000  
+----    162 VARIABLE total_profit.L        =     4015.250  
 
 ----    162 VARIABLE wellfare.L  
 
-r1 3960.500,    r2 4050.000
+r1  990.125,    r2 1012.500
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 9
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 9
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE maxProducer Using NLP From line 185
 
 
 ---- price_EQ  =E=  
 
-price_EQ(r1)..  quantities_sold(r1,r1) + quantities_sold(r2,r1) + price(r1) =E= 100 ; (LHS = 99.9999999995244, INFES = 4.7563908367465E-10 ****)
+price_EQ(r1)..  quantities_sold(r1,r1) + quantities_sold(r2,r1) + price(r1) =E= 100 ; (LHS = 100)
      
-price_EQ(r2)..  quantities_sold(r1,r2) + quantities_sold(r2,r2) + price(r2) =E= 100 ; (LHS = 99.9999999996284, INFES = 3.71642272511963E-10 ****)
+price_EQ(r2)..  quantities_sold(r1,r2) + quantities_sold(r2,r2) + price(r2) =E= 100 ; (LHS = 100)
      
 
 ---- profit_EQ  =E=  
 
-profit_EQ(r1)..  - (10.9999999989977)*quantities_sold(r1,r1) - (8.99999999893629)*quantities_sold(r1,r2) + 10*quantities_prod(r1) - (10.000000000531)*price(r1) + (0)*price(r2) + profit(r1) =E= 0 ; (LHS = 0)
+profit_EQ(r1)..  - (55.4999999969246)*quantities_sold(r1,r1) - (53.9999999941022)*quantities_sold(r1,r2) + 10*quantities_prod(r1) - (10.0000000320746)*price(r1) + (0)*price(r2) + profit(r1) =E= 0 ; (LHS = 0)
      
-profit_EQ(r2)..  - (9.99999999899771)*quantities_sold(r2,r1) - (9.99999999893629)*quantities_sold(r2,r2) + 10*quantities_prod(r2) - (78.9999999999957)*price(r1) - (90.0000000006921)*price(r2) + profit(r2) =E= 0 ; (LHS = 0)
+profit_EQ(r2)..  - (54.4999999969246)*quantities_sold(r2,r1) - (54.9999999941022)*quantities_sold(r2,r2) + 10*quantities_prod(r2) - (34.4999999710008)*price(r1) - (45.0000000058978)*price(r2) + profit(r2) =E= 0 ; (LHS = 0)
      
 
 ---- total_profit_EQ  =E=  
@@ -723,9 +725,9 @@ total_profit_EQ..  - profit(r1) - profit(r2) + total_profit =E= 0 ; (LHS = 0)
 
 ---- wellfareDemand_EQ  =E=  
 
-wellfareDemand_EQ(r1)..  - (44.5000000005011)*quantities_sold(r1,r1) - (44.5000000005011)*quantities_sold(r2,r1) + (44.5000000002633)*price(r1) + wellfare(r1) =E= 0 ; (LHS = 0)
+wellfareDemand_EQ(r1)..  - (22.2500000015377)*quantities_sold(r1,r1) - (22.2500000015377)*quantities_sold(r2,r1) + (22.2500000015377)*price(r1) + wellfare(r1) =E= 0 ; (LHS = 0)
      
-wellfareDemand_EQ(r2)..  - (45.0000000005319)*quantities_sold(r1,r2) - (45.0000000005319)*quantities_sold(r2,r2) + (45.000000000346)*price(r2) + wellfare(r2) =E= 0 ; (LHS = 0)
+wellfareDemand_EQ(r2)..  - (22.5000000029489)*quantities_sold(r1,r2) - (22.5000000029489)*quantities_sold(r2,r2) + (22.5000000029489)*price(r2) + wellfare(r2) =E= 0 ; (LHS = 0)
      
 
 ---- totalwellfare_EQ  =E=  
@@ -735,29 +737,29 @@ totalwellfare_EQ..  - profit(r1) - profit(r2) - wellfare(r1) - wellfare(r2) + to
 
 ---- con_supplier_transCap  =G=  
 
-con_supplier_transCap(r1,r1)..  - quantities_sold(r1,r1) =G= -50000 ; (LHS = -10.0000000005311)
+con_supplier_transCap(r1,r1)..  - quantities_sold(r1,r1) =G= -50000 ; (LHS = -10.0000000320724)
      
 con_supplier_transCap(r1,r2)..  - quantities_sold(r1,r2) =G= -5000 ; (LHS = 0)
      
-con_supplier_transCap(r2,r1)..  - quantities_sold(r2,r1) =G= -5000 ; (LHS = -78.9999999999955)
+con_supplier_transCap(r2,r1)..  - quantities_sold(r2,r1) =G= -5000 ; (LHS = -34.4999999710008)
      
 REMAINING ENTRY SKIPPED
 
 
 ---- con_supplier_massBal  =E=  
 
-con_supplier_massBal(r1)..  - quantities_sold(r1,r1) - quantities_sold(r1,r2) + quantities_prod(r1) =E= 0 ; (LHS = -5.30953059296735E-10, INFES = 5.30953059296735E-10 ****)
+con_supplier_massBal(r1)..  - quantities_sold(r1,r1) - quantities_sold(r1,r2) + quantities_prod(r1) =E= 0 ; (LHS = -3.20745865423078E-8, INFES = 3.20745865423078E-8 ****)
      
-con_supplier_massBal(r2)..  - quantities_sold(r2,r1) - quantities_sold(r2,r2) + quantities_prod(r2) =E= 0 ; (LHS = -2.98513214147533E-10, INFES = 2.98513214147533E-10 ****)
+con_supplier_massBal(r2)..  - quantities_sold(r2,r1) - quantities_sold(r2,r2) + quantities_prod(r2) =E= 0 ; (LHS = -1.42411806791642E-8, INFES = 1.42411806791642E-8 ****)
      
 
 ---- con_supplier_prodCap  =G=  
 
 con_supplier_prodCap(r1)..  - quantities_prod(r1) =G= -10 ; (LHS = -10)
      
-con_supplier_prodCap(r2)..  - quantities_prod(r2) =G= -1000 ; (LHS = -169.000000000389)
+con_supplier_prodCap(r2)..  - quantities_prod(r2) =G= -1000 ; (LHS = -79.4999999626574)
      
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 10
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 10
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE maxProducer Using NLP From line 185
 
@@ -765,26 +767,26 @@ Column Listing      SOLVE maxProducer Using NLP From line 185
 ---- quantities_sold  
 
 quantities_sold(r1,r1)
-                (.LO, .L, .UP, .M = 0, 10.000000000531, +INF, 1.01772812399759E-10)
+                (.LO, .L, .UP, .M = 0, 10.0000000320746, +INF, 1.13396794176879E-8)
         1       price_EQ(r1)
-     (-11)      profit_EQ(r1)
-     (-44.5)    wellfareDemand_EQ(r1)
+     (-55.5)    profit_EQ(r1)
+     (-22.25)   wellfareDemand_EQ(r1)
        -1       con_supplier_transCap(r1,r1)
        -1       con_supplier_massBal(r1)
 
 quantities_sold(r1,r2)
-                (.LO, .L, .UP, .M = 0, 0, +INF, 2.00000000016319)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 2.00000001698464)
         1       price_EQ(r2)
-      (-9)      profit_EQ(r1)
-     (-45)      wellfareDemand_EQ(r2)
+     (-54)      profit_EQ(r1)
+     (-22.5)    wellfareDemand_EQ(r2)
        -1       con_supplier_transCap(r1,r2)
        -1       con_supplier_massBal(r1)
 
 quantities_sold(r2,r1)
-                (.LO, .L, .UP, .M = 0, 78.9999999999957, +INF, 3.21756843391086E-10)
+                (.LO, .L, .UP, .M = 0, 34.4999999710008, +INF, 8.23433765617665E-10)
         1       price_EQ(r1)
-     (-10)      profit_EQ(r2)
-     (-44.5)    wellfareDemand_EQ(r1)
+     (-54.5)    profit_EQ(r2)
+     (-22.25)   wellfareDemand_EQ(r1)
        -1       con_supplier_transCap(r2,r1)
        -1       con_supplier_massBal(r2)
 
@@ -799,7 +801,7 @@ quantities_prod(r1)
        -1       con_supplier_prodCap(r1)
 
 quantities_prod(r2)
-                (.LO, .L, .UP, .M = 0, 169.000000000389, +INF, 6.80536516028951E-10)
+                (.LO, .L, .UP, .M = 0, 79.4999999626574, +INF, 5.32729060864767E-9)
        10       profit_EQ(r2)
         1       con_supplier_massBal(r2)
        -1       con_supplier_prodCap(r2)
@@ -808,30 +810,30 @@ quantities_prod(r2)
 ---- price  
 
 price(r1)
-                (.LO, .L, .UP, .M = 0, 10.9999999989977, +INF, -4.75637307317811E-10)
+                (.LO, .L, .UP, .M = 0, 55.4999999969246, +INF, 0)
         1       price_EQ(r1)
      (-10)      profit_EQ(r1)
-     (-79)      profit_EQ(r2)
-      (44.5)    wellfareDemand_EQ(r1)
+     (-34.5)    profit_EQ(r2)
+      (22.25)   wellfareDemand_EQ(r1)
 
 price(r2)
-                (.LO, .L, .UP, .M = 0, 9.99999999893629, +INF, -3.71642272511963E-10)
+                (.LO, .L, .UP, .M = 0, 54.9999999941022, +INF, 0)
         1       price_EQ(r2)
        (0)      profit_EQ(r1)
-     (-90)      profit_EQ(r2)
-      (45)      wellfareDemand_EQ(r2)
+     (-45)      profit_EQ(r2)
+      (22.5)    wellfareDemand_EQ(r2)
 
 
 ---- profit  
 
 profit(r1)
-                (.LO, .L, .UP, .M = -INF, 9.99999999581755, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 455.000001749386, +INF, 0)
         1       profit_EQ(r1)
        -1       total_profit_EQ
        -1       totalwellfare_EQ
 
 profit(r2)
-                (.LO, .L, .UP, .M = -INF, -1.71929968928453E-7, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 3560.24999874585, +INF, 0)
         1       profit_EQ(r2)
        -1       total_profit_EQ
        -1       totalwellfare_EQ
@@ -840,19 +842,19 @@ profit(r2)
 ---- total_profit  
 
 total_profit
-                (.LO, .L, .UP, .M = -INF, 9.99999982388758, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 4015.25000049523, +INF, 0)
         1       total_profit_EQ
 
 
 ---- wellfare  
 
 wellfare(r1)
-                (.LO, .L, .UP, .M = -INF, 3960.50000006804, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 990.125000136854, +INF, 0)
         1       wellfareDemand_EQ(r1)
        -1       totalwellfare_EQ
 
 wellfare(r2)
-                (.LO, .L, .UP, .M = -INF, 4050.00000007901, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 1012.5000002654, +INF, 0)
         1       wellfareDemand_EQ(r2)
        -1       totalwellfare_EQ
 
@@ -860,10 +862,10 @@ wellfare(r2)
 ---- totalWellfare  
 
 totalWellfare
-                (.LO, .L, .UP, .M = -INF, 8020.49999997094, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 6017.87500089749, +INF, 0)
         1       totalwellfare_EQ
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 11
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 11
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Range Statistics    SOLVE maxProducer Using NLP From line 185
 
@@ -872,9 +874,9 @@ RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
 
 RHS       [min, max] : [ 1.000E+01, 5.000E+04] - Zero values observed as well
 Bound     [min, max] : [        NA,        NA] - Zero values observed as well
-Matrix    [min, max] : [ 1.000E+00, 9.000E+01] - Zero values observed as well
+Matrix    [min, max] : [ 1.000E+00, 5.550E+01] - Zero values observed as well
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 12
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 12
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE maxProducer Using NLP From line 185
 
@@ -888,7 +890,7 @@ CODE LENGTH                  38     CONSTANT POOL              19
 
 
 GENERATION TIME      =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 13
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 13
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE maxProducer Using NLP From line 185
 
@@ -903,8 +905,8 @@ Solution Report     SOLVE maxProducer Using NLP From line 185
 **** MODEL STATUS      2 Locally Optimal
 **** OBJECTIVE VALUE             4015.2500
 
- RESOURCE USAGE, LIMIT          0.016 10000000000.000
- ITERATION COUNT, LIMIT         2    2147483647
+ RESOURCE USAGE, LIMIT          0.000 10000000000.000
+ ITERATION COUNT, LIMIT         4    2147483647
  EVALUATION ERRORS              0             0
  
  
@@ -934,6 +936,7 @@ Solution Report     SOLVE maxProducer Using NLP From line 185
    of which: Function evaluations             0.000 =  0.0%
              1st Derivative evaluations       0.000 =  0.0%
              2nd Derivative evaluations       0.000 =  0.0%
+             Directional 2nd Deriv(Hess)      0.000 =  0.0%
              Interval derivative evals        0.000 =  0.0%
  
 
@@ -964,7 +967,7 @@ r2          .              .              .             EPS
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- EQU totalwell~          .       9.094947E-13          .             EPS         
+---- EQU totalwell~          .              .              .             EPS         
 
 ---- EQU con_supplier_transCap  
 
@@ -995,8 +998,8 @@ r2     -1000.0000       -79.5000        +INF             .
 
 r1.r1          .            10.0000        +INF             .          
 r1.r2          .              .            +INF           -2.0000      
-r2.r1          .            34.5000        +INF      3.481730E-10      
-r2.r2          .            45.0000        +INF             .          
+r2.r1          .            34.5000        +INF             .          
+r2.r2          .            45.0000        +INF            EPS         
 
 ---- VAR quantities_prod  
 
@@ -1009,8 +1012,8 @@ r2          .            79.5000        +INF             .
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1          .            55.5000        +INF             .          
-r2          .            55.0000        +INF      3.443219E-10      
+r1          .            55.5000        +INF            EPS         
+r2          .            55.0000        +INF             .          
 
 ---- VAR profit  
 
@@ -1039,7 +1042,7 @@ r2        -INF         1012.5000        +INF             .
                              0 INFEASIBLE
                              0  UNBOUNDED
                              0     ERRORS
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 14
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 14
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -1068,23 +1071,23 @@ r1  455.000,    r2 3560.250
 
 r1  990.125,    r2 1012.500
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 15
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 15
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE maxWellfare Using NLP From line 209
 
 
 ---- price_EQ  =E=  
 
-price_EQ(r1)..  quantities_sold(r1,r1) + quantities_sold(r2,r1) + price(r1) =E= 100 ; (LHS = 99.9999999989934, INFES = 1.00659036661455E-9 ****)
+price_EQ(r1)..  quantities_sold(r1,r1) + quantities_sold(r2,r1) + price(r1) =E= 100 ; (LHS = 100)
      
-price_EQ(r2)..  quantities_sold(r1,r2) + quantities_sold(r2,r2) + price(r2) =E= 100 ; (LHS = 99.9999999996284, INFES = 3.71635167084605E-10 ****)
+price_EQ(r2)..  quantities_sold(r1,r2) + quantities_sold(r2,r2) + price(r2) =E= 100 ; (LHS = 100)
      
 
 ---- profit_EQ  =E=  
 
-profit_EQ(r1)..  - (55.4999999996708)*quantities_sold(r1,r1) - (53.999999999642)*quantities_sold(r1,r2) + 10*quantities_prod(r1) - (10)*price(r1) + (0)*price(r2) + profit(r1) =E= 0 ; (LHS = 0)
+profit_EQ(r1)..  - (55.5)*quantities_sold(r1,r1) - (54)*quantities_sold(r1,r2) + 10*quantities_prod(r1) - (10)*price(r1) + (0)*price(r2) + profit(r1) =E= 0 ; (LHS = 0)
      
-profit_EQ(r2)..  - (54.4999999996708)*quantities_sold(r2,r1) - (54.999999999642)*quantities_sold(r2,r2) + 10*quantities_prod(r2) - (34.4999999993226)*price(r1) - (44.9999999999863)*price(r2) + profit(r2) =E= 0 ; (LHS = 0)
+profit_EQ(r2)..  - (54.5)*quantities_sold(r2,r1) - (55)*quantities_sold(r2,r2) + 10*quantities_prod(r2) - (34.5)*price(r1) - (45)*price(r2) + profit(r2) =E= 0 ; (LHS = 0)
      
 
 ---- total_profit_EQ  =E=  
@@ -1094,9 +1097,9 @@ total_profit_EQ..  - profit(r1) - profit(r2) + total_profit =E= 0 ; (LHS = 0)
 
 ---- wellfareDemand_EQ  =E=  
 
-wellfareDemand_EQ(r1)..  - (22.2500000001646)*quantities_sold(r1,r1) - (22.2500000001646)*quantities_sold(r2,r1) + (22.2499999996613)*price(r1) + wellfare(r1) =E= 0 ; (LHS = 0)
+wellfareDemand_EQ(r1)..  - (22.25)*quantities_sold(r1,r1) - (22.25)*quantities_sold(r2,r1) + (22.25)*price(r1) + wellfare(r1) =E= 0 ; (LHS = 0)
      
-wellfareDemand_EQ(r2)..  - (22.500000000179)*quantities_sold(r1,r2) - (22.500000000179)*quantities_sold(r2,r2) + (22.4999999999932)*price(r2) + wellfare(r2) =E= 0 ; (LHS = 0)
+wellfareDemand_EQ(r2)..  - (22.5)*quantities_sold(r1,r2) - (22.5)*quantities_sold(r2,r2) + (22.5)*price(r2) + wellfare(r2) =E= 0 ; (LHS = 0)
      
 
 ---- totalwellfare_EQ  =E=  
@@ -1110,7 +1113,7 @@ con_supplier_transCap(r1,r1)..  - quantities_sold(r1,r1) =G= -50000 ; (LHS = -10
      
 con_supplier_transCap(r1,r2)..  - quantities_sold(r1,r2) =G= -5000 ; (LHS = 0)
      
-con_supplier_transCap(r2,r1)..  - quantities_sold(r2,r1) =G= -5000 ; (LHS = -34.4999999993224)
+con_supplier_transCap(r2,r1)..  - quantities_sold(r2,r1) =G= -5000 ; (LHS = -34.5)
      
 REMAINING ENTRY SKIPPED
 
@@ -1126,9 +1129,9 @@ con_supplier_massBal(r2)..  - quantities_sold(r2,r1) - quantities_sold(r2,r2) + 
 
 con_supplier_prodCap(r1)..  - quantities_prod(r1) =G= -10 ; (LHS = -10)
      
-con_supplier_prodCap(r2)..  - quantities_prod(r2) =G= -1000 ; (LHS = -79.499999999309)
+con_supplier_prodCap(r2)..  - quantities_prod(r2) =G= -1000 ; (LHS = -79.5)
      
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 16
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 16
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE maxWellfare Using NLP From line 209
 
@@ -1144,7 +1147,7 @@ quantities_sold(r1,r1)
        -1       con_supplier_massBal(r1)
 
 quantities_sold(r1,r2)
-                (.LO, .L, .UP, .M = 0, 0, +INF, -2.00000000034817)
+                (.LO, .L, .UP, .M = 0, 0, +INF, -2)
         1       price_EQ(r2)
      (-54)      profit_EQ(r1)
      (-22.5)    wellfareDemand_EQ(r2)
@@ -1152,7 +1155,7 @@ quantities_sold(r1,r2)
        -1       con_supplier_massBal(r1)
 
 quantities_sold(r2,r1)
-                (.LO, .L, .UP, .M = 0, 34.4999999993226, +INF, 3.48173045949807E-10)
+                (.LO, .L, .UP, .M = 0, 34.5, +INF, 0)
         1       price_EQ(r1)
      (-54.5)    profit_EQ(r2)
      (-22.25)   wellfareDemand_EQ(r1)
@@ -1170,7 +1173,7 @@ quantities_prod(r1)
        -1       con_supplier_prodCap(r1)
 
 quantities_prod(r2)
-                (.LO, .L, .UP, .M = 0, 79.499999999309, +INF, 0)
+                (.LO, .L, .UP, .M = 0, 79.5, +INF, 0)
        10       profit_EQ(r2)
         1       con_supplier_massBal(r2)
        -1       con_supplier_prodCap(r2)
@@ -1179,14 +1182,14 @@ quantities_prod(r2)
 ---- price  
 
 price(r1)
-                (.LO, .L, .UP, .M = 0, 55.4999999996708, +INF, 0)
+                (.LO, .L, .UP, .M = 0, 55.5, +INF, EPS)
         1       price_EQ(r1)
      (-10)      profit_EQ(r1)
      (-34.5)    profit_EQ(r2)
       (22.25)   wellfareDemand_EQ(r1)
 
 price(r2)
-                (.LO, .L, .UP, .M = 0, 54.999999999642, +INF, 3.44321904321987E-10)
+                (.LO, .L, .UP, .M = 0, 55, +INF, 0)
         1       price_EQ(r2)
        (0)      profit_EQ(r1)
      (-45)      profit_EQ(r2)
@@ -1196,13 +1199,13 @@ price(r2)
 ---- profit  
 
 profit(r1)
-                (.LO, .L, .UP, .M = -INF, 454.999999996708, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 455, +INF, 0)
         1       profit_EQ(r1)
        -1       total_profit_EQ
        -1       totalwellfare_EQ
 
 profit(r2)
-                (.LO, .L, .UP, .M = -INF, 3560.24999994178, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 3560.25, +INF, 0)
         1       profit_EQ(r2)
        -1       total_profit_EQ
        -1       totalwellfare_EQ
@@ -1211,19 +1214,19 @@ profit(r2)
 ---- total_profit  
 
 total_profit
-                (.LO, .L, .UP, .M = -INF, 4015.24999993848, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 4015.25, +INF, 0)
         1       total_profit_EQ
 
 
 ---- wellfare  
 
 wellfare(r1)
-                (.LO, .L, .UP, .M = -INF, 990.124999992253, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 990.125, +INF, 0)
         1       wellfareDemand_EQ(r1)
        -1       totalwellfare_EQ
 
 wellfare(r2)
-                (.LO, .L, .UP, .M = -INF, 1012.50000000775, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 1012.5, +INF, 0)
         1       wellfareDemand_EQ(r2)
        -1       totalwellfare_EQ
 
@@ -1231,10 +1234,10 @@ wellfare(r2)
 ---- totalWellfare  
 
 totalWellfare
-                (.LO, .L, .UP, .M = -INF, 6017.87499993848, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 6017.875, +INF, 0)
         1       totalwellfare_EQ
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 17
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 17
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Range Statistics    SOLVE maxWellfare Using NLP From line 209
 
@@ -1245,7 +1248,7 @@ RHS       [min, max] : [ 1.000E+01, 5.000E+04] - Zero values observed as well
 Bound     [min, max] : [        NA,        NA] - Zero values observed as well
 Matrix    [min, max] : [ 1.000E+00, 5.550E+01] - Zero values observed as well
 
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 18
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 18
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE maxWellfare Using NLP From line 209
 
@@ -1259,7 +1262,7 @@ CODE LENGTH                  38     CONSTANT POOL              19
 
 
 GENERATION TIME      =        0.000 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 19
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 19
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE maxWellfare Using NLP From line 209
 
@@ -1274,8 +1277,8 @@ Solution Report     SOLVE maxWellfare Using NLP From line 209
 **** MODEL STATUS      2 Locally Optimal
 **** OBJECTIVE VALUE             8020.5000
 
- RESOURCE USAGE, LIMIT          0.000 10000000000.000
- ITERATION COUNT, LIMIT         5    2147483647
+ RESOURCE USAGE, LIMIT          0.016 10000000000.000
+ ITERATION COUNT, LIMIT         3    2147483647
  EVALUATION ERRORS              0             0
  
  
@@ -1381,15 +1384,15 @@ r2          .           169.0000        +INF             .
 
           LOWER          LEVEL          UPPER         MARGINAL
 
-r1          .            11.0000        +INF      -3.583835E-9      
-r2          .            10.0000        +INF      -2.992358E-9      
+r1          .            11.0000        +INF            EPS         
+r2          .            10.0000        +INF            EPS         
 
 ---- VAR profit  
 
           LOWER          LEVEL          UPPER         MARGINAL
 
 r1        -INF           10.0000        +INF             .          
-r2        -INF      4.9595201E-7        +INF             .          
+r2        -INF      1.364242E-12        +INF             .          
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
@@ -1411,7 +1414,7 @@ r2        -INF         4050.0000        +INF             .
                              0 INFEASIBLE
                              0  UNBOUNDED
                              0     ERRORS
-GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 08/25/24 20:56:06 Page 20
+GAMS 46.2.0  ac4adda6 Mar 5, 2024           WEX-WEI x86 64bit/MS Windows - 09/05/24 21:26:52 Page 20
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -1431,7 +1434,7 @@ r2      79.000      90.000
 
 ----    210 VARIABLE profit.L  
 
-r1      10.000,    r2 4.959520E-7
+r1      10.000,    r2 1.36424E-12
 
 
 ----    210 VARIABLE total_profit.L        =       10.000  
@@ -1442,7 +1445,7 @@ r1 3960.500,    r2 4050.000
 
 
 
-EXECUTION TIME       =        0.109 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
+EXECUTION TIME       =        0.141 SECONDS      4 MB  46.2.0 ac4adda6 WEX-WEI
 
 
 USER: Course License                                 S240430|0002AO-GEN
