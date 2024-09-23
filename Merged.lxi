@@ -1,0 +1,159 @@
+B 3 C o m p i l a t i o n
+B 341 Equation Listing    SOLVE Oil_MCP_Comp Using MCP From line 297
+D 344 FOC_q_prod
+D 355 FOC_q_sales
+D 366 FOC_lambda
+D 377 FOC_rho
+D 388 FOC_phi
+D 399 price
+B 411 Column Listing      SOLVE Oil_MCP_Comp Using MCP From line 297
+E 414 q_prod
+E 433 q_sales
+E 455 lambda
+E 471 rho
+E 487 p
+E 518 phi
+B 550 Range Statistics    SOLVE Oil_MCP_Comp Using MCP From line 297
+B 561 Model Statistics    SOLVE Oil_MCP_Comp Using MCP From line 297
+B 575 Solution Report     SOLVE Oil_MCP_Comp Using MCP From line 297
+F 622 FOC_q_prod
+F 647 FOC_q_sales
+F 752 FOC_lambda
+F 777 FOC_rho
+F 882 FOC_phi
+F 907 price
+G 932 q_prod
+G 957 q_sales
+G 1062 lambda
+G 1087 rho
+G 1192 p
+G 1217 phi
+B 1250 E x e c u t i o n
+I 1250 profitcomp
+I 1262 q_prod
+I 1273 q_sales
+I 1292 p
+B 1306 Equation Listing    SOLVE Cournot Using MCP From line 307
+D 1309 FOC_q_prod
+D 1320 FOC_q_sales_cournot
+D 1331 FOC_lambda
+D 1342 FOC_rho
+D 1353 FOC_phi
+D 1364 price
+B 1376 Column Listing      SOLVE Cournot Using MCP From line 307
+E 1379 q_prod
+E 1398 q_sales
+E 1423 lambda
+E 1439 rho
+E 1455 p
+E 1486 phi
+B 1518 Range Statistics    SOLVE Cournot Using MCP From line 307
+B 1529 Model Statistics    SOLVE Cournot Using MCP From line 307
+B 1543 Solution Report     SOLVE Cournot Using MCP From line 307
+F 1590 FOC_q_prod
+F 1615 FOC_q_sales_cournot
+F 1720 FOC_lambda
+F 1745 FOC_rho
+F 1850 FOC_phi
+F 1875 price
+G 1900 q_prod
+G 1925 q_sales
+G 2030 lambda
+G 2055 rho
+G 2160 p
+G 2185 phi
+B 2218 E x e c u t i o n
+I 2218 profitcour
+I 2230 q_prod
+I 2241 q_sales
+I 2268 p
+B 2282 Equation Listing    SOLVE MARKET_SPLIT_MILP Using MIP From line 316
+D 2285 FOC_qpl
+D 2296 FOC_qsl
+D 2307 FOC_qpf
+D 2318 FOC_qsf
+D 2329 FOC_lambdal
+D 2340 FOC_rhol
+D 2351 FOC_lambdaf
+D 2362 FOC_rhof
+D 2373 PFOC_lambdal
+D 2384 PFOC_rhol
+D 2395 PFOC_lambdaf
+D 2406 PFOC_rhof
+D 2417 DFOC_lambdal
+D 2428 DFOC_rhol
+D 2439 DFOC_lambdaf
+D 2450 DFOC_rhof
+D 2461 FOC_phil
+D 2472 FOC_phif
+D 2483 price
+D 2494 OF
+B 2500 Column Listing      SOLVE MARKET_SPLIT_MILP Using MIP From line 316
+E 2503 q_sales
+E 2519 p
+E 2535 qpl
+E 2557 qsl
+E 2582 qpf
+E 2604 qsf
+E 2629 lambdal
+E 2651 rhol
+E 2673 lambdaf
+E 2692 rhof
+E 2711 pr
+E 2739 Blambdal
+E 2758 Brhol
+E 2777 Blambdaf
+E 2796 Brhof
+E 2815 TC
+E 2822 phil
+E 2853 phif
+B 2885 Range Statistics    SOLVE MARKET_SPLIT_MILP Using MIP From line 316
+B 2896 Model Statistics    SOLVE MARKET_SPLIT_MILP Using MIP From line 316
+B 2909 Solution Report     SOLVE MARKET_SPLIT_MILP Using MIP From line 316
+F 2954 FOC_qpl
+F 2963 FOC_qsl
+F 2988 FOC_qpf
+F 3009 FOC_qsf
+F 3094 FOC_lambdal
+F 3103 FOC_rhol
+F 3128 FOC_lambdaf
+F 3149 FOC_rhof
+F 3234 PFOC_lambdal
+F 3243 PFOC_rhol
+F 3268 PFOC_lambdaf
+F 3289 PFOC_rhof
+F 3374 DFOC_lambdal
+F 3383 DFOC_rhol
+F 3408 DFOC_lambdaf
+F 3429 DFOC_rhof
+F 3514 FOC_phil
+F 3523 FOC_phif
+F 3544 price
+F 3571 OF
+G 3575 q_sales
+G 3680 p
+G 3705 qpl
+G 3714 qsl
+G 3739 qpf
+G 3760 qsf
+G 3845 lambdal
+G 3854 rhol
+G 3879 lambdaf
+G 3900 rhof
+G 3985 pr
+G 4010 Blambdal
+G 4019 Brhol
+G 4044 Blambdaf
+G 4065 Brhof
+G 4152 TC
+G 4154 phil
+G 4163 phif
+B 4190 E x e c u t i o n
+I 4190 profitl
+I 4198 profitf
+I 4207 qpl
+I 4214 qsl
+I 4224 qpf
+I 4233 qsf
+I 4242 pr
+I 4254 TC

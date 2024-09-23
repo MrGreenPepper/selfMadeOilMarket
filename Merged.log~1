@@ -1,0 +1,319 @@
+
+--- Job Merged.gms Start 09/24/24 00:38:19 47.5.0 d6b95593 DAX-DAC arm 64bit/macOS
+--- Applying:
+    /Library/Frameworks/GAMS.framework/Versions/47/Resources/gmsprmun.txt
+--- GAMS Parameters defined
+    Input "/Users/akshay/Desktop/Resource New/Back up/Merged/Merged.gms"
+    PageSize 0
+    ScrDir "/Users/akshay/Desktop/Resource New/Back up/Merged/225a/"
+    SysDir /Library/Frameworks/GAMS.framework/Versions/47/Resources/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Course License                                 S240430|0002AO-GEN
+          TU Dresden, Business Management and Economics             DCE3456
+          /Users/akshay/Library/Application Support/GAMS/gamslice.txt
+          License Admin: Hannes Hobbie, hannes.hobbie@tu-dresden.de        
+          Course license for use within the course and related course work
+          The evaluation period of the license will expire on Oct 27, 2024
+Processor information: 1 socket(s), 8 core(s), and 8 thread(s) available
+GAMS 47.5.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
+--- Starting compilation
+--- Merged.gms(325) 3 Mb
+--- Starting execution: elapsed 0:00:00.001
+--- Merged.gms(78) 4 Mb
+--- Generating MCP model Oil_MCP_Comp
+--- Merged.gms(297) 6 Mb
+---   280 rows  280 columns  700 non-zeroes
+---   0 nl-code  0 nl-non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 3.000E+00, 1.300E+02] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.180E+00]
+--- Merged.gms(297) 4 Mb
+--- Executing PATH (Solvelink=2): elapsed 0:00:00.005
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+280 row/cols, 700 non-zeros, 0.89% dense.
+
+Path 5.1.01 (Thu Aug 29 06:02:12 2024)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+Zero:     0 Single:   100 Double:    20
+The preprocessor removed 120 rows/cols and 120 non-zeros
+Preprocessed size: 160 rows/cols, 580 non-zeros, 2.27% dense
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  0.0000e+00 var: (q_prod(NorthAmerica,s1))
+Maximum of F. . . . . . . . . .  1.3000e+02 eqn: (price(NorthAmerica,s1))
+Maximum of Grad F . . . . . . .  1.1800e+00 eqn: (price(EU,s3))
+                                            var: (q_sales(NorthAmerica,EU,s3))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  6.9000e+00 eqn: (price(EU,s3))
+Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (FOC_q_prod(NorthAmerica,s1))
+Maximum Column Norm . . . . . .  6.0000e+00 var: (phi(NorthAmerica,s1))
+Minimum Column Norm . . . . . .  1.0000e+00 var: (q_prod(NorthAmerica,s1))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.1628e+03             0.0e+00 (price(NorthAmerica,s1))
+    1     1   120    40 1.0150e+03  1.0e+00    1.0e+01 (price(NorthAmerica,s1))
+    2     2   100   140 8.0140e+02  1.0e+00    9.0e+00 (price(NorthAmerica,s1))
+    3     3    24   140 5.9340e+02  1.0e+00    8.0e+00 (price(NorthAmerica,s1))
+    4     4    12   116 4.2261e+02  1.0e+00    5.9e+00 (price(Russia,s1))
+    5     5    12   104 3.2389e+02  1.0e+00    4.2e+00 (FOC_phi(OPEC,s2))
+    6     6     4    92 2.8218e+02  1.0e+00    3.2e+00 (FOC_phi(OPEC,s2))
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     7     7 2.8218e+02           I 2.8e+00 6.6e+01 (FOC_phi(OPEC,s2))
+    1    43     8     8 1.9013e+02  1.0e+00 SO 1.1e+00 4.0e+01 (FOC_phi(FarEast,s1))
+    2    91     9     9 5.2099e+01  1.0e+00 SO 4.5e-01 1.1e+01 (FOC_phi(FarEast,s3))
+    3    41    10    10 9.4765e+00  1.0e+00 SO 1.8e-01 2.4e+00 (FOC_q_sales(NorthAmerica,NorthAmerica,s3))
+    4     9    11    11 1.5616e+00  1.0e+00 SO 7.2e-02 4.9e-01 (FOC_q_sales(FarEast,FarEast,s4))
+    5     2    12    12 1.0499e-01  1.0e+00 SO 2.9e-02 2.8e-02 (FOC_q_sales(Russia,FarEast,s3))
+    6     2    13    13 2.3386e-03  1.0e+00 SO 1.0e-02 7.3e-04 (price(EU,s3))
+    7     4    14    14 7.5616e-07  1.0e+00 SO 2.3e-04 3.4e-07 (price(EU,s3))
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.0404e-05 eqn: (price(NorthAmerica,s3))
+Inf-Norm of Normal Map. . . . .  3.3724e-07 eqn: (price(EU,s3))
+Inf-Norm of Minimum Map . . . .  3.3724e-07 eqn: (price(EU,s3))
+Inf-Norm of Fischer Function. .  3.3724e-07 eqn: (price(EU,s3))
+Inf-Norm of Grad Fischer Fcn. .  5.0020e-07 eqn: (FOC_q_sales(NorthAmerica,EU,s3))
+Two-Norm of Grad Fischer Fcn. .  1.7478e-06
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  9.5000e+01 var: (q_prod(OPEC,s1))
+Maximum of F. . . . . . . . . .  4.2473e+01 eqn: (FOC_q_prod(OPEC,s1))
+Maximum of Grad F . . . . . . .  1.1800e+00 eqn: (price(EU,s3))
+                                            var: (q_sales(NorthAmerica,EU,s3))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 7
+Minor Iterations. . . . 192
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 6
+Gradient Steps. . . . . 0
+Function Evaluations. . 14
+Gradient Evaluations. . 14
+Basis Time. . . . . . . 0.001253
+Total Time. . . . . . . 0.002074
+Residual. . . . . . . . 7.561634e-07
+Postsolved residual: 7.5616e-07
+
+--- Reading solution for model Oil_MCP_Comp
+--- Executing after solve: elapsed 0:00:00.024
+--- Merged.gms(303) 4 Mb
+--- Generating MCP model Cournot
+--- Merged.gms(305) 6 Mb
+---   280 rows  280 columns  800 non-zeroes
+---   0 nl-code  0 nl-non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 3.000E+00, 1.300E+02] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.180E+00]
+--- Merged.gms(305) 4 Mb
+--- Executing PATH (Solvelink=2): elapsed 0:00:00.026
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+280 row/cols, 800 non-zeros, 1.02% dense.
+
+Path 5.1.01 (Thu Aug 29 06:02:12 2024)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+Zero:     0 Single:   100 Double:    20
+The preprocessor removed 120 rows/cols and 120 non-zeros
+Preprocessed size: 160 rows/cols, 680 non-zeros, 2.66% dense
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  9.5000e+01 var: (q_prod(OPEC,s1))
+Maximum of F. . . . . . . . . .  5.3718e+01 eqn: (FOC_q_sales_cournot(OPEC,OPEC,s4))
+Maximum of Grad F . . . . . . .  1.1800e+00 eqn: (FOC_q_sales_cournot(NorthAmerica,EU,s3))
+                                            var: (q_sales(NorthAmerica,EU,s3))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  6.9000e+00 eqn: (price(EU,s3))
+Minimum Row Norm. . . . . . . .  1.0000e+00 eqn: (FOC_q_prod(NorthAmerica,s1))
+Maximum Column Norm . . . . . .  6.0000e+00 var: (phi(NorthAmerica,s1))
+Minimum Column Norm . . . . . .  1.0000e+00 var: (q_prod(NorthAmerica,s1))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.1897e+02             0.0e+00 (FOC_q_sales_cournot(OPEC,OPEC,s4))
+    1     2    74    87 1.1621e+02  8.0e-01    0.0e+00 (FOC_q_sales_cournot(Russia,OPEC,s4))
+    2     3    81   156 5.3715e+01  1.0e+00    0.0e+00 (FOC_phi(Russia,s1))
+    3     4    13   107 1.8948e+01  1.0e+00    5.4e-01 (FOC_phi(Russia,s1))
+    4     5    17   108 9.7822e+00  1.0e+00    1.9e-01 (FOC_q_prod(FarEast,s1))
+    5     6     8   107 3.7899e+00  1.0e+00    9.8e-02 (FOC_q_sales_cournot(EU,Russia,s1))
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     7     6 3.7899e+00           I 3.8e-02 2.3e+00 (FOC_q_sales_cournot(EU,Russia,s1))
+    1     4     8     7 3.8722e-02  1.0e+00 SO 1.5e-02 1.3e-02 (FOC_q_sales_cournot(EU,Russia,s1))
+    2     1     9     8 2.7287e-04  1.0e+00 SO 3.9e-03 7.5e-05 (FOC_q_prod(EU,s1))
+    3     1    10     9 1.3268e-08  1.0e+00 SO 2.7e-05 3.5e-09 (FOC_phi(OPEC,s1))
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.9924e-07 eqn: (price(OPEC,s1))
+Inf-Norm of Normal Map. . . . .  3.4748e-09 eqn: (FOC_phi(OPEC,s1))
+Inf-Norm of Minimum Map . . . .  3.4748e-09 eqn: (FOC_phi(OPEC,s1))
+Inf-Norm of Fischer Function. .  3.4748e-09 eqn: (FOC_phi(OPEC,s1))
+Inf-Norm of Grad Fischer Fcn. .  5.7256e-09 eqn: (FOC_q_sales_cournot(FarEast,FarEast,s1))
+Two-Norm of Grad Fischer Fcn. .  2.0612e-08
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  9.5000e+01 var: (q_prod(OPEC,s1))
+Maximum of F. . . . . . . . . .  2.3685e+01 eqn: (FOC_q_prod(OPEC,s1))
+Maximum of Grad F . . . . . . .  1.1800e+00 eqn: (FOC_q_sales_cournot(NorthAmerica,EU,s3))
+                                            var: (q_sales(NorthAmerica,EU,s3))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 6
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 5
+Gradient Steps. . . . . 0
+Function Evaluations. . 10
+Gradient Evaluations. . 9
+Basis Time. . . . . . . 0.000310
+Total Time. . . . . . . 0.000753
+Residual. . . . . . . . 1.326837e-08
+Postsolved residual: 1.3268e-08
+
+--- Reading solution for model Cournot
+--- Executing after solve: elapsed 0:00:00.042
+--- Merged.gms(311) 4 Mb
+--- Generating MIP model MARKET_SPLIT_MILP
+--- Merged.gms(313) 4 Mb
+---   521 rows  521 columns  1,305 non-zeroes
+---   120 discrete-columns
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 3.000E+00, 1.000E+11] - Zero values observed as well
+--- Bound     [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.000E+11]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.044
+
+IBM ILOG CPLEX   47.5.0 d6b95593 Aug 29, 2024          DAC arm 64bit/macOS    
+
+--- GAMS/CPLEX licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 0.03 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 0.62 Mb (peak 0.62 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.1.0 link memory 0.02 Mb (peak 0.07 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Advance                                 0
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+3036                                             1
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Generic callback                                 0x50
+Tried aggregator 2 times.
+MIP Presolve eliminated 180 rows and 161 columns.
+MIP Presolve modified 120 coefficients.
+Aggregator did 40 substitutions.
+Reduced MIP has 300 rows, 320 columns, and 968 nonzeros.
+Reduced MIP has 100 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.85 ticks)
+Probing fixed 0 vars, tightened 20 bounds.
+Probing time = 0.00 sec. (0.16 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve modified 16 coefficients.
+Reduced MIP has 300 rows, 320 columns, and 968 nonzeros.
+Reduced MIP has 100 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.58 ticks)
+Probing time = 0.00 sec. (0.16 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Parallel mode: deterministic, using up to 2 threads for parallel tasks at root LP.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (0.15 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           532.000000
+Perturbation started.
+Iteration:   102   Dual objective     =          9727.706422
+Removing perturbation.
+Iteration:   110   Dual objective     =          9727.706422
+Markowitz threshold set to 0.3
+Root relaxation solution time = 0.00 sec. (1.01 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0     9727.7064     4                   9727.7064      131         
+*     0     0      integral     0     9727.7064      Cuts: 12      135    0.00%
+Found incumbent of value 9727.706422 after 0.04 sec. (14.12 ticks)
+      0     0        cutoff           9727.7064     9727.7064      135    0.00%
+Elapsed time = 0.04 sec. (14.13 ticks, tree = 0.01 MB)
+
+Mixed integer rounding cuts applied:  8
+Gomory fractional cuts applied:  4
+
+Root node processing (before b&c):
+  Real time             =    0.04 sec. (14.14 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.04 sec. (14.14 ticks)
+
+--- MIP status (101): integer optimal solution.
+--- Cplex Time: 0.04sec (det. 14.14 ticks)
+
+--- Returning a primal only solution to GAMS (marginals all set to NA).
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Advance                                 2
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+3036                                             1
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Row 'FOC_qsf(NorthAmerica,Russia,s1)' infeasible, all entries at implied bounds.
+Presolve time = 0.00 sec. (0.26 ticks)
+
+--- Fixed MIP status (3): infeasible.
+--- Cplex Time: 0.00sec (det. 0.26 ticks)
+
+*** WARNING: Final solve did not return an optimal solution. Returning MIP solution.
+
+Proven optimal solution
+MIP Solution:         9727.706422    (135 iterations, 0 nodes)
+
+Best possible:        9727.706422
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Reading solution for model MARKET_SPLIT_MILP
+***
+*** Solver did not provide marginals for model MARKET_SPLIT_MILP
+***
+--- Executing after solve: elapsed 0:00:00.099
+--- Merged.gms(323) 4 Mb
+*** Status: Normal completion
+--- Job Merged.gms Stop 09/24/24 00:38:19 elapsed 0:00:00.100

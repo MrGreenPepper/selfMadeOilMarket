@@ -1,0 +1,297 @@
+GAMS 47.5.0  d6b95593 Aug 29, 2024          DAX-DAC arm 64bit/macOS - 09/21/24 17:55:46 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+       
+      prodcap
+      19,25
+      3,75
+      11,7
+      33,87
+      3,9691
+       
+       
+      North America
+      EU
+      Russia
+      OPEC
+      Far East
+       
+       
+       
+      Parameter 
+      baseUtility(consumer)                     /NorthAmerica 10,EU 10,Russia 10,OPEC 10,FarEast 10/
+      maxConsumption(consumer)                  /NorthAmerica 20,EU 20,Russia 20,OPEC 20,FarEast 20/
+                     
+      ProductionCap(supplier)                 /NorthAmerica 19.25,EU 3.75,Russia 11.7,OPEC 33.87,FarEast 3.9691/             
+       
+       
+      INT(consumer) Interception point of the inverse demand function in node nn
+      /NorthAmerica 190556,EU 221038,Russia 244440,OPEC 237660,FarEast 277584/
+       
+      SLP(consumer)          Slope of the inverse demand function in node nn
+      /NorthAmerica -0.00008,EU -0.00016,Russia -0.00005,OPEC -0.00002,FarEast -0.00014/
+       
+      prod_cost(supplier)             Linear cost factor in the cost function of producer n
+      / NorthAmerica 22.85,EU 29.09,Russia 19.21,OPEC 9.39,FarEast 29.9/
+       
+      cost(supplier, consumer) total cost for per unit of oil
+       
+      ;
+       
+  40   
+  41   
+  42  Sets
+  43  n        Nodes in the network and producer
+  44  /NorthAmerica,EU,Russia,OPEC,FarEast/
+  45   
+  46  alias (n,nn);
+  47   
+  48  Sets
+  49  leader(n) /OPEC/
+  50  follower(n) /NorthAmerica, EU, Russia, FarEast/;
+  51   
+  52  Parameters
+  53  ProdCap(n)       Capacity limit of production of producer n
+  54  /NorthAmerica 40,EU 20,Russia 45,OPEC 65,FarEast 20/
+  55   
+  56  INT(n)           Interception point of the inverse demand function in node n
+  57  /NorthAmerica 130,EU 130,Russia 130,OPEC 130,FarEast 130/
+  58   
+  59  SLP(n)           Slope of the inverse demand function in node n
+  60  /NorthAmerica -1.04, EU -1.07, Russia -1.07, OPEC -1.08, FarEast -1.1/
+  61   
+  62  c(n)             Linear cost factor in the cost function of producer n
+  63  /NorthAmerica 70,EU 80,Russia 65,OPEC 35,FarEast 85/;
+  64   
+  65  Table
+  66  TradeCap(n,nn)    Capacity limit of trade from producer
+  67                   NorthAmerica         EU      Russia  OPEC    FarEast
+  68  NorthAmerica          100             10      10      10      10
+  69  EU                    10              100     10      10      10
+  70  Russia                10              10      100     10      10
+  71  OPEC                  10              10      10      100     10
+  72  FarEast               10              10      10      10      100
+  73   
+  74   
+  75  ;
+  76   
+  77  Table
+  78  TradeCost(n,nn)   TransportCosts
+  79                   NorthAmerica          EU      Russia    OPEC    FarEast
+  80  NorthAmerica      0                    5       5         5       5
+  81  EU                5                    0       7         3       3
+  82  Russia            5                    7       0         5       5
+  83  OPEC              5                    3       5         0       3
+  84  FarEast           5                    3       5         3       0
+  85   
+  86  ;
+  87   
+  88   
+       
+       
+       
+       
+       
+      Sets
+      n        Nodes in the network and producer
+      /NorthAmerica,EU,Russia,OPEC,FarEast/
+       
+      alias (n,nn);
+       
+      Sets
+      leader(n) /OPEC/
+      follower(n) /NorthAmerica, EU, Russia, FarEast/;
+       
+      Parameters
+      ProdCap(n)       Capacity limit of production of producer n
+      /NorthAmerica 1925,EU 375,Russia 1170,OPEC 3387,FarEast 397/
+       
+      INT(n)           Interception point of the inverse demand function in node n
+      /NorthAmerica 190.556,EU 190.556,Russia 190.556,OPEC 190.556,FarEast 190.556/
+       
+      SLP(n)           Slope of the inverse demand function in node n
+      /NorthAmerica -1.466, EU -1.7, Russia -1.726, OPEC -1.828, FarEast -2.137/
+       
+      c(n)             Linear cost factor in the cost function of producer n
+      /NorthAmerica 22.85,EU 29.09,Russia 19.21,OPEC 9.39,FarEast 29.9/;
+       
+      Table
+      TradeCap(n,nn)    Capacity limit of trade from producer
+                       NorthAmerica         EU      Russia  OPEC    FarEast
+      NorthAmerica          100             10      10      10      10
+      EU                    10              100     10      10      10
+      Russia                10              10      100     10      10
+      OPEC                  10              10      10      100     10
+      FarEast               10              10      10      10      100
+       
+       
+      ;
+       
+      Table
+      TradeCost(n,nn)   TransportCosts
+                       NorthAmerica          EU      Russia    OPEC    FarEast
+      NorthAmerica      0                    5       5         5       5
+      EU                5                    0       7         3       3
+      Russia            5                    7       0         5       5
+      OPEC              5                    3       5         0       3
+      FarEast           5                    3       5         3       0
+       
+      ;
+       
+       
+      ----------------------------------
+       
+       
+      working fine but stackelberg cournot results same
+      Sets
+      n        Nodes in the network and producer
+      /NorthAmerica,EU,Russia,OPEC,FarEast/
+       
+      alias (n,nn);
+       
+      Sets
+      leader(n) /OPEC/
+      follower(n) /NorthAmerica, EU, Russia, FarEast/;
+       
+      Parameters
+      ProdCap(n)       Capacity limit of production of producer n
+      /NorthAmerica 1925,EU 375,Russia 1170,OPEC 6387,FarEast 397/
+       
+      INT(n)           Interception point of the inverse demand function in node n
+      /NorthAmerica 190.556,EU 221.038,Russia 244.440,OPEC 237.660,FarEast 277.840/
+       
+      SLP(n)           Slope of the inverse demand function in node n
+      /NorthAmerica -1.466, EU -1.7, Russia -1.726, OPEC -1.828, FarEast -2.137/
+       
+      c(n)             Linear cost factor in the cost function of producer n
+      /NorthAmerica 22.85,EU 29.09,Russia 19.21,OPEC 9.39,FarEast 29.9/;
+       
+      Table
+      TradeCap(n,nn)    Capacity limit of trade from producer
+                       NorthAmerica         EU      Russia  OPEC    FarEast
+      NorthAmerica          100             10      10      10      10
+      EU                    10              100     10      10      10
+      Russia                10              10      100     10      10
+      OPEC                  10              10      10      100     10
+      FarEast               10              10      10      10      100
+       
+       
+      ;
+       
+      Table
+      TradeCost(n,nn)   TransportCosts
+                       NorthAmerica          EU      Russia    OPEC    FarEast
+      NorthAmerica      0                    5       5         5       5
+      EU                5                    0       7         3       3
+      Russia            5                    7       0         5       5
+      OPEC              5                    3       5         0       3
+      FarEast           5                    3       5         3       0
+       
+      ;
+       
+      -----------------
+       
+      Table
+      TradeCap(n,nn)    Capacity limit of trade from producer
+                       NorthAmerica         EU      Russia    OPEC    FarEast
+      NorthAmerica          100             100     100      100      100
+      EU                    10             100     100      100      100
+      Russia                10             100     100      100      100
+      OPEC                  10             100     100      100      100
+      FarEast               10             100     100      100      100
+       
+      Table
+      TradeCap(n,nn)    Capacity limit of trade from producer
+                       NorthAmerica         EU      Russia  OPEC    FarEast
+      NorthAmerica          100             100     10      10      10
+      EU                    10              100     10      10      10
+      Russia                10              10      100     10      10
+      OPEC                  10              10      10      100     10
+      FarEast               10              10      10      10      100
+       
+      ;
+       
+      Table
+      TradeCap(n,nn)    Capacity limit of trade from producer
+                       NorthAmerica         EU      Russia  OPEC    FarEast
+      NorthAmerica          100             10      50      50      50
+      EU                    50              100     50      50      50
+      Russia                50              50      100     50      50
+      OPEC                  50              50      50      100     50
+      FarEast               50              50      50      50      100
+      ;
+      TradeCost(n,nn)   TransportCosts
+                       NorthAmerica          EU      Russia    OPEC    FarEast
+      NorthAmerica      0                    0.5     0.5       0.5       0.5
+      EU                0.5                  0       0.7       0.3       0.3
+      Russia            0.5                  0.7     0         0.5       0.5
+      OPEC              0.5                  0.3     0.5       0         0.3
+      FarEast           0.5                  0.3     0.5       0.3       0
+       
+       
+       
+      ;
+      ---------------------
+       
+       
+      Sets
+      n        Nodes in the network and producer
+      /America, EU, Asia, OPEC, SaudiArabia/
+       
+      alias (n,nn);
+       
+      Sets
+      leader(n) /SaudiArabia/
+      follower(n) /America, EU, Asia, SaudiArabia/;
+       
+      Parameters
+      ProdCap(n)       Capacity limit of production of producer n
+      /America 40,EU 20,Asia 35,OPEC 50,SaudiArabia 55/
+       
+      INT(n)           Interception point of the inverse demand function in node n
+      /America 130, EU 130, Asia 130, OPEC 130, SaudiArabia 130/
+       
+      SLP(n)           Slope of the inverse demand function in node n
+      /America -1, EU -1, Asia -1, OPEC -1, SaudiArabia -1/
+       
+      c(n)             Linear cost factor in the cost function of producer n
+      /America 70, EU 80, Asia 65, OPEC 40, SaudiArabia 35/
+       
+      Table
+      TradeCap(n,nn)    Capacity limit of trade from producer
+                         America         EU      Asia    OPEC    SaudiArabia
+      America            100             10      10      10      10
+      EU                 10              100     10      10      10
+      Asia               10              10      100     10      10
+      OPEC               10              10      10      100     10
+      SaudiArabia        10              10      10      10      100
+       
+      ;
+       
+      Table
+      TradeCost(n,nn)   TransportCosts
+                       America          EU      Asia    OPEC    SaudiArabia
+      America          0                5       5       5       5
+      EU               5                0       7       3       3
+      Asia             5                7       0       5       5
+      OPEC             5                3       5       0       3
+      SaudiArabia      5                3       5       3       0
+       
+      ;
+       
+
+
+COMPILATION TIME     =        0.001 SECONDS      3 MB  47.5.0 d6b95593 DAX-DAC
+
+
+USER: Course License                                 S240430|0002AO-GEN
+      TU Dresden, Business Management and Economics             DCE3456
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      /Users/akshay/Desktop/Resource New/Back up/Merged/Data1.gms
+Output     /Users/akshay/Desktop/Resource New/Back up/Merged/Data1.lst
